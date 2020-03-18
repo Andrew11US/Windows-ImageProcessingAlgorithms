@@ -8,3 +8,16 @@ C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\D
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.exe
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.pdb
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.ImageForm.resources
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\concrt140.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\cvextern.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\msvcp140.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\msvcp140_1.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\msvcp140_2.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\msvcp140_codecvt_ids.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\opencv_videoio_ffmpeg420_64.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\vcruntime140.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\vcruntime140_1.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\cvextern.lib
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\Emgu.CV.World.Netstandard.dll
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\Emgu.CV.World.Netstandard.xml
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.csproj.CopyComplete
