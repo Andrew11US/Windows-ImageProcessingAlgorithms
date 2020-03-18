@@ -1,0 +1,10 @@
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\ImageProcessingAlgorithms.exe.config
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\ImageProcessingAlgorithms.exe
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\ImageProcessingAlgorithms.pdb
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.csprojAssemblyReference.cache
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.BaseForm.resources
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.Properties.Resources.resources
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.csproj.GenerateResource.cache
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.exe
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.pdb
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.ImageForm.resources

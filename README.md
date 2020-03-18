@@ -1,0 +1,2 @@
+# ImageProcessingAlgorithms
+ Image pricessing + EmguCV
