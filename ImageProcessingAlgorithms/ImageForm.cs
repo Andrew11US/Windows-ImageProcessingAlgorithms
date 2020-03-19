@@ -16,14 +16,18 @@ namespace ImageProcessingAlgorithms
     {
         // Variables declarations
         public string path;
-        public Bitmap bitmap;
+        public BitmapWrapper bitmap;
         public bool imageChanged = false;
         public int ChildID { get; set; }
         public string FileName
         {
             get { return Path.GetFileName(path); }
         }
-        
+        public Histogram Histogram
+        {
+            get { return new Histogram(bitmap); }
+        }
+
         public ImageForm()
         {
             InitializeComponent();
@@ -42,7 +46,7 @@ namespace ImageProcessingAlgorithms
                 pictureBox.Image = bmp;
 
                 this.path = path;
-                bitmap = bmp;
+                bitmap = new BitmapWrapper(bmp);
             }
             catch (Exception error)
             {

@@ -14,6 +14,7 @@ namespace ImageProcessingAlgorithms
     {
         // Window Forms
         ImageForm imageForm;
+        HistogramView histogramView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -121,6 +122,13 @@ namespace ImageProcessingAlgorithms
             {
                 childForm.Close();
             }
+        }
+
+        private void showHistogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            histogramView = new HistogramView(((ImageForm)ActiveMdiChild).Histogram, ((ImageForm)ActiveMdiChild).FileName);
+            histogramView.MdiParent = this;
+            histogramView.Show();
         }
     }
 }
