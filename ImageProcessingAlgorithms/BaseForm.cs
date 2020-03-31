@@ -13,7 +13,7 @@ namespace ImageProcessingAlgorithms
     public partial class BaseForm : Form
     {
         // Window Forms
-        ImageForm imageForm;
+        ImageView imageForm;
         HistogramView histogramView;
 
         // Additional variables
@@ -45,11 +45,12 @@ namespace ImageProcessingAlgorithms
             {
                 if (openFileDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    imageForm = new ImageForm(openFileDialog.FileName);
+                    imageForm = new ImageView(openFileDialog.FileName);
                     imageForm.MdiParent = this;
+                    //imageForm.ChildID = childFormNumber++;
                     imageForm.Show();
                     //int ChildID = 0;
-                    imageForm.ChildID = childFormNumber++;
+
                 }
             }
             catch (Exception error)
@@ -126,9 +127,18 @@ namespace ImageProcessingAlgorithms
 
         private void showHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            histogramView = new HistogramView(((ImageForm)ActiveMdiChild).Histogram, ((ImageForm)ActiveMdiChild).FileName);
-            histogramView.MdiParent = this;
-            histogramView.Show();
+            if (MdiChildren.Count() != 0)
+            {
+                showHistogramToolStripMenuItem.Enabled = true;
+                histogramView = new HistogramView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName, false);
+                histogramView.MdiParent = this;
+                histogramView.Show();
+            } 
+            else
+            {
+                showHistogramToolStripMenuItem.Enabled = false;
+            }
+            
         }
     }
 }

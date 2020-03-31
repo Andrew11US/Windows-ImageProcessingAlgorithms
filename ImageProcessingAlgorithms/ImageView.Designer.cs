@@ -1,6 +1,6 @@
 ﻿namespace ImageProcessingAlgorithms
 {
-    partial class ImageForm
+    partial class ImageView
     {
         /// <summary>
         /// Required designer variable.
@@ -41,14 +41,14 @@
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
-            // ImageForm
+            // ImageView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 260);
             this.Controls.Add(this.pictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "ImageForm";
+            this.Name = "ImageView";
             this.Text = "ImageForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();

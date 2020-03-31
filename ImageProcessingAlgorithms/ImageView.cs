@@ -12,11 +12,12 @@ using System.Windows.Forms;
 
 namespace ImageProcessingAlgorithms
 {
-    public partial class ImageForm : Form
+    public partial class ImageView : Form
     {
         // Variables declarations
         public string path;
         public BitmapWrapper bitmap;
+        private Graphics graphics;
         public bool imageChanged = false;
         public int ChildID { get; set; }
         public string FileName
@@ -25,33 +26,71 @@ namespace ImageProcessingAlgorithms
         }
         public Histogram Histogram
         {
-            get { return new Histogram(bitmap); }
+            get { return new Histogram(bitmap, false); }
         }
 
-        public ImageForm()
+        public ImageView()
         {
             InitializeComponent();
         }
-        public ImageForm(string path)
+        public ImageView(string path)
         {
             InitializeComponent();
             
             try
             {
                 Bitmap bmp = (Bitmap)Image.FromFile(path);
+                bitmap = new BitmapWrapper((Bitmap)Image.FromFile(path));
                 pictureBox.Left = 0;
                 pictureBox.Top = 0;
                 ClientSize = bmp.Size;
-                Text = Path.GetFileName(path+ChildID);
+                Text = Path.GetFileName(path);
                 pictureBox.Image = bmp;
 
                 this.path = path;
-                bitmap = new BitmapWrapper(bmp);
+                
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "Error creating bitmap!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
+        }
+        //public ImageView(string path, int id)
+        //{
+        //    InitializeComponent();
+
+
+        //    StreamReader reader = new StreamReader(path);
+        //    Bitmap bmpTemp = (Bitmap)Bitmap.FromStream(reader.BaseStream);
+        //    Bitmap bmpTemp2 = new Bitmap(bmpTemp.Size.Width, bmpTemp.Size.Height);
+        //    bmpTemp2.SetResolution(bmpTemp.HorizontalResolution, bmpTemp.VerticalResolution);
+        //    Graphics gr = Graphics.FromImage(bmpTemp2);
+        //    gr.DrawImage(bmpTemp, new Point());
+        //    bmpTemp.Dispose();
+        //    reader.Close();
+
+        //    bitmap = new BitmapWrapper(bmpTemp2);
+        //    bitmap.bitmap.SetResolution(96, 96);
+
+        //    Text = Path.GetFileName(path);
+        //    ClientSize = bitmap.Size;
+        //    graphicsPanel.Left = 0;
+        //    graphicsPanel.Top = 0;
+        //    graphicsPanel.Size = bitmap.Size;
+
+        //    graphics = this.graphicsPanel.CreateGraphics();
+
+        //}
+
+        public void Redraw()
+        {
+            //graphics.DrawImage(bmp, new Point());
+            bitmap.Draw(graphics, 0, 0);
+        }
+
+        private void graphicsPanel_Paint(object sender, PaintEventArgs e)
+        {
+            //Redraw();
         }
 
         public void Save()

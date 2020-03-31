@@ -11,42 +11,16 @@ namespace ImageProcessingAlgorithms
 {
     public class BitmapWrapper
     {
-        private Bitmap bitmap;
+        public Bitmap bitmap;
         private BitmapData bitmapData;
         private int stride;
-        private int width;
-        private int height;
-
-        public Bitmap Bitmap
-        {
-            get { return bitmap; }
-            set { bitmap = value; }
-        }
-
-        public int Width
-        {
-            get
-            {
-                return width;
-            }
-        }
-
-        public int Height
-        {
-            get
-            {
-                return height;
-            }
-        }
-
+        public bool isGrayscale = false;
+        public int Width { get; }
+        public int Height { get; }
         public Size Size
         {
-            get
-            {
-                return new Size(Width, Height);
-            }
+            get { return new Size(Width, Height); }
         }
-
         public static int BytesPerPixel
         {
             get { return 4; }
@@ -56,18 +30,18 @@ namespace ImageProcessingAlgorithms
         {
             get
             {
-                while (x < 0)
-                    x += Width;
-                while (x >= Width)
-                    x -= Width;
-                while (y < 0)
-                    y += Height;
-                while (y >= Height)
-                    y -= Height;
+                //while (x < 0)
+                //    x += Width;
+                //while (x >= Width)
+                //    x -= Width;
+                //while (y < 0)
+                //    y += Height;
+                //while (y >= Height)
+                //    y -= Height;
 
                 unsafe
                 {
-                    int* ptr = (int*)(((int*)bitmapData.Scan0) + (y * stride) + x);
+                    int* ptr = ((int*)bitmapData.Scan0) + (y * stride) + x;
                     return Color.FromArgb(*ptr);
                 }
             }
@@ -105,7 +79,7 @@ namespace ImageProcessingAlgorithms
 
                 unsafe
                 {
-                    byte* ptr = (byte*)((byte*)bitmapData.Scan0 + (y * bitmapData.Stride) + x);
+                    byte* ptr = (byte*)bitmapData.Scan0 + (y * bitmapData.Stride) + x;
                     return *ptr;
                 }
             }
@@ -122,7 +96,7 @@ namespace ImageProcessingAlgorithms
 
                 unsafe
                 {
-                    byte* ptr = (byte*)((byte*)bitmapData.Scan0 + (y * bitmapData.Stride) + x);
+                    byte* ptr = (byte*)bitmapData.Scan0 + (y * bitmapData.Stride) + x;
                     *ptr = value;
                 }
             }
@@ -130,31 +104,34 @@ namespace ImageProcessingAlgorithms
 
         public BitmapWrapper(int width, int height)
         {
-            this.width = width;
-            this.height = height;
+            Width = width;
+            Height = height;
 
             bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb);
-
             Lock();
-
             stride = bitmapData.Stride / BytesPerPixel;
         }
 
         public BitmapWrapper(Bitmap bitmap)
         {
             if (bitmap == null)
-                throw new ArgumentNullException("bitmap");
+            {
+                throw new ArgumentNullException("Bitmap is empty!");
+            }
 
-            width = bitmap.Width;
-            height = bitmap.Height;
+            Width = bitmap.Width;
+            Height = bitmap.Height;
 
             if (bitmap.PixelFormat == PixelFormat.Format32bppArgb)
+            {
                 this.bitmap = bitmap;
+            } 
             else
-                this.bitmap = bitmap.Clone(new Rectangle(0, 0, width, height), PixelFormat.Format32bppArgb);
-
+            {
+                this.bitmap = bitmap.Clone(new Rectangle(0, 0, Width, Height), PixelFormat.Format32bppArgb);
+            }
+                
             Lock();
-
             stride = bitmapData.Stride / BytesPerPixel;
         }
 
@@ -177,17 +154,13 @@ namespace ImageProcessingAlgorithms
 
         public void Lock()
         {
-            if (bitmapData != null)
-                return;
-
-            bitmapData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            if (bitmapData != null) { return; }
+            bitmapData = bitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
         }
 
         public Bitmap Unlock()
         {
-            if (bitmapData == null)
-                return bitmap;
-
+            if (bitmapData == null) { return bitmap; }
             bitmap.UnlockBits(bitmapData);
             bitmapData = null;
 

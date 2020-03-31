@@ -65,11 +65,11 @@
     <Compile Include="HistogramView.Designer.cs">
       <DependentUpon>HistogramView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageForm.cs">
+    <Compile Include="ImageView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImageForm.Designer.cs">
-      <DependentUpon>ImageForm.cs</DependentUpon>
+    <Compile Include="ImageView.Designer.cs">
+      <DependentUpon>ImageView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,8 +79,8 @@
     <EmbeddedResource Include="HistogramView.resx">
       <DependentUpon>HistogramView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageForm.resx">
-      <DependentUpon>ImageForm.cs</DependentUpon>
+    <EmbeddedResource Include="ImageView.resx">
+      <DependentUpon>ImageView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

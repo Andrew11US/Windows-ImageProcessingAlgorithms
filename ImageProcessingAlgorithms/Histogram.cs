@@ -9,107 +9,107 @@ namespace ImageProcessingAlgorithms
 {
     public class Histogram
     {
-        private int[] histogramTable;
-        private int total = 0;
-        private int max;
-        private double avg;
-        private double mean;
-        private double variance;
-        private double skewness;
-        private double kurtosis;
-        private double entropy;
+        public int[] HistogramTable { get; }
+        public int[] HistogramTableRed { get; }
+        public int[] HistogramTableGreen { get; }
+        public int[] HistogramTableBlue { get; }
+        public int Total { get; } = 0;
+        public int Max { get; }
+        public double Average { get; }
+        public double Mean { get; }
+        public double Variance { get; }
 
-        public int[] HistogramTable
-        {
-            get { return histogramTable; }
-        }
-
-        public int Total
-        {
-            get { return total; }
-        }
-
-        public int Max
-        {
-            get { return max; }
-        }
-
-        public double Average
-        {
-            get { return avg; }
-        }
-
-        public double Mean
-        {
-            get { return mean; }
-        }
-
-        public double Variance
-        {
-            get { return variance; }
-        }
-
-        public double Skewness
-        {
-            get { return skewness; }
-        }
-
-        public double Kurtosis
-        {
-            get { return kurtosis; }
-        }
-
-        public double Entropy
-        {
-            get { return entropy; }
-        }
+        // Additional stuff
+        public double Skewness { get; }
+        public double Kurtosis { get; }
+        public double Entropy { get; }
 
         public Histogram(BitmapWrapper bmp)
         {
-            histogramTable = new int[256];
+            HistogramTable = new int[256];
             for (int i = 0; i < bmp.Size.Width; ++i)
             {
                 for (int j = 0; j < bmp.Size.Height; ++j)
                 {
-                    histogramTable[bmp[i, j].R]++;
-                    total++;
+                    HistogramTable[bmp[i, j].R]++;
+                    Total++;
                 }
             }
-            max = histogramTable.Max();
-            avg = histogramTable.Average();
 
-            double[] hv = new double[256];
-            for (int i = 0; i < histogramTable.Length; ++i)
+            Max = HistogramTable.Max();
+            Average = HistogramTable.Average();
+
+            //double[] hv = new double[256];
+            //for (int i = 0; i < HistogramTable.Length; ++i)
+            //{
+            //    hv[i] = (double)HistogramTable[i] / Total;
+            //}
+
+            //double temp;
+
+            //Mean = 0;
+            //Variance = 0;
+            //Skewness = 0;
+            //Kurtosis = 0;
+            //Entropy = 0;
+
+            //for (int i = 0; i < HistogramTable.Length; ++i)
+            //{
+            //    Mean += i * hv[i];
+            //}
+
+            //for (int i = 0; i < HistogramTable.Length; ++i)
+            //{
+            //    temp = i - Mean;
+            //    Variance += temp * temp * hv[i];
+            //    Skewness += temp * temp * temp * hv[i];
+            //    Kurtosis += temp * temp * temp * temp * hv[i];
+            //    if (hv[i] > 0)
+            //        Entropy -= hv[i] * Math.Log(hv[i], Math.E);
+            //}
+            //temp = Math.Sqrt(Variance);
+            //temp = temp * temp * temp;
+            //Skewness /= temp;
+            //Kurtosis = (Kurtosis / (Variance * Variance)) - 3;
+        }
+        public Histogram(BitmapWrapper bmp, bool isGrayscale)
+        {
+            if (isGrayscale)
             {
-                hv[i] = (double)histogramTable[i] / total;
+                HistogramTable = new int[256];
+                for (int i = 0; i < bmp.Size.Width; ++i)
+                {
+                    for (int j = 0; j < bmp.Size.Height; ++j)
+                    {
+                        HistogramTable[bmp[i, j].R]++;
+                        Total++;
+                    }
+                }
+
+                Max = HistogramTable.Max();
+                Average = HistogramTable.Average();
             }
-
-            double temp;
-
-            mean = 0;
-            variance = 0;
-            skewness = 0;
-            kurtosis = 0;
-            entropy = 0;
-
-            for (int i = 0; i < histogramTable.Length; ++i)
+            else
             {
-                mean += i * hv[i];
+                HistogramTable = new int[256];
+                HistogramTableRed = new int[256];
+                HistogramTableGreen = new int[256];
+                HistogramTableBlue = new int[256];
+                for (int i = 0; i < bmp.Size.Width; ++i)
+                {
+                    for (int j = 0; j < bmp.Size.Height; ++j)
+                    {
+                        HistogramTable[bmp[i, j].R]++;
+                        HistogramTableRed[bmp[i, j].R]++;
+                        HistogramTableGreen[bmp[i, j].G]++;
+                        HistogramTableBlue[bmp[i, j].B]++;
+                        Total++;
+                    }
+                }
+                // Add max for red, green , blue
+                Max = HistogramTable.Max();
+                Average = HistogramTable.Average();
             }
-
-            for (int i = 0; i < histogramTable.Length; ++i)
-            {
-                temp = i - mean;
-                variance += temp * temp * hv[i];
-                skewness += temp * temp * temp * hv[i];
-                kurtosis += temp * temp * temp * temp * hv[i];
-                if (hv[i] > 0)
-                    entropy -= hv[i] * Math.Log(hv[i], Math.E);
-            }
-            temp = Math.Sqrt(variance);
-            temp = temp * temp * temp;
-            skewness /= temp;
-            kurtosis = (kurtosis / (variance * variance)) - 3;
         }
     }
 }
