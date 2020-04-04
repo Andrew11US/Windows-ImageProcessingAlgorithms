@@ -130,7 +130,7 @@ namespace ImageProcessingAlgorithms
             if (MdiChildren.Count() != 0)
             {
                 showHistogramToolStripMenuItem.Enabled = true;
-                histogramView = new HistogramView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName, false);
+                histogramView = new HistogramView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
                 histogramView.MdiParent = this;
                 histogramView.Show();
             } 
@@ -139,6 +139,21 @@ namespace ImageProcessingAlgorithms
                 showHistogramToolStripMenuItem.Enabled = false;
             }
             
+        }
+
+        private void equalizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EqualizeHistogram(EqualizationMethod.Averages);
+        }
+
+        // Action Functions
+        private void EqualizeHistogram(EqualizationMethod method)
+        {
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            Histogram histogram = ((ImageView)ActiveMdiChild).Histogram;
+            ImageManager.EqualizeHistogram(bmp, histogram, method);
+            //((ImageView)ActiveMdiChild).setImage(bmp);
+            ((ImageView)ActiveMdiChild).Refresh();
         }
     }
 }

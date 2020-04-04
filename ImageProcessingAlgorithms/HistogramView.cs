@@ -106,19 +106,19 @@ namespace ImageProcessingAlgorithms
         }
         private void graphicsPanel_Paint(object sender, PaintEventArgs e)
         {
-            //graphics.DrawImage(histogramImage, new Point());
+            graphics.DrawImage(histogramImage, new Point());
         }
         private void redPanel_Paint(object sender, PaintEventArgs e)
         {
-            graphics.DrawImage(histogramImageRed, new Point());
+            //graphics.DrawImage(histogramImageRed, new Point());
         }
         private void greenPanel_Paint(object sender, PaintEventArgs e)
         {
-            graphics.DrawImage(histogramImageGreen, new Point());
+            //graphics.DrawImage(histogramImageGreen, new Point());
         }
         private void bluePanel_Paint(object sender, PaintEventArgs e)
         {
-            graphics.DrawImage(histogramImageBlue, new Point());
+            //graphics.DrawImage(histogramImageBlue, new Point());
         }
 
         private void graphicsPanel_MouseMove(object sender, MouseEventArgs e)

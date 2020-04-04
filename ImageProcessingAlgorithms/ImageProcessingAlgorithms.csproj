@@ -65,6 +65,7 @@
     <Compile Include="HistogramView.Designer.cs">
       <DependentUpon>HistogramView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageManager.cs" />
     <Compile Include="ImageView.cs">
       <SubType>Form</SubType>
     </Compile>

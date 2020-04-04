@@ -63,6 +63,8 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -73,8 +75,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.equalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -122,7 +123,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(257, 40);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.ShowNewForm);
             // 
@@ -132,14 +133,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(257, 40);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenFile);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(312, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(254, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -147,30 +148,30 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(257, 40);
             this.saveToolStripMenuItem.Text = "&Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(257, 40);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(312, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(254, 6);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(312, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(254, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(257, 40);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -357,6 +358,22 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(294, 40);
             this.aboutToolStripMenuItem.Text = "&About ... ...";
             // 
+            // lab1ToolStripMenuItem
+            // 
+            this.lab1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showHistogramToolStripMenuItem,
+            this.equalizeToolStripMenuItem});
+            this.lab1ToolStripMenuItem.Name = "lab1ToolStripMenuItem";
+            this.lab1ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
+            this.lab1ToolStripMenuItem.Text = "Lab1";
+            // 
+            // showHistogramToolStripMenuItem
+            // 
+            this.showHistogramToolStripMenuItem.Name = "showHistogramToolStripMenuItem";
+            this.showHistogramToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.showHistogramToolStripMenuItem.Text = "Show Histogram";
+            this.showHistogramToolStripMenuItem.Click += new System.EventHandler(this.showHistogramToolStripMenuItem_Click);
+            // 
             // toolStrip
             // 
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(28, 28);
@@ -437,20 +454,12 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 30);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // lab1ToolStripMenuItem
+            // equalizeToolStripMenuItem
             // 
-            this.lab1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showHistogramToolStripMenuItem});
-            this.lab1ToolStripMenuItem.Name = "lab1ToolStripMenuItem";
-            this.lab1ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
-            this.lab1ToolStripMenuItem.Text = "Lab1";
-            // 
-            // showHistogramToolStripMenuItem
-            // 
-            this.showHistogramToolStripMenuItem.Name = "showHistogramToolStripMenuItem";
-            this.showHistogramToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.showHistogramToolStripMenuItem.Text = "Show Histogram";
-            this.showHistogramToolStripMenuItem.Click += new System.EventHandler(this.showHistogramToolStripMenuItem_Click);
+            this.equalizeToolStripMenuItem.Name = "equalizeToolStripMenuItem";
+            this.equalizeToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.equalizeToolStripMenuItem.Text = "Equalize";
+            this.equalizeToolStripMenuItem.Click += new System.EventHandler(this.equalizeToolStripMenuItem_Click);
             // 
             // BaseForm
             // 
@@ -523,6 +532,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem lab1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showHistogramToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem equalizeToolStripMenuItem;
     }
 }
 

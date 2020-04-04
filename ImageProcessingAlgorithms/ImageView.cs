@@ -28,6 +28,11 @@ namespace ImageProcessingAlgorithms
         {
             get { return new Histogram(bitmap, false); }
         }
+        public BitmapWrapper image
+        {
+            get => bitmap;
+            set => bitmap = value;
+        }
 
         public ImageView()
         {
@@ -48,7 +53,6 @@ namespace ImageProcessingAlgorithms
                 pictureBox.Image = bmp;
 
                 this.path = path;
-                
             }
             catch (Exception error)
             {
@@ -91,6 +95,13 @@ namespace ImageProcessingAlgorithms
         private void graphicsPanel_Paint(object sender, PaintEventArgs e)
         {
             //Redraw();
+        }
+
+        public void setImage(BitmapWrapper bmp)
+        {
+            Bitmap temp = bmp.bitmap;
+            pictureBox.Image = null;
+            pictureBox.Image = temp;
         }
 
         public void Save()
