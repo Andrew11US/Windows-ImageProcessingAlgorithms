@@ -75,7 +75,13 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.equalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stretchHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.equalizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.showRGBHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.negationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thresholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.posterizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -92,7 +98,8 @@
             this.toolsMenu,
             this.windowsMenu,
             this.helpMenu,
-            this.lab1ToolStripMenuItem});
+            this.lab1ToolStripMenuItem,
+            this.lab2ToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
@@ -362,7 +369,7 @@
             // 
             this.lab1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showHistogramToolStripMenuItem,
-            this.equalizeToolStripMenuItem});
+            this.showRGBHistogramToolStripMenuItem});
             this.lab1ToolStripMenuItem.Name = "lab1ToolStripMenuItem";
             this.lab1ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
             this.lab1ToolStripMenuItem.Text = "Lab1";
@@ -454,12 +461,57 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 30);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // equalizeToolStripMenuItem
+            // lab2ToolStripMenuItem
             // 
-            this.equalizeToolStripMenuItem.Name = "equalizeToolStripMenuItem";
-            this.equalizeToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.equalizeToolStripMenuItem.Text = "Equalize";
-            this.equalizeToolStripMenuItem.Click += new System.EventHandler(this.equalizeToolStripMenuItem_Click);
+            this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stretchHistogramToolStripMenuItem,
+            this.equalizeToolStripMenuItem1,
+            this.negationToolStripMenuItem,
+            this.thresholdToolStripMenuItem,
+            this.posterizeToolStripMenuItem});
+            this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
+            this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
+            this.lab2ToolStripMenuItem.Text = "Lab2";
+            // 
+            // stretchHistogramToolStripMenuItem
+            // 
+            this.stretchHistogramToolStripMenuItem.Name = "stretchHistogramToolStripMenuItem";
+            this.stretchHistogramToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.stretchHistogramToolStripMenuItem.Text = "Stretch Histogram";
+            this.stretchHistogramToolStripMenuItem.Click += new System.EventHandler(this.stretchHistogramToolStripMenuItem_Click);
+            // 
+            // equalizeToolStripMenuItem1
+            // 
+            this.equalizeToolStripMenuItem1.Name = "equalizeToolStripMenuItem1";
+            this.equalizeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
+            this.equalizeToolStripMenuItem1.Text = "Equalize";
+            this.equalizeToolStripMenuItem1.Click += new System.EventHandler(this.equalizeToolStripMenuItem_Click);
+            // 
+            // showRGBHistogramToolStripMenuItem
+            // 
+            this.showRGBHistogramToolStripMenuItem.Name = "showRGBHistogramToolStripMenuItem";
+            this.showRGBHistogramToolStripMenuItem.Size = new System.Drawing.Size(328, 40);
+            this.showRGBHistogramToolStripMenuItem.Text = "Show RGB Histogram";
+            // 
+            // negationToolStripMenuItem
+            // 
+            this.negationToolStripMenuItem.Name = "negationToolStripMenuItem";
+            this.negationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.negationToolStripMenuItem.Text = "Negation";
+            this.negationToolStripMenuItem.Click += new System.EventHandler(this.negationToolStripMenuItem_Click);
+            // 
+            // thresholdToolStripMenuItem
+            // 
+            this.thresholdToolStripMenuItem.Name = "thresholdToolStripMenuItem";
+            this.thresholdToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.thresholdToolStripMenuItem.Text = "Threshold";
+            // 
+            // posterizeToolStripMenuItem
+            // 
+            this.posterizeToolStripMenuItem.Name = "posterizeToolStripMenuItem";
+            this.posterizeToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.posterizeToolStripMenuItem.Text = "Posterize";
+            this.posterizeToolStripMenuItem.Click += new System.EventHandler(this.posterizeToolStripMenuItem_Click);
             // 
             // BaseForm
             // 
@@ -532,7 +584,13 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem lab1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showHistogramToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem equalizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lab2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stretchHistogramToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem equalizeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem showRGBHistogramToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem negationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thresholdToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem posterizeToolStripMenuItem;
     }
 }
 

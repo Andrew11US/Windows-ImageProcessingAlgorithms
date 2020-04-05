@@ -291,7 +291,7 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, upo);
         }
 
-        public static void Rozciagnij(BitmapWrapper bmp, int low, int high)
+        public static void Stretch(BitmapWrapper bmp, int low, int high)
         {
             byte[] upo = new byte[256];
             if ((high - low) <= 0)
@@ -464,6 +464,18 @@ namespace ImageProcessingAlgorithms
                 if (i < threshold)
                     upo[i] = 0;
                 else upo[i] = 255;
+            }
+            ApplyUPO(bmp, upo);
+        }
+
+        public static void Negation(BitmapWrapper bmp)
+        {
+            byte[] upo = new byte[256];
+            for (int i = 0; i < 256; ++i)
+            {
+                int newValue = 255 - i;
+                upo[i] = (byte)newValue;
+               
             }
             ApplyUPO(bmp, upo);
         }

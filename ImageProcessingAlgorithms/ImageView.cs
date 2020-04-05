@@ -59,6 +59,27 @@ namespace ImageProcessingAlgorithms
                 MessageBox.Show(error.Message, "Error creating bitmap!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
+        public ImageView(Bitmap b)
+        {
+            InitializeComponent();
+
+            try
+            {
+                Bitmap bmp = b;
+                bitmap = new BitmapWrapper(b);
+                pictureBox.Left = 0;
+                pictureBox.Top = 0;
+                ClientSize = bmp.Size;
+                Text = Path.GetFileName(path);
+                pictureBox.Image = bmp;
+
+                this.path = "";
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Error creating bitmap!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+        }
         //public ImageView(string path, int id)
         //{
         //    InitializeComponent();
@@ -97,11 +118,10 @@ namespace ImageProcessingAlgorithms
             //Redraw();
         }
 
-        public void setImage(BitmapWrapper bmp)
+        public void setImage(Bitmap bmp)
         {
-            Bitmap temp = bmp.bitmap;
             pictureBox.Image = null;
-            pictureBox.Image = temp;
+            pictureBox.Image = bmp;
         }
 
         public void Save()

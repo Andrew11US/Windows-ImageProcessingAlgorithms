@@ -152,7 +152,47 @@ namespace ImageProcessingAlgorithms
             BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
             Histogram histogram = ((ImageView)ActiveMdiChild).Histogram;
             ImageManager.EqualizeHistogram(bmp, histogram, method);
-            //((ImageView)ActiveMdiChild).setImage(bmp);
+            Bitmap b = (Bitmap)bmp.bitmap.Clone();
+            ((ImageView)ActiveMdiChild).setImage(b);
+            ((ImageView)ActiveMdiChild).Refresh();
+        }
+        private void stretchHistogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //valueForm = new ValueForm(0, 255, "Enter the low value");
+            //if (valueForm.ShowDialog() == DialogResult.OK)
+            //{
+            //    int low = valueForm.Value;
+            //    valueForm = new ValueForm(0, 255, "Enter the high value");
+            //    if (valueForm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        ImageHelper.Rozciagnij(((ImageForm)ActiveMdiChild).Image, low, valueForm.Value);
+            //        ((ImageForm)ActiveMdiChild).Refresh();
+            //        ((ImageForm)ActiveMdiChild).Changed = true;
+            //    }
+            //}
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            ImageManager.Stretch(bmp, 0, 255); // <== Tweaks needed!!!!!!!!!!!!!!!!!!!
+            Bitmap b = (Bitmap)bmp.bitmap.Clone(); 
+            ((ImageView)ActiveMdiChild).setImage(b);
+            ((ImageView)ActiveMdiChild).Refresh();
+        }
+
+        private void negationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO: refactor!!!
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            ImageManager.Negation(bmp);
+            Bitmap b = (Bitmap)bmp.bitmap.Clone(); 
+            ((ImageView)ActiveMdiChild).setImage(b);
+            ((ImageView)ActiveMdiChild).Refresh();
+        }
+
+        private void posterizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            ImageManager.Posterize(bmp, 4); // <== Change!!!!!!!!!!!!!!!!!!!!!!!!
+            Bitmap b = (Bitmap)bmp.bitmap.Clone(); 
+            ((ImageView)ActiveMdiChild).setImage(b);
             ((ImageView)ActiveMdiChild).Refresh();
         }
     }
