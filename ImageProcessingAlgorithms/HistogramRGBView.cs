@@ -12,76 +12,44 @@ namespace ImageProcessingAlgorithms
 {
     public partial class HistogramRGBView : Form
     {
-        private Graphics graphics;
+        private Graphics graphicsRed;
+        private Graphics graphicsGreen;
+        private Graphics graphicsBlue;
         private Histogram histogram;
-        private Bitmap histogramImage;
 
         private Bitmap histogramImageRed;
         private Bitmap histogramImageGreen;
         private Bitmap histogramImageBlue;
-        //public HistogramRGBView(Histogram histogram, string name)
-        //{
-        //    InitializeComponent();
-        //    Text = "Histogram of " + name;
-
-        //    ClientSize = new Size(276, 276 + statusStrip1.Height); ;
-        //    graphicsPanel.Size = new Size(256, 256);
-        //    graphicsPanel.Left = 10;
-        //    graphicsPanel.Top = 10;
-        //    graphics = graphicsPanel.CreateGraphics();
-
-        //    float[] values = new float[256];
-        //    for (int i = 0; i < 256; ++i)
-        //    {
-        //        values[i] = (float)histogram.HistogramTable[i] / histogram.Max;
-        //    }
-
-        //    histogramImage = new Bitmap(512, 256);
-        //    Graphics graphicsImage = Graphics.FromImage(histogramImage);
-
-        //    graphicsImage.Clear(Color.White);
-        //    for (int i = 0; i < 256; ++i)
-        //    {
-        //        graphicsImage.DrawLine(Pens.Black, new Point(i, 255), new Point(i, 256 - (int)(256f * values[i])));
-        //    }
-
-        //    this.histogram = histogram;
-        //}
-
-      
-       
         public HistogramRGBView(Histogram histogram, string name)
         {
             InitializeComponent();
             Text = "Histogram of " + name;
 
-            ClientSize = new Size(1000, 276 + statusStrip1.Height);
-            //graphicsPanel.Size = new Size(256, 256);
-            //graphicsPanel.Left = 10;
-            //graphicsPanel.Top = 10;
-            //graphics = graphicsPanel.CreateGraphics();
+            ClientSize = new Size(788, 276 + statusStrip1.Height);
 
+            flowLayout.Height = 276;
+            //flowLayout.Top = 10;
             redPanel.Size = new Size(256, 256);
-            redPanel.Left = 100;
-            redPanel.Top = 10;
-
-
             greenPanel.Size = new Size(256, 256);
-            greenPanel.Left = 10;
-            greenPanel.Top = 10;
-
-
-
             bluePanel.Size = new Size(256, 256);
-            bluePanel.Left = 10;
-            bluePanel.Top = 10;
-            graphics = greenPanel.CreateGraphics();
-            graphics = redPanel.CreateGraphics();
-            graphics = bluePanel.CreateGraphics();
+
+            //redPanel.Left = 10;
+            //redPanel.Top = 10;
+
+            //greenPanel.Left = 100;
+            //greenPanel.Top = 10;
+
+            //bluePanel.Left = 500;
+            //bluePanel.Top = 10;
+
+            graphicsRed = redPanel.CreateGraphics();
+            graphicsGreen = greenPanel.CreateGraphics();
+            graphicsBlue = bluePanel.CreateGraphics();
 
             float[] redValues = new float[256];
             float[] greenValues = new float[256];
             float[] blueValues = new float[256];
+
             for (int i = 0; i < 256; ++i)
             {
                 redValues[i] = (float)histogram.HistogramTableRed[i] / histogram.Max;
@@ -92,6 +60,7 @@ namespace ImageProcessingAlgorithms
             histogramImageRed = new Bitmap(512, 256);
             histogramImageGreen = new Bitmap(512, 256);
             histogramImageBlue = new Bitmap(512, 256);
+
             Graphics graphicsImageRed = Graphics.FromImage(histogramImageRed);
             Graphics graphicsImageGreen = Graphics.FromImage(histogramImageGreen);
             Graphics graphicsImageBlue = Graphics.FromImage(histogramImageBlue);
@@ -99,6 +68,7 @@ namespace ImageProcessingAlgorithms
             graphicsImageRed.Clear(Color.White);
             graphicsImageGreen.Clear(Color.White);
             graphicsImageBlue.Clear(Color.White);
+
             for (int i = 0; i < 256; ++i)
             {
                 graphicsImageRed.DrawLine(Pens.Red, new Point(i, 255), new Point(i, 256 - (int)(256f * redValues[i])));
@@ -109,20 +79,28 @@ namespace ImageProcessingAlgorithms
         }
         private void redPanel_Paint(object sender, PaintEventArgs e)
         {
-            graphics.DrawImage(histogramImageRed, new Point());
+            graphicsRed.DrawImage(histogramImageRed, new Point());
         }
         private void greenPanel_Paint(object sender, PaintEventArgs e)
         {
-            graphics.DrawImage(histogramImageGreen, new Point());
+            graphicsGreen.DrawImage(histogramImageGreen, new Point());
         }
         private void bluePanel_Paint(object sender, PaintEventArgs e)
         {
-            graphics.DrawImage(histogramImageBlue, new Point());
+            graphicsBlue.DrawImage(histogramImageBlue, new Point());
         }
 
         private void redPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            toolStripStatusLabel1.Text = histogram.HistogramTableRed[e.X] + " pixels with a gray level of " + e.X.ToString();
+            toolStripStatusLabel1.Text = histogram.HistogramTableRed[e.X] + " pixels with a red level of " + e.X.ToString();
+        }
+        private void greenPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolStripStatusLabel1.Text = histogram.HistogramTableGreen[e.X] + " pixels with a green level of " + e.X.ToString();
+        }
+        private void bluePanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolStripStatusLabel1.Text = histogram.HistogramTableBlue[e.X] + " pixels with a blue level of " + e.X.ToString();
         }
     }
 }
