@@ -65,6 +65,13 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showRGBHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stretchHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.equalizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.negationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thresholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.posterizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -75,13 +82,6 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stretchHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.equalizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.showRGBHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.negationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thresholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.posterizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -377,9 +377,62 @@
             // showHistogramToolStripMenuItem
             // 
             this.showHistogramToolStripMenuItem.Name = "showHistogramToolStripMenuItem";
-            this.showHistogramToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.showHistogramToolStripMenuItem.Size = new System.Drawing.Size(328, 40);
             this.showHistogramToolStripMenuItem.Text = "Show Histogram";
             this.showHistogramToolStripMenuItem.Click += new System.EventHandler(this.showHistogramToolStripMenuItem_Click);
+            // 
+            // showRGBHistogramToolStripMenuItem
+            // 
+            this.showRGBHistogramToolStripMenuItem.Name = "showRGBHistogramToolStripMenuItem";
+            this.showRGBHistogramToolStripMenuItem.Size = new System.Drawing.Size(328, 40);
+            this.showRGBHistogramToolStripMenuItem.Text = "Show RGB Histogram";
+            this.showRGBHistogramToolStripMenuItem.Click += new System.EventHandler(this.showRGBHistogramToolStripMenuItem_Click);
+            // 
+            // lab2ToolStripMenuItem
+            // 
+            this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stretchHistogramToolStripMenuItem,
+            this.equalizeToolStripMenuItem1,
+            this.negationToolStripMenuItem,
+            this.thresholdToolStripMenuItem,
+            this.posterizeToolStripMenuItem});
+            this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
+            this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
+            this.lab2ToolStripMenuItem.Text = "Lab2";
+            // 
+            // stretchHistogramToolStripMenuItem
+            // 
+            this.stretchHistogramToolStripMenuItem.Name = "stretchHistogramToolStripMenuItem";
+            this.stretchHistogramToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.stretchHistogramToolStripMenuItem.Text = "Stretch Histogram";
+            this.stretchHistogramToolStripMenuItem.Click += new System.EventHandler(this.stretchHistogramToolStripMenuItem_Click);
+            // 
+            // equalizeToolStripMenuItem1
+            // 
+            this.equalizeToolStripMenuItem1.Name = "equalizeToolStripMenuItem1";
+            this.equalizeToolStripMenuItem1.Size = new System.Drawing.Size(297, 40);
+            this.equalizeToolStripMenuItem1.Text = "Equalize";
+            this.equalizeToolStripMenuItem1.Click += new System.EventHandler(this.equalizeToolStripMenuItem_Click);
+            // 
+            // negationToolStripMenuItem
+            // 
+            this.negationToolStripMenuItem.Name = "negationToolStripMenuItem";
+            this.negationToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.negationToolStripMenuItem.Text = "Negation";
+            this.negationToolStripMenuItem.Click += new System.EventHandler(this.negationToolStripMenuItem_Click);
+            // 
+            // thresholdToolStripMenuItem
+            // 
+            this.thresholdToolStripMenuItem.Name = "thresholdToolStripMenuItem";
+            this.thresholdToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.thresholdToolStripMenuItem.Text = "Threshold";
+            // 
+            // posterizeToolStripMenuItem
+            // 
+            this.posterizeToolStripMenuItem.Name = "posterizeToolStripMenuItem";
+            this.posterizeToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.posterizeToolStripMenuItem.Text = "Posterize";
+            this.posterizeToolStripMenuItem.Click += new System.EventHandler(this.posterizeToolStripMenuItem_Click);
             // 
             // toolStrip
             // 
@@ -460,58 +513,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 30);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // lab2ToolStripMenuItem
-            // 
-            this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stretchHistogramToolStripMenuItem,
-            this.equalizeToolStripMenuItem1,
-            this.negationToolStripMenuItem,
-            this.thresholdToolStripMenuItem,
-            this.posterizeToolStripMenuItem});
-            this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
-            this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
-            this.lab2ToolStripMenuItem.Text = "Lab2";
-            // 
-            // stretchHistogramToolStripMenuItem
-            // 
-            this.stretchHistogramToolStripMenuItem.Name = "stretchHistogramToolStripMenuItem";
-            this.stretchHistogramToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.stretchHistogramToolStripMenuItem.Text = "Stretch Histogram";
-            this.stretchHistogramToolStripMenuItem.Click += new System.EventHandler(this.stretchHistogramToolStripMenuItem_Click);
-            // 
-            // equalizeToolStripMenuItem1
-            // 
-            this.equalizeToolStripMenuItem1.Name = "equalizeToolStripMenuItem1";
-            this.equalizeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
-            this.equalizeToolStripMenuItem1.Text = "Equalize";
-            this.equalizeToolStripMenuItem1.Click += new System.EventHandler(this.equalizeToolStripMenuItem_Click);
-            // 
-            // showRGBHistogramToolStripMenuItem
-            // 
-            this.showRGBHistogramToolStripMenuItem.Name = "showRGBHistogramToolStripMenuItem";
-            this.showRGBHistogramToolStripMenuItem.Size = new System.Drawing.Size(328, 40);
-            this.showRGBHistogramToolStripMenuItem.Text = "Show RGB Histogram";
-            // 
-            // negationToolStripMenuItem
-            // 
-            this.negationToolStripMenuItem.Name = "negationToolStripMenuItem";
-            this.negationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.negationToolStripMenuItem.Text = "Negation";
-            this.negationToolStripMenuItem.Click += new System.EventHandler(this.negationToolStripMenuItem_Click);
-            // 
-            // thresholdToolStripMenuItem
-            // 
-            this.thresholdToolStripMenuItem.Name = "thresholdToolStripMenuItem";
-            this.thresholdToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.thresholdToolStripMenuItem.Text = "Threshold";
-            // 
-            // posterizeToolStripMenuItem
-            // 
-            this.posterizeToolStripMenuItem.Name = "posterizeToolStripMenuItem";
-            this.posterizeToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.posterizeToolStripMenuItem.Text = "Posterize";
-            this.posterizeToolStripMenuItem.Click += new System.EventHandler(this.posterizeToolStripMenuItem_Click);
             // 
             // BaseForm
             // 

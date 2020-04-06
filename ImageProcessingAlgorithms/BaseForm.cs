@@ -15,6 +15,7 @@ namespace ImageProcessingAlgorithms
         // Window Forms
         ImageView imageForm;
         HistogramView histogramView;
+        HistogramRGBView histogramRGBView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -194,6 +195,21 @@ namespace ImageProcessingAlgorithms
             Bitmap b = (Bitmap)bmp.bitmap.Clone(); 
             ((ImageView)ActiveMdiChild).setImage(b);
             ((ImageView)ActiveMdiChild).Refresh();
+        }
+
+        private void showRGBHistogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MdiChildren.Count() != 0)
+            {
+                showHistogramToolStripMenuItem.Enabled = true;
+                histogramRGBView = new HistogramRGBView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
+                histogramRGBView.MdiParent = this;
+                histogramRGBView.Show();
+            }
+            else
+            {
+                showHistogramToolStripMenuItem.Enabled = false;
+            }
         }
     }
 }

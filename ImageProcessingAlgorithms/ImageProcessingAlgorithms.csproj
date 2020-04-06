@@ -59,6 +59,12 @@
     </Compile>
     <Compile Include="BitmapWrapper.cs" />
     <Compile Include="Histogram.cs" />
+    <Compile Include="HistogramRGBView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistogramRGBView.Designer.cs">
+      <DependentUpon>HistogramRGBView.cs</DependentUpon>
+    </Compile>
     <Compile Include="HistogramView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistogramRGBView.resx">
+      <DependentUpon>HistogramRGBView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistogramView.resx">
       <DependentUpon>HistogramView.cs</DependentUpon>
