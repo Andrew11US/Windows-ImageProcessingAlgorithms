@@ -18,6 +18,7 @@ namespace ImageProcessingAlgorithms
         HistogramRGBView histogramRGBView;
         StretchView stretchView;
         ThresholdView thresholdView;
+        ThresholdGrayscaleView thresholdGrayscaleView;
         PosterizeView posterizeView;
 
         // Additional variables
@@ -220,6 +221,19 @@ namespace ImageProcessingAlgorithms
             ImageManager.AdjustHistogram(bmp, ((ImageView)ActiveMdiChild).Histogram);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             ((ImageView)ActiveMdiChild).Refresh();
+        }
+
+        private void thresholdGrayscaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            thresholdGrayscaleView = new ThresholdGrayscaleView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
+
+            if (thresholdGrayscaleView.ShowDialog() == DialogResult.OK)
+            {
+                ImageManager.ThresholdGrayscale(bmp, thresholdGrayscaleView.lowerBound, thresholdGrayscaleView.upperBound);
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+            }
         }
     }
 }

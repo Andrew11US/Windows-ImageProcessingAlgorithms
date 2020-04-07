@@ -466,6 +466,16 @@ namespace ImageProcessingAlgorithms
             }
             ApplyUPO(bmp, upo);
         }
+        public static void ThresholdGrayscale(BitmapWrapper bmp, int lower, int upper)
+        {
+            byte[] upo = new byte[256];
+            for (int i = 0; i < 256; ++i)
+            {
+                if (i < lower || i > upper) upo[i] = 0;
+                else upo[i] = (byte)i;
+            }
+            ApplyUPO(bmp, upo);
+        }
 
         public static void Inversion(BitmapWrapper bmp)
         {

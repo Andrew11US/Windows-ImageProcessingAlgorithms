@@ -92,6 +92,12 @@
     <Compile Include="StretchView.Designer.cs">
       <DependentUpon>StretchView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThresholdGrayscale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThresholdGrayscale.Designer.cs">
+      <DependentUpon>ThresholdGrayscale.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThresholdView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     </Compile>
     <EmbeddedResource Include="StretchView.resx">
       <DependentUpon>StretchView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThresholdGrayscale.resx">
+      <DependentUpon>ThresholdGrayscale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThresholdView.resx">
       <DependentUpon>ThresholdView.cs</DependentUpon>

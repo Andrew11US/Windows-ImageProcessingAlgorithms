@@ -83,6 +83,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.inverseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thresholdGrayscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -396,6 +397,7 @@
             this.adjustToolStripMenuItem,
             this.equalizeToolStripMenuItem1,
             this.thresholdToolStripMenuItem,
+            this.thresholdGrayscaleToolStripMenuItem,
             this.posterizeToolStripMenuItem,
             this.inverseToolStripMenuItem});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
@@ -405,35 +407,35 @@
             // stretchHistogramToolStripMenuItem
             // 
             this.stretchHistogramToolStripMenuItem.Name = "stretchHistogramToolStripMenuItem";
-            this.stretchHistogramToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.stretchHistogramToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
             this.stretchHistogramToolStripMenuItem.Text = "Stretch Histogram";
             this.stretchHistogramToolStripMenuItem.Click += new System.EventHandler(this.stretchHistogramToolStripMenuItem_Click);
             // 
             // equalizeToolStripMenuItem1
             // 
             this.equalizeToolStripMenuItem1.Name = "equalizeToolStripMenuItem1";
-            this.equalizeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
+            this.equalizeToolStripMenuItem1.Size = new System.Drawing.Size(316, 40);
             this.equalizeToolStripMenuItem1.Text = "Equalize Histogram";
             this.equalizeToolStripMenuItem1.Click += new System.EventHandler(this.equalizeToolStripMenuItem_Click);
             // 
             // adjustToolStripMenuItem
             // 
             this.adjustToolStripMenuItem.Name = "adjustToolStripMenuItem";
-            this.adjustToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.adjustToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
             this.adjustToolStripMenuItem.Text = "Adjust Histogram";
             this.adjustToolStripMenuItem.Click += new System.EventHandler(this.adjustToolStripMenuItem_Click);
             // 
             // thresholdToolStripMenuItem
             // 
             this.thresholdToolStripMenuItem.Name = "thresholdToolStripMenuItem";
-            this.thresholdToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.thresholdToolStripMenuItem.Text = "Threshold";
+            this.thresholdToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
+            this.thresholdToolStripMenuItem.Text = "Threshold Binarize";
             this.thresholdToolStripMenuItem.Click += new System.EventHandler(this.thresholdToolStripMenuItem_Click);
             // 
             // posterizeToolStripMenuItem
             // 
             this.posterizeToolStripMenuItem.Name = "posterizeToolStripMenuItem";
-            this.posterizeToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.posterizeToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
             this.posterizeToolStripMenuItem.Text = "Posterize";
             this.posterizeToolStripMenuItem.Click += new System.EventHandler(this.posterizeToolStripMenuItem_Click);
             // 
@@ -449,7 +451,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 42);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip.Size = new System.Drawing.Size(1159, 44);
+            this.toolStrip.Size = new System.Drawing.Size(1159, 38);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -459,7 +461,7 @@
             this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
             this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
             this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(40, 38);
+            this.newToolStripButton.Size = new System.Drawing.Size(40, 32);
             this.newToolStripButton.Text = "New";
             this.newToolStripButton.Click += new System.EventHandler(this.ShowNewForm);
             // 
@@ -469,7 +471,7 @@
             this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
             this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
             this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(40, 38);
+            this.openToolStripButton.Size = new System.Drawing.Size(40, 32);
             this.openToolStripButton.Text = "Open";
             this.openToolStripButton.Click += new System.EventHandler(this.OpenFile);
             // 
@@ -479,18 +481,18 @@
             this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
             this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
             this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(40, 38);
+            this.saveToolStripButton.Size = new System.Drawing.Size(40, 32);
             this.saveToolStripButton.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
             // 
             // statusStrip
             // 
@@ -520,9 +522,16 @@
             // inverseToolStripMenuItem
             // 
             this.inverseToolStripMenuItem.Name = "inverseToolStripMenuItem";
-            this.inverseToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.inverseToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
             this.inverseToolStripMenuItem.Text = "Inverse";
             this.inverseToolStripMenuItem.Click += new System.EventHandler(this.inverseToolStripMenuItem_Click);
+            // 
+            // thresholdGrayscaleToolStripMenuItem
+            // 
+            this.thresholdGrayscaleToolStripMenuItem.Name = "thresholdGrayscaleToolStripMenuItem";
+            this.thresholdGrayscaleToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
+            this.thresholdGrayscaleToolStripMenuItem.Text = "Threshold Grayscale";
+            this.thresholdGrayscaleToolStripMenuItem.Click += new System.EventHandler(this.thresholdGrayscaleToolStripMenuItem_Click);
             // 
             // BaseForm
             // 
@@ -603,6 +612,7 @@
         private System.Windows.Forms.ToolStripMenuItem thresholdToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem posterizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inverseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thresholdGrayscaleToolStripMenuItem;
     }
 }
 

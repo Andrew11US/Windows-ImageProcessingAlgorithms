@@ -13,6 +13,7 @@ namespace ImageProcessingAlgorithms
         public int[] HistogramTableRed { get; }
         public int[] HistogramTableGreen { get; }
         public int[] HistogramTableBlue { get; }
+        //public int[] CumulatedHistogramTable { get; }
         public int Total { get; } = 0;
         public int Max { get; }
         public double Average { get; }
@@ -77,6 +78,8 @@ namespace ImageProcessingAlgorithms
             if (isGrayscale)
             {
                 HistogramTable = new int[256];
+                //CumulatedHistogramTable = new int[256];
+                //int cumulatedSum = 0;
                 for (int i = 0; i < bmp.Size.Width; ++i)
                 {
                     for (int j = 0; j < bmp.Size.Height; ++j)
