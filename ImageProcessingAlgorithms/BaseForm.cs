@@ -235,5 +235,23 @@ namespace ImageProcessingAlgorithms
                 ((ImageView)ActiveMdiChild).Refresh();
             }
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void makeGrayscaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            ImageManager.Grayscale(bmp);
+            ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+            ((ImageView)ActiveMdiChild).Refresh();
+
+            //ImageManager.ThresholdGrayscale(bmp, thresholdGrayscaleView.lowerBound, thresholdGrayscaleView.upperBound);
+            //    ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+            //    ((ImageView)ActiveMdiChild).Refresh();
+            
+        }
     }
 }

@@ -84,6 +84,26 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.inverseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thresholdGrayscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logicalOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nOTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aNDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.additionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blendingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gaussianBlurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operatorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.laplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cannyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sharpenMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pewwitMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customMask3x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medianFiltrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.makeGrayscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -101,7 +121,8 @@
             this.windowsMenu,
             this.helpMenu,
             this.lab1ToolStripMenuItem,
-            this.lab2ToolStripMenuItem});
+            this.lab2ToolStripMenuItem,
+            this.lab3ToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
@@ -120,6 +141,7 @@
             this.saveAsToolStripMenuItem,
             this.toolStripSeparator4,
             this.toolStripSeparator5,
+            this.closeToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.fileMenu.Name = "fileMenu";
@@ -132,7 +154,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(257, 40);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.ShowNewForm);
             // 
@@ -371,7 +393,8 @@
             // 
             this.lab1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showHistogramToolStripMenuItem,
-            this.showRGBHistogramToolStripMenuItem});
+            this.showRGBHistogramToolStripMenuItem,
+            this.makeGrayscaleToolStripMenuItem});
             this.lab1ToolStripMenuItem.Name = "lab1ToolStripMenuItem";
             this.lab1ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
             this.lab1ToolStripMenuItem.Text = "Lab1";
@@ -533,6 +556,148 @@
             this.thresholdGrayscaleToolStripMenuItem.Text = "Threshold Grayscale";
             this.thresholdGrayscaleToolStripMenuItem.Click += new System.EventHandler(this.thresholdGrayscaleToolStripMenuItem_Click);
             // 
+            // lab3ToolStripMenuItem
+            // 
+            this.lab3ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logicalOperationsToolStripMenuItem,
+            this.additionToolStripMenuItem,
+            this.blendingToolStripMenuItem,
+            this.blurToolStripMenuItem,
+            this.gaussianBlurToolStripMenuItem,
+            this.operatorsToolStripMenuItem,
+            this.sharpenMasksToolStripMenuItem,
+            this.pewwitMasksToolStripMenuItem,
+            this.customMask3x3ToolStripMenuItem,
+            this.medianFiltrationToolStripMenuItem});
+            this.lab3ToolStripMenuItem.Name = "lab3ToolStripMenuItem";
+            this.lab3ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
+            this.lab3ToolStripMenuItem.Text = "Lab3";
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // logicalOperationsToolStripMenuItem
+            // 
+            this.logicalOperationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nOTToolStripMenuItem,
+            this.aNDToolStripMenuItem,
+            this.oRToolStripMenuItem,
+            this.xORToolStripMenuItem});
+            this.logicalOperationsToolStripMenuItem.Name = "logicalOperationsToolStripMenuItem";
+            this.logicalOperationsToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.logicalOperationsToolStripMenuItem.Text = "Logical Operations";
+            // 
+            // nOTToolStripMenuItem
+            // 
+            this.nOTToolStripMenuItem.Name = "nOTToolStripMenuItem";
+            this.nOTToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.nOTToolStripMenuItem.Text = "NOT";
+            // 
+            // aNDToolStripMenuItem
+            // 
+            this.aNDToolStripMenuItem.Name = "aNDToolStripMenuItem";
+            this.aNDToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.aNDToolStripMenuItem.Text = "AND";
+            // 
+            // oRToolStripMenuItem
+            // 
+            this.oRToolStripMenuItem.Name = "oRToolStripMenuItem";
+            this.oRToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.oRToolStripMenuItem.Text = "OR";
+            // 
+            // xORToolStripMenuItem
+            // 
+            this.xORToolStripMenuItem.Name = "xORToolStripMenuItem";
+            this.xORToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.xORToolStripMenuItem.Text = "XOR";
+            // 
+            // additionToolStripMenuItem
+            // 
+            this.additionToolStripMenuItem.Name = "additionToolStripMenuItem";
+            this.additionToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.additionToolStripMenuItem.Text = "Addition";
+            // 
+            // blendingToolStripMenuItem
+            // 
+            this.blendingToolStripMenuItem.Name = "blendingToolStripMenuItem";
+            this.blendingToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.blendingToolStripMenuItem.Text = "Blending";
+            // 
+            // blurToolStripMenuItem
+            // 
+            this.blurToolStripMenuItem.Name = "blurToolStripMenuItem";
+            this.blurToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.blurToolStripMenuItem.Text = "Blur";
+            // 
+            // gaussianBlurToolStripMenuItem
+            // 
+            this.gaussianBlurToolStripMenuItem.Name = "gaussianBlurToolStripMenuItem";
+            this.gaussianBlurToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.gaussianBlurToolStripMenuItem.Text = "Gaussian Blur";
+            // 
+            // operatorsToolStripMenuItem
+            // 
+            this.operatorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sobelToolStripMenuItem,
+            this.laplaceToolStripMenuItem,
+            this.cannyToolStripMenuItem});
+            this.operatorsToolStripMenuItem.Name = "operatorsToolStripMenuItem";
+            this.operatorsToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.operatorsToolStripMenuItem.Text = "Operators";
+            // 
+            // sobelToolStripMenuItem
+            // 
+            this.sobelToolStripMenuItem.Name = "sobelToolStripMenuItem";
+            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.sobelToolStripMenuItem.Text = "Sobel";
+            // 
+            // laplaceToolStripMenuItem
+            // 
+            this.laplaceToolStripMenuItem.Name = "laplaceToolStripMenuItem";
+            this.laplaceToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.laplaceToolStripMenuItem.Text = "Laplace";
+            // 
+            // cannyToolStripMenuItem
+            // 
+            this.cannyToolStripMenuItem.Name = "cannyToolStripMenuItem";
+            this.cannyToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.cannyToolStripMenuItem.Text = "Canny";
+            // 
+            // sharpenMasksToolStripMenuItem
+            // 
+            this.sharpenMasksToolStripMenuItem.Name = "sharpenMasksToolStripMenuItem";
+            this.sharpenMasksToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.sharpenMasksToolStripMenuItem.Text = "Sharpen masks";
+            // 
+            // pewwitMasksToolStripMenuItem
+            // 
+            this.pewwitMasksToolStripMenuItem.Name = "pewwitMasksToolStripMenuItem";
+            this.pewwitMasksToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.pewwitMasksToolStripMenuItem.Text = "Pewwit masks";
+            // 
+            // customMask3x3ToolStripMenuItem
+            // 
+            this.customMask3x3ToolStripMenuItem.Name = "customMask3x3ToolStripMenuItem";
+            this.customMask3x3ToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.customMask3x3ToolStripMenuItem.Text = "Custom mask 3x3";
+            // 
+            // medianFiltrationToolStripMenuItem
+            // 
+            this.medianFiltrationToolStripMenuItem.Name = "medianFiltrationToolStripMenuItem";
+            this.medianFiltrationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.medianFiltrationToolStripMenuItem.Text = "Median filtration";
+            // 
+            // makeGrayscaleToolStripMenuItem
+            // 
+            this.makeGrayscaleToolStripMenuItem.Name = "makeGrayscaleToolStripMenuItem";
+            this.makeGrayscaleToolStripMenuItem.Size = new System.Drawing.Size(328, 40);
+            this.makeGrayscaleToolStripMenuItem.Text = "Make Grayscale";
+            this.makeGrayscaleToolStripMenuItem.Click += new System.EventHandler(this.makeGrayscaleToolStripMenuItem_Click);
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -613,6 +778,26 @@
         private System.Windows.Forms.ToolStripMenuItem posterizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inverseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thresholdGrayscaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lab3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logicalOperationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nOTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aNDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xORToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem additionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blendingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blurToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gaussianBlurToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operatorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sobelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem laplaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cannyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sharpenMasksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pewwitMasksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customMask3x3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem medianFiltrationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem makeGrayscaleToolStripMenuItem;
     }
 }
 
