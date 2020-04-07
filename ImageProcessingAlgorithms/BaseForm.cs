@@ -17,6 +17,7 @@ namespace ImageProcessingAlgorithms
         HistogramView histogramView;
         HistogramRGBView histogramRGBView;
         StretchView stretchView;
+        ThresholdView thresholdView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -202,6 +203,25 @@ namespace ImageProcessingAlgorithms
             else
             {
                 showHistogramToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        private void thresholdToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            //ImageManager.Threshold(bmp, 80); // <== Change!!!!!!!!!!!!!!!!!!!!!!!!
+            //Bitmap b = (Bitmap)bmp.bitmap.Clone();
+            //((ImageView)ActiveMdiChild).setImage(b);
+            //((ImageView)ActiveMdiChild).Refresh();
+
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            thresholdView = new ThresholdView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
+
+            if (thresholdView.ShowDialog() == DialogResult.OK)
+            {
+                ImageManager.Threshold(bmp, thresholdView.thresholdValue);
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
             }
         }
     }

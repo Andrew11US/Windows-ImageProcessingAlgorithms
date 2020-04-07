@@ -403,34 +403,35 @@
             // stretchHistogramToolStripMenuItem
             // 
             this.stretchHistogramToolStripMenuItem.Name = "stretchHistogramToolStripMenuItem";
-            this.stretchHistogramToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.stretchHistogramToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.stretchHistogramToolStripMenuItem.Text = "Stretch Histogram";
             this.stretchHistogramToolStripMenuItem.Click += new System.EventHandler(this.stretchHistogramToolStripMenuItem_Click);
             // 
             // equalizeToolStripMenuItem1
             // 
             this.equalizeToolStripMenuItem1.Name = "equalizeToolStripMenuItem1";
-            this.equalizeToolStripMenuItem1.Size = new System.Drawing.Size(297, 40);
+            this.equalizeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
             this.equalizeToolStripMenuItem1.Text = "Equalize";
             this.equalizeToolStripMenuItem1.Click += new System.EventHandler(this.equalizeToolStripMenuItem_Click);
             // 
             // negationToolStripMenuItem
             // 
             this.negationToolStripMenuItem.Name = "negationToolStripMenuItem";
-            this.negationToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.negationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.negationToolStripMenuItem.Text = "Negation";
             this.negationToolStripMenuItem.Click += new System.EventHandler(this.negationToolStripMenuItem_Click);
             // 
             // thresholdToolStripMenuItem
             // 
             this.thresholdToolStripMenuItem.Name = "thresholdToolStripMenuItem";
-            this.thresholdToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.thresholdToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.thresholdToolStripMenuItem.Text = "Threshold";
+            this.thresholdToolStripMenuItem.Click += new System.EventHandler(this.thresholdToolStripMenuItem_Click);
             // 
             // posterizeToolStripMenuItem
             // 
             this.posterizeToolStripMenuItem.Name = "posterizeToolStripMenuItem";
-            this.posterizeToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.posterizeToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.posterizeToolStripMenuItem.Text = "Posterize";
             this.posterizeToolStripMenuItem.Click += new System.EventHandler(this.posterizeToolStripMenuItem_Click);
             // 

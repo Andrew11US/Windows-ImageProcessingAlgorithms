@@ -191,6 +191,7 @@
             this.Controls.Add(this.histogramPanel);
             this.Controls.Add(this.trackBarUpper);
             this.Controls.Add(this.trackBarLower);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "StretchView";
             this.Text = "StretchView";
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLower)).EndInit();

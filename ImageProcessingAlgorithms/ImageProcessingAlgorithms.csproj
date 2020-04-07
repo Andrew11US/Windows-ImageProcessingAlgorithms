@@ -86,6 +86,12 @@
     <Compile Include="StretchView.Designer.cs">
       <DependentUpon>StretchView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThresholdView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThresholdView.Designer.cs">
+      <DependentUpon>ThresholdView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +115,9 @@
     </Compile>
     <EmbeddedResource Include="StretchView.resx">
       <DependentUpon>StretchView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThresholdView.resx">
+      <DependentUpon>ThresholdView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="cvextern.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

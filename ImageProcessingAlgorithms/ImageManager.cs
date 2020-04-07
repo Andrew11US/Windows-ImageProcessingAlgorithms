@@ -461,8 +461,7 @@ namespace ImageProcessingAlgorithms
             byte[] upo = new byte[256];
             for (int i = 0; i < 256; ++i)
             {
-                if (i < threshold)
-                    upo[i] = 0;
+                if (i < threshold) upo[i] = 0;
                 else upo[i] = 255;
             }
             ApplyUPO(bmp, upo);

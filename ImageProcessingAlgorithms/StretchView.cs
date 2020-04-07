@@ -20,7 +20,7 @@ namespace ImageProcessingAlgorithms
         {
             InitializeComponent();
             Text = "Histogram Stretching : " + name;
-            ClientSize = new Size(532, 400 + statusStrip1.Height); ;
+            ClientSize = new Size(532, 400 + statusStrip1.Height);
             histogramPanel.Size = new Size(512, 256);
             trackBarLower.Size = new Size(532, 50);
             trackBarUpper.Size = new Size(532, 50);
