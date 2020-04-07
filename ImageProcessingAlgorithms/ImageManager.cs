@@ -307,7 +307,7 @@ namespace ImageProcessingAlgorithms
                 if (i < low)
                     upo[i] = 0;
                 else if (i >= high)
-                    upo[i] = 0;
+                    upo[i] = 255;
                 else
                     upo[i] = (byte)((i - low) * parameter);
             }

@@ -80,6 +80,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StretchView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StretchView.Designer.cs">
+      <DependentUpon>StretchView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +107,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StretchView.resx">
+      <DependentUpon>StretchView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="cvextern.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -16,6 +16,7 @@ namespace ImageProcessingAlgorithms
         ImageView imageForm;
         HistogramView histogramView;
         HistogramRGBView histogramRGBView;
+        StretchView stretchView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -159,23 +160,15 @@ namespace ImageProcessingAlgorithms
         }
         private void stretchHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //valueForm = new ValueForm(0, 255, "Enter the low value");
-            //if (valueForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    int low = valueForm.Value;
-            //    valueForm = new ValueForm(0, 255, "Enter the high value");
-            //    if (valueForm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        ImageHelper.Rozciagnij(((ImageForm)ActiveMdiChild).Image, low, valueForm.Value);
-            //        ((ImageForm)ActiveMdiChild).Refresh();
-            //        ((ImageForm)ActiveMdiChild).Changed = true;
-            //    }
-            //}
             BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
-            ImageManager.Stretch(bmp, 0, 255); // <== Tweaks needed!!!!!!!!!!!!!!!!!!!
-            Bitmap b = (Bitmap)bmp.bitmap.Clone(); 
-            ((ImageView)ActiveMdiChild).setImage(b);
-            ((ImageView)ActiveMdiChild).Refresh();
+            stretchView = new StretchView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
+
+            if (stretchView.ShowDialog() == DialogResult.OK)
+            {
+                ImageManager.Stretch(bmp, stretchView.lowerBound, stretchView.upperBound);
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+            }
         }
 
         private void negationToolStripMenuItem_Click(object sender, EventArgs e)
