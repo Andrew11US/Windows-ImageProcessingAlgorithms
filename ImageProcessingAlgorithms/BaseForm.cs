@@ -18,6 +18,7 @@ namespace ImageProcessingAlgorithms
         HistogramRGBView histogramRGBView;
         StretchView stretchView;
         ThresholdView thresholdView;
+        PosterizeView posterizeView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -146,17 +147,9 @@ namespace ImageProcessingAlgorithms
 
         private void equalizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EqualizeHistogram(EqualizationMethod.Averages);
-        }
-
-        // Action Functions
-        private void EqualizeHistogram(EqualizationMethod method)
-        {
             BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
-            Histogram histogram = ((ImageView)ActiveMdiChild).Histogram;
-            ImageManager.EqualizeHistogram(bmp, histogram, method);
-            Bitmap b = (Bitmap)bmp.bitmap.Clone();
-            ((ImageView)ActiveMdiChild).setImage(b);
+            ImageManager.EqualizeHistogram(bmp, ((ImageView)ActiveMdiChild).Histogram, EqualizationMethod.Averages);
+            ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             ((ImageView)ActiveMdiChild).Refresh();
         }
         private void stretchHistogramToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,23 +165,17 @@ namespace ImageProcessingAlgorithms
             }
         }
 
-        private void negationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //TODO: refactor!!!
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
-            ImageManager.Negation(bmp);
-            Bitmap b = (Bitmap)bmp.bitmap.Clone(); 
-            ((ImageView)ActiveMdiChild).setImage(b);
-            ((ImageView)ActiveMdiChild).Refresh();
-        }
-
         private void posterizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
-            ImageManager.Posterize(bmp, 4); // <== Change!!!!!!!!!!!!!!!!!!!!!!!!
-            Bitmap b = (Bitmap)bmp.bitmap.Clone(); 
-            ((ImageView)ActiveMdiChild).setImage(b);
-            ((ImageView)ActiveMdiChild).Refresh();
+            posterizeView = new PosterizeView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
+
+            if (posterizeView.ShowDialog() == DialogResult.OK)
+            {
+                ImageManager.Posterize(bmp, posterizeView.grayLevels);
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+            }
         }
 
         private void showRGBHistogramToolStripMenuItem_Click(object sender, EventArgs e)
@@ -208,12 +195,6 @@ namespace ImageProcessingAlgorithms
 
         private void thresholdToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
-            //ImageManager.Threshold(bmp, 80); // <== Change!!!!!!!!!!!!!!!!!!!!!!!!
-            //Bitmap b = (Bitmap)bmp.bitmap.Clone();
-            //((ImageView)ActiveMdiChild).setImage(b);
-            //((ImageView)ActiveMdiChild).Refresh();
-
             BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
             thresholdView = new ThresholdView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
@@ -223,6 +204,22 @@ namespace ImageProcessingAlgorithms
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
             }
+        }
+
+        private void inverseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            ImageManager.Inversion(bmp);
+            ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+            ((ImageView)ActiveMdiChild).Refresh();
+        }
+
+        private void adjustToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            ImageManager.AdjustHistogram(bmp, ((ImageView)ActiveMdiChild).Histogram);
+            ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+            ((ImageView)ActiveMdiChild).Refresh();
         }
     }
 }

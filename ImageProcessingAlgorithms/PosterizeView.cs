@@ -10,20 +10,20 @@ using System.Windows.Forms;
 
 namespace ImageProcessingAlgorithms
 {
-    public partial class ThresholdView : Form
-    {
+    public partial class PosterizeView : Form
+    { 
         private Graphics graphics;
         private Bitmap histogramImage;
-        public int thresholdValue = 128;
-        public ThresholdView(Histogram histogram, string name)
+        public int grayLevels = 128;
+        public PosterizeView(Histogram histogram, string name)
         {
             InitializeComponent();
-            Text = "Threshold : " + name;
+            Text = "Posterize : " + name;
             ClientSize = new Size(532, 380);
             histogramPanel.Size = new Size(512, 256);
             thresholdSlider.Size = new Size(532, 50);
             lblLayout.Size = new Size(512, 50);
-            
+
             histogramPanel.Left = 10;
             histogramPanel.Top = 10;
             thresholdSlider.Top = 266;
@@ -32,7 +32,7 @@ namespace ImageProcessingAlgorithms
             lblLayout.Left = 10;
             applyBtn.Top = 326;
             applyBtn.Left = 230;
-  
+
             graphics = histogramPanel.CreateGraphics();
 
             float[] values = new float[256];
@@ -50,12 +50,10 @@ namespace ImageProcessingAlgorithms
                 graphicsImage.DrawLine(Pens.Black, new Point(i * 2, 255), new Point(i * 2, 256 - (int)(256f * values[i])));
             }
         }
-
-        //private void cancelBtn_Click(object sender, EventArgs e) { Close(); }
         private void slider_Scroll(object sender, EventArgs e)
         {
-            thresholdValue = thresholdSlider.Value;
-            thresholdLbl.Text = thresholdValue.ToString();
+            grayLevels = thresholdSlider.Value;
+            thresholdLbl.Text = grayLevels.ToString();
         }
         private void histogramPanel_Paint(object sender, PaintEventArgs e)
         {

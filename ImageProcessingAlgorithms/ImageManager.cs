@@ -467,16 +467,37 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, upo);
         }
 
-        public static void Negation(BitmapWrapper bmp)
+        public static void Inversion(BitmapWrapper bmp)
         {
             byte[] upo = new byte[256];
+            for (int i = 0; i < 256; ++i) upo[i] = (byte)(255 - i);
+            ApplyUPO(bmp, upo);
+        }
+
+        public static void AdjustHistogram(BitmapWrapper bmp, Histogram histogram)
+        {
+            byte[] d = new byte[256];
+            byte[] lut = new byte[256];
+            double cumulatedValue = 0.0;
+            //int d0 = d[0];
             for (int i = 0; i < 256; ++i)
             {
-                int newValue = 255 - i;
-                upo[i] = (byte)newValue;
-               
+                cumulatedValue += histogram.HistogramTable[i];
+                d[i] = (byte)(cumulatedValue / (i + 1));
             }
-            ApplyUPO(bmp, upo);
+            //for (int k = 0; k < 256; ++k)
+            //{
+            //    if (d[k] != 0)
+            //    {
+            //        d0 = d[k];
+            //        break;
+            //    }
+            //}
+            for (int j = 0; j < 256; ++j)
+            {
+                lut[j] = (byte)((d[j] - d[0]) / (1 - d[0]) * 255);
+            }
+            ApplyUPO(bmp, lut);
         }
 
         public static void EqualizeHistogram(BitmapWrapper bmp, Histogram hist, EqualizationMethod method)

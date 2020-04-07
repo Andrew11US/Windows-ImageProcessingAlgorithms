@@ -69,7 +69,7 @@
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stretchHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.equalizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.negationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adjustToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thresholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.posterizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
@@ -82,6 +82,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.inverseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -392,10 +393,11 @@
             // 
             this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stretchHistogramToolStripMenuItem,
+            this.adjustToolStripMenuItem,
             this.equalizeToolStripMenuItem1,
-            this.negationToolStripMenuItem,
             this.thresholdToolStripMenuItem,
-            this.posterizeToolStripMenuItem});
+            this.posterizeToolStripMenuItem,
+            this.inverseToolStripMenuItem});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
             this.lab2ToolStripMenuItem.Text = "Lab2";
@@ -411,15 +413,15 @@
             // 
             this.equalizeToolStripMenuItem1.Name = "equalizeToolStripMenuItem1";
             this.equalizeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
-            this.equalizeToolStripMenuItem1.Text = "Equalize";
+            this.equalizeToolStripMenuItem1.Text = "Equalize Histogram";
             this.equalizeToolStripMenuItem1.Click += new System.EventHandler(this.equalizeToolStripMenuItem_Click);
             // 
-            // negationToolStripMenuItem
+            // adjustToolStripMenuItem
             // 
-            this.negationToolStripMenuItem.Name = "negationToolStripMenuItem";
-            this.negationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.negationToolStripMenuItem.Text = "Negation";
-            this.negationToolStripMenuItem.Click += new System.EventHandler(this.negationToolStripMenuItem_Click);
+            this.adjustToolStripMenuItem.Name = "adjustToolStripMenuItem";
+            this.adjustToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.adjustToolStripMenuItem.Text = "Adjust Histogram";
+            this.adjustToolStripMenuItem.Click += new System.EventHandler(this.adjustToolStripMenuItem_Click);
             // 
             // thresholdToolStripMenuItem
             // 
@@ -447,7 +449,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 42);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip.Size = new System.Drawing.Size(1159, 38);
+            this.toolStrip.Size = new System.Drawing.Size(1159, 44);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -457,7 +459,7 @@
             this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
             this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
             this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(40, 32);
+            this.newToolStripButton.Size = new System.Drawing.Size(40, 38);
             this.newToolStripButton.Text = "New";
             this.newToolStripButton.Click += new System.EventHandler(this.ShowNewForm);
             // 
@@ -467,7 +469,7 @@
             this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
             this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
             this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(40, 32);
+            this.openToolStripButton.Size = new System.Drawing.Size(40, 38);
             this.openToolStripButton.Text = "Open";
             this.openToolStripButton.Click += new System.EventHandler(this.OpenFile);
             // 
@@ -477,18 +479,18 @@
             this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
             this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
             this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(40, 32);
+            this.saveToolStripButton.Size = new System.Drawing.Size(40, 38);
             this.saveToolStripButton.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 44);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 44);
             // 
             // statusStrip
             // 
@@ -514,6 +516,13 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 30);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // inverseToolStripMenuItem
+            // 
+            this.inverseToolStripMenuItem.Name = "inverseToolStripMenuItem";
+            this.inverseToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.inverseToolStripMenuItem.Text = "Inverse";
+            this.inverseToolStripMenuItem.Click += new System.EventHandler(this.inverseToolStripMenuItem_Click);
             // 
             // BaseForm
             // 
@@ -590,9 +599,10 @@
         private System.Windows.Forms.ToolStripMenuItem stretchHistogramToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem equalizeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem showRGBHistogramToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem negationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adjustToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thresholdToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem posterizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inverseToolStripMenuItem;
     }
 }
 
