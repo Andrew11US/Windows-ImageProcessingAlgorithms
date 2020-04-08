@@ -20,6 +20,7 @@ namespace ImageProcessingAlgorithms
         ThresholdView thresholdView;
         ThresholdGrayscaleView thresholdGrayscaleView;
         PosterizeView posterizeView;
+        PointOperationsView pointOperationsView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -78,28 +79,6 @@ namespace ImageProcessingAlgorithms
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void CutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            toolStrip.Visible = toolBarToolStripMenuItem.Checked;
-        }
-
-        private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            statusStrip.Visible = statusBarToolStripMenuItem.Checked;
         }
 
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -252,6 +231,32 @@ namespace ImageProcessingAlgorithms
             //    ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             //    ((ImageView)ActiveMdiChild).Refresh();
             
+        }
+
+        private void pointOperationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> images = new List<string>();
+            foreach (Form form in MdiChildren) images.Add(((ImageView)form).Text);
+            pointOperationsView = new PointOperationsView(images.ToArray());
+
+            if (pointOperationsView.ShowDialog() == DialogResult.OK)
+            {
+                BitmapWrapper bmp1 = null;
+                BitmapWrapper bmp2 = null;
+                BitmapWrapper output;
+                foreach (Form form in MdiChildren)
+                {
+                    if (((ImageView)form).Text == pointOperationsView.Image1)
+                        bmp1 = ((ImageView)form).image;
+                    if (((ImageView)form).Text == pointOperationsView.Image2)
+                        bmp2 = ((ImageView)form).image;
+                }
+
+                output = ImageManager.Operation(bmp1, bmp2, (Operations)Enum.Parse(typeof(Operations), pointOperationsView.Operation));
+                ImageView imageView = new ImageView((Bitmap)output.bitmap.Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+            }
         }
     }
 }

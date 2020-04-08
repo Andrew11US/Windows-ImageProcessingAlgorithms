@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Security.Cryptography;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,11 +67,11 @@ namespace ImageProcessingAlgorithms
             try
             {
                 Bitmap bmp = b;
-                bitmap = new BitmapWrapper(b);
+                bitmap = new BitmapWrapper((Bitmap)bmp.Clone());
                 pictureBox.Left = 0;
                 pictureBox.Top = 0;
                 ClientSize = bmp.Size;
-                Text = Path.GetFileName(path);
+                Text = GetHash(bmp.ToString());   
                 pictureBox.Image = bmp;
 
                 this.path = "";
@@ -172,6 +173,19 @@ namespace ImageProcessingAlgorithms
                         break;
                 }
             }
+        }
+
+        private static string GetHash(string input)
+        {
+            // Creates SHA256 Hash from input and adds random Int to make output unique
+            Random rand = new Random();
+            var sBuilder = new StringBuilder();
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] data = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input+rand.Next(0,100)));
+                for (int i = 0; i < data.Length; i++) sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
     }
 }

@@ -27,3 +27,4 @@ C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\D
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.ThresholdView.resources
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.PosterizeView.resources
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.ThresholdGrayscaleView.resources
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.PointOperationsView.resources

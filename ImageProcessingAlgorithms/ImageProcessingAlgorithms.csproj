@@ -78,6 +78,12 @@
     <Compile Include="ImageView.Designer.cs">
       <DependentUpon>ImageView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PointOperationsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointOperationsView.Designer.cs">
+      <DependentUpon>PointOperationsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PosterizeView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImageView.resx">
       <DependentUpon>ImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointOperationsView.resx">
+      <DependentUpon>PointOperationsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PosterizeView.resx">
       <DependentUpon>PosterizeView.cs</DependentUpon>

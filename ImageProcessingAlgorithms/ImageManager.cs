@@ -233,6 +233,9 @@ namespace ImageProcessingAlgorithms
                         case Operations.XOR:
                             bmp[i, j] = Color.FromArgb(255, Math.Max(0, Math.Min(255, c1.R ^ c2.R)), Math.Max(0, Math.Min(255, c1.G ^ c2.G)), Math.Max(0, Math.Min(255, c1.B ^ c2.B)));
                             break;
+                        //case Operations.NOT:
+                        //    bmp[i, j] = Color.FromArgb(255, Math.Max(0, Math.Min(255, ~c1.R)), Math.Max(0, Math.Min(255, ~c1.G)), Math.Max(0, Math.Min(255, ~c1.B)));
+                        //    break;
                     }
                 }
             }
