@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Emgu.CV;
+using Emgu.CV.CvEnum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +15,7 @@ namespace ImageProcessingAlgorithms
     public partial class BaseForm : Form
     {
         // Window Forms
-        ImageView imageForm;
+        ImageView imageView;
         HistogramView histogramView;
         HistogramRGBView histogramRGBView;
         StretchView stretchView;
@@ -28,6 +30,7 @@ namespace ImageProcessingAlgorithms
         public BaseForm()
         {
             InitializeComponent();
+            //ClientSize = new Size(1500, 1000);
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -43,20 +46,14 @@ namespace ImageProcessingAlgorithms
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             openFileDialog.Filter = "Image files |*.jpg; *.jpeg; *.png; *.gif; *.tiff; *.bmp|All files (*.*)|*.*";
-            //if (openFileDialog.ShowDialog(this) == DialogResult.OK)
-            //{
-            //    string FileName = openFileDialog.FileName;
-            //}
+
             try
             {
                 if (openFileDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    imageForm = new ImageView(openFileDialog.FileName);
-                    imageForm.MdiParent = this;
-                    //imageForm.ChildID = childFormNumber++;
-                    imageForm.Show();
-                    //int ChildID = 0;
-
+                    imageView = new ImageView(openFileDialog.FileName);
+                    imageView.MdiParent = this;
+                    imageView.Show();
                 }
             }
             catch (Exception error)
@@ -217,7 +214,7 @@ namespace ImageProcessingAlgorithms
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ActiveMdiChild.Close();
         }
 
         private void makeGrayscaleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -226,11 +223,6 @@ namespace ImageProcessingAlgorithms
             ImageManager.Grayscale(bmp);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             ((ImageView)ActiveMdiChild).Refresh();
-
-            //ImageManager.ThresholdGrayscale(bmp, thresholdGrayscaleView.lowerBound, thresholdGrayscaleView.upperBound);
-            //    ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
-            //    ((ImageView)ActiveMdiChild).Refresh();
-            
         }
 
         private void pointOperationsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -257,6 +249,25 @@ namespace ImageProcessingAlgorithms
                 imageView.MdiParent = this;
                 imageView.Show();
             }
+        }
+
+        private void medianFiltrationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap output;
+            string path = ((ImageView)ActiveMdiChild).path;
+            Mat src = new Mat();
+            Mat dst = new Mat();
+            src = CvInvoke.Imread(path);
+            dst = src.Clone();
+            CvInvoke.MedianBlur(src, dst, 7);
+            //CvInvoke.Imshow("Outout image", dst);
+            //Bitmap b = dst.ToBitmap();
+            //pictureBox1.Image = b;
+
+            output = dst.ToBitmap();
+            ImageView imageView = new ImageView((Bitmap)output.Clone());
+            imageView.MdiParent = this;
+            imageView.Show();
         }
     }
 }

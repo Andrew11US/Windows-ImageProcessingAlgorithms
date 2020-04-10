@@ -24,6 +24,7 @@ namespace ImageProcessingAlgorithms
         public PointOperationsView(string[] images)
         {
             InitializeComponent();
+            
             Text = "Point Operation";
             ClientSize = new Size(220, 220);
             image1ComboBox.Width = 200;

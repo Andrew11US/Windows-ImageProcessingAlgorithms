@@ -35,6 +35,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>..\..\..\..\..\Emgu\emgucv-windesktop 4.2.0.3662\bin\Emgu.CV.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV.World.Netstandard">
       <HintPath>..\..\..\..\..\Emgu\emgucv-windesktop 4.2.0.3662\bin\Emgu.CV.World.Netstandard.dll</HintPath>
     </Reference>
