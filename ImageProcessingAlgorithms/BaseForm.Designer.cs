@@ -66,13 +66,11 @@
             this.lab3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pointOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gaussianBlurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operatorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.laplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cannyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sharpenMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.prewwitMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customMask3x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medianFiltrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
@@ -84,8 +82,12 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prewittToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verticalToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizontalToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.blurToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gaussianBlurToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.directionDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -366,12 +368,11 @@
             this.lab3ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pointOperationsToolStripMenuItem,
             this.blurToolStripMenuItem,
-            this.gaussianBlurToolStripMenuItem,
             this.operatorsToolStripMenuItem,
+            this.medianFiltrationToolStripMenuItem,
             this.sharpenMasksToolStripMenuItem,
-            this.prewwitMasksToolStripMenuItem,
             this.customMask3x3ToolStripMenuItem,
-            this.medianFiltrationToolStripMenuItem});
+            this.directionDetectionToolStripMenuItem});
             this.lab3ToolStripMenuItem.Name = "lab3ToolStripMenuItem";
             this.lab3ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
             this.lab3ToolStripMenuItem.Text = "Lab3";
@@ -385,27 +386,23 @@
             // 
             // blurToolStripMenuItem
             // 
+            this.blurToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.blurToolStripMenuItem1,
+            this.gaussianBlurToolStripMenuItem1});
             this.blurToolStripMenuItem.Name = "blurToolStripMenuItem";
             this.blurToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.blurToolStripMenuItem.Text = "Blur";
-            this.blurToolStripMenuItem.Click += new System.EventHandler(this.blurToolStripMenuItem_Click);
-            // 
-            // gaussianBlurToolStripMenuItem
-            // 
-            this.gaussianBlurToolStripMenuItem.Name = "gaussianBlurToolStripMenuItem";
-            this.gaussianBlurToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.gaussianBlurToolStripMenuItem.Text = "Gaussian Blur";
-            this.gaussianBlurToolStripMenuItem.Click += new System.EventHandler(this.gaussianBlurToolStripMenuItem_Click);
+            this.blurToolStripMenuItem.Text = "Linear Softening";
             // 
             // operatorsToolStripMenuItem
             // 
             this.operatorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sobelToolStripMenuItem,
             this.laplaceToolStripMenuItem,
-            this.cannyToolStripMenuItem});
+            this.cannyToolStripMenuItem,
+            this.prewittToolStripMenuItem});
             this.operatorsToolStripMenuItem.Name = "operatorsToolStripMenuItem";
             this.operatorsToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.operatorsToolStripMenuItem.Text = "Operators";
+            this.operatorsToolStripMenuItem.Text = "Edge Detection";
             // 
             // sobelToolStripMenuItem
             // 
@@ -429,17 +426,8 @@
             // 
             this.sharpenMasksToolStripMenuItem.Name = "sharpenMasksToolStripMenuItem";
             this.sharpenMasksToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.sharpenMasksToolStripMenuItem.Text = "Sharpen masks";
+            this.sharpenMasksToolStripMenuItem.Text = "Sharpen";
             this.sharpenMasksToolStripMenuItem.Click += new System.EventHandler(this.sharpenMasksToolStripMenuItem_Click);
-            // 
-            // prewwitMasksToolStripMenuItem
-            // 
-            this.prewwitMasksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.horizontalToolStripMenuItem,
-            this.verticalToolStripMenuItem});
-            this.prewwitMasksToolStripMenuItem.Name = "prewwitMasksToolStripMenuItem";
-            this.prewwitMasksToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.prewwitMasksToolStripMenuItem.Text = "Prewitt operator";
             // 
             // customMask3x3ToolStripMenuItem
             // 
@@ -452,7 +440,7 @@
             // 
             this.medianFiltrationToolStripMenuItem.Name = "medianFiltrationToolStripMenuItem";
             this.medianFiltrationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.medianFiltrationToolStripMenuItem.Text = "Median filtration";
+            this.medianFiltrationToolStripMenuItem.Text = "Median Filtration";
             this.medianFiltrationToolStripMenuItem.Click += new System.EventHandler(this.medianFiltrationToolStripMenuItem_Click);
             // 
             // toolStrip
@@ -524,19 +512,49 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 30);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // horizontalToolStripMenuItem
+            // prewittToolStripMenuItem
             // 
-            this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
-            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.horizontalToolStripMenuItem.Text = "Horizontal";
-            this.horizontalToolStripMenuItem.Click += new System.EventHandler(this.horizontalToolStripMenuItem_Click);
+            this.prewittToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verticalToolStripMenuItem1,
+            this.horizontalToolStripMenuItem1});
+            this.prewittToolStripMenuItem.Name = "prewittToolStripMenuItem";
+            this.prewittToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.prewittToolStripMenuItem.Text = "Prewitt operator";
             // 
-            // verticalToolStripMenuItem
+            // verticalToolStripMenuItem1
             // 
-            this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
-            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.verticalToolStripMenuItem.Text = "Vertical";
-            this.verticalToolStripMenuItem.Click += new System.EventHandler(this.verticalToolStripMenuItem_Click);
+            this.verticalToolStripMenuItem1.Name = "verticalToolStripMenuItem1";
+            this.verticalToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
+            this.verticalToolStripMenuItem1.Text = "Vertical";
+            this.verticalToolStripMenuItem1.Click += new System.EventHandler(this.verticalToolStripMenuItem1_Click);
+            // 
+            // horizontalToolStripMenuItem1
+            // 
+            this.horizontalToolStripMenuItem1.Name = "horizontalToolStripMenuItem1";
+            this.horizontalToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
+            this.horizontalToolStripMenuItem1.Text = "Horizontal";
+            this.horizontalToolStripMenuItem1.Click += new System.EventHandler(this.horizontalToolStripMenuItem1_Click);
+            // 
+            // blurToolStripMenuItem1
+            // 
+            this.blurToolStripMenuItem1.Name = "blurToolStripMenuItem1";
+            this.blurToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
+            this.blurToolStripMenuItem1.Text = "Blur";
+            this.blurToolStripMenuItem1.Click += new System.EventHandler(this.blurToolStripMenuItem_Click);
+            // 
+            // gaussianBlurToolStripMenuItem1
+            // 
+            this.gaussianBlurToolStripMenuItem1.Name = "gaussianBlurToolStripMenuItem1";
+            this.gaussianBlurToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
+            this.gaussianBlurToolStripMenuItem1.Text = "Gaussian Blur";
+            this.gaussianBlurToolStripMenuItem1.Click += new System.EventHandler(this.gaussianBlurToolStripMenuItem_Click);
+            // 
+            // directionDetectionToolStripMenuItem
+            // 
+            this.directionDetectionToolStripMenuItem.Name = "directionDetectionToolStripMenuItem";
+            this.directionDetectionToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.directionDetectionToolStripMenuItem.Text = "Direction Detection";
+            this.directionDetectionToolStripMenuItem.Click += new System.EventHandler(this.directionDetectionToolStripMenuItem_Click);
             // 
             // BaseForm
             // 
@@ -608,18 +626,20 @@
         private System.Windows.Forms.ToolStripMenuItem lab3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pointOperationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem blurToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gaussianBlurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem operatorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sobelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem laplaceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cannyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sharpenMasksToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem prewwitMasksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customMask3x3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem medianFiltrationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem makeGrayscaleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem horizontalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prewittToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem horizontalToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem blurToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem gaussianBlurToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem directionDetectionToolStripMenuItem;
     }
 }
 

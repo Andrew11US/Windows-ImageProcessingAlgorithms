@@ -244,6 +244,7 @@
             this.isolatedBtn.TabStop = true;
             this.isolatedBtn.Text = "Isolated";
             this.isolatedBtn.UseVisualStyleBackColor = true;
+            this.isolatedBtn.CheckedChanged += new System.EventHandler(this.isolatedBtn_CheckedChanged);
             // 
             // reflectedBtn
             // 
@@ -255,6 +256,7 @@
             this.reflectedBtn.TabStop = true;
             this.reflectedBtn.Text = "Reflect";
             this.reflectedBtn.UseVisualStyleBackColor = true;
+            this.reflectedBtn.CheckedChanged += new System.EventHandler(this.reflectedBtn_CheckedChanged);
             // 
             // replicateBtn
             // 
@@ -266,6 +268,7 @@
             this.replicateBtn.TabStop = true;
             this.replicateBtn.Text = "Replicate";
             this.replicateBtn.UseVisualStyleBackColor = true;
+            this.replicateBtn.CheckedChanged += new System.EventHandler(this.replicateBtn_CheckedChanged);
             // 
             // label2
             // 

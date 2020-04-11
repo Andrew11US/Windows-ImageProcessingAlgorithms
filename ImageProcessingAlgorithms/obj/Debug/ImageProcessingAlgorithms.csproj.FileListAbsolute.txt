@@ -34,3 +34,4 @@ C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\D
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.BlurSelectView.resources
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.SharpenView.resources
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.CustomMaskView.resources
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.DirectionView.resources
