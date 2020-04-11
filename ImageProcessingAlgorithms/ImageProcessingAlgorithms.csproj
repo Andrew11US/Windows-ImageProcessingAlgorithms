@@ -67,6 +67,12 @@
     <Compile Include="BlurSelectView.Designer.cs">
       <DependentUpon>BlurSelectView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CannyView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CannyView.Designer.cs">
+      <DependentUpon>CannyView.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomMaskView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BlurSelectView.resx">
       <DependentUpon>BlurSelectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CannyView.resx">
+      <DependentUpon>CannyView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomMaskView.resx">
       <DependentUpon>CustomMaskView.cs</DependentUpon>

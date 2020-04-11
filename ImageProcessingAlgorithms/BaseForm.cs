@@ -28,6 +28,7 @@ namespace ImageProcessingAlgorithms
         SharpenView sharpenView;
         CustomMaskView customMaskView;
         DirectionView directionView;
+        CannyView cannyView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -575,26 +576,33 @@ namespace ImageProcessingAlgorithms
 
         private void cannyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
-            Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
-            Image<Gray, byte> outputImage = new Image<Gray, byte>(path);
-            outputImage = inputImage.Canny(100, 150);
+            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            cannyView = new CannyView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", outputImage);
+            if (cannyView.ShowDialog() == DialogResult.OK)
+            {
+                string path = ((ImageView)ActiveMdiChild).path;
+                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
+                Image<Gray, byte> outputImage = new Image<Gray, byte>(path);
+                outputImage = inputImage.Canny(cannyView.lowerBound, cannyView.upperBound);
+                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
 
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
 
-            /*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
-            ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
+                // MARK: Uncomment following line to present image in native EmguCV Window
+                //CvInvoke.Imshow("Output image", outputImage);
+
+                // NOTE: Remove '/' at the beginning to present image in a new Window
+                //       Add '/' to alter currently selected
+
+                /*///
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+                /*/
+                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+                //*///
+            }
         }
     }
 }

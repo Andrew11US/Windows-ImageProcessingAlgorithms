@@ -297,6 +297,7 @@
             this.Controls.Add(this.borderLayout);
             this.Controls.Add(this.applyBtn);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DirectionView";
             this.Text = "DirectionView";
             this.buttonsLayout.ResumeLayout(false);
