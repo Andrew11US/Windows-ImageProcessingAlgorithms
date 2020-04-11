@@ -68,7 +68,7 @@
             this.blurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operatorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.laplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.laplacianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cannyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sharpenMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customMask3x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -399,7 +399,7 @@
             // 
             this.operatorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sobelToolStripMenuItem,
-            this.laplaceToolStripMenuItem,
+            this.laplacianToolStripMenuItem,
             this.cannyToolStripMenuItem,
             this.prewittToolStripMenuItem});
             this.operatorsToolStripMenuItem.Name = "operatorsToolStripMenuItem";
@@ -415,11 +415,12 @@
             this.sobelToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.sobelToolStripMenuItem.Text = "Sobel";
             // 
-            // laplaceToolStripMenuItem
+            // laplacianToolStripMenuItem
             // 
-            this.laplaceToolStripMenuItem.Name = "laplaceToolStripMenuItem";
-            this.laplaceToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.laplaceToolStripMenuItem.Text = "Laplace";
+            this.laplacianToolStripMenuItem.Name = "laplacianToolStripMenuItem";
+            this.laplacianToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.laplacianToolStripMenuItem.Text = "Laplacian";
+            this.laplacianToolStripMenuItem.Click += new System.EventHandler(this.laplacianToolStripMenuItem_Click);
             // 
             // cannyToolStripMenuItem
             // 
@@ -647,7 +648,7 @@
         private System.Windows.Forms.ToolStripMenuItem blurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem operatorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sobelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem laplaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem laplacianToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cannyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sharpenMasksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customMask3x3ToolStripMenuItem;
