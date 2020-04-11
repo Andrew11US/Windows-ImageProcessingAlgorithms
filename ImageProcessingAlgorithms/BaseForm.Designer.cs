@@ -428,6 +428,7 @@
             this.sharpenMasksToolStripMenuItem.Name = "sharpenMasksToolStripMenuItem";
             this.sharpenMasksToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.sharpenMasksToolStripMenuItem.Text = "Sharpen masks";
+            this.sharpenMasksToolStripMenuItem.Click += new System.EventHandler(this.sharpenMasksToolStripMenuItem_Click);
             // 
             // pewwitMasksToolStripMenuItem
             // 

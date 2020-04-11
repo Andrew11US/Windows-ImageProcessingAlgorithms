@@ -101,6 +101,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharpenView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SharpenView.Designer.cs">
+      <DependentUpon>SharpenView.cs</DependentUpon>
+    </Compile>
     <Compile Include="StretchView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SharpenView.resx">
+      <DependentUpon>SharpenView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StretchView.resx">
       <DependentUpon>StretchView.cs</DependentUpon>
     </EmbeddedResource>

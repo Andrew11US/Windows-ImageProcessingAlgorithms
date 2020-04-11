@@ -18,6 +18,7 @@ namespace ImageProcessingAlgorithms
         public BlurSelectView(string name)
         {
             InitializeComponent();
+            isolatedBtn.Checked = true;
             Text = "Blur Configuration : " + name;
             ClientSize = new Size(300, 200);
             lblLayout.Size = new Size(280, 50);
