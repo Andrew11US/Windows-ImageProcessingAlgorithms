@@ -88,6 +88,8 @@
             this.blurToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gaussianBlurToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.directionDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -406,6 +408,9 @@
             // 
             // sobelToolStripMenuItem
             // 
+            this.sobelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gxToolStripMenuItem,
+            this.gyToolStripMenuItem});
             this.sobelToolStripMenuItem.Name = "sobelToolStripMenuItem";
             this.sobelToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.sobelToolStripMenuItem.Text = "Sobel";
@@ -556,6 +561,20 @@
             this.directionDetectionToolStripMenuItem.Text = "Direction Detection";
             this.directionDetectionToolStripMenuItem.Click += new System.EventHandler(this.directionDetectionToolStripMenuItem_Click);
             // 
+            // gxToolStripMenuItem
+            // 
+            this.gxToolStripMenuItem.Name = "gxToolStripMenuItem";
+            this.gxToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.gxToolStripMenuItem.Text = "Gx";
+            this.gxToolStripMenuItem.Click += new System.EventHandler(this.gxToolStripMenuItem_Click);
+            // 
+            // gyToolStripMenuItem
+            // 
+            this.gyToolStripMenuItem.Name = "gyToolStripMenuItem";
+            this.gyToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.gyToolStripMenuItem.Text = "Gy";
+            this.gyToolStripMenuItem.Click += new System.EventHandler(this.gyToolStripMenuItem_Click);
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -640,6 +659,8 @@
         private System.Windows.Forms.ToolStripMenuItem blurToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem gaussianBlurToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem directionDetectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gyToolStripMenuItem;
     }
 }
 
