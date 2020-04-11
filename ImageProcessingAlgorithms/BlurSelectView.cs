@@ -19,19 +19,16 @@ namespace ImageProcessingAlgorithms
         {
             InitializeComponent();
             Text = "Blur Configuration : " + name;
-            ClientSize = new Size(532, 380);
-            //histogramPanel.Size = new Size(512, 256);
-            //thresholdSlider.Size = new Size(532, 50);
-            //lblLayout.Size = new Size(512, 50);
+            ClientSize = new Size(300, 200);
+            lblLayout.Size = new Size(280, 50);
+            buttonsLayout.Size = new Size(280, 80);
 
-            //histogramPanel.Left = 10;
-            //histogramPanel.Top = 10;
-            //thresholdSlider.Top = 266;
-            //thresholdSlider.Left = 0;
-            //lblLayout.Top = 296;
-            //lblLayout.Left = 10;
-            //applyBtn.Top = 326;
-            //applyBtn.Left = 230;
+            lblLayout.Top = 10;
+            lblLayout.Left = 50;
+            buttonsLayout.Top = 50;
+            buttonsLayout.Left = 80;
+            applyBtn.Top = 140;
+            applyBtn.Left = 110;
         }
 
         private void maskSizeSelectorUpDown_ValueChanged(object sender, EventArgs e)

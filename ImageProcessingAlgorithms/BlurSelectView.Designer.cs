@@ -35,18 +35,18 @@
             this.isolatedBtn = new System.Windows.Forms.RadioButton();
             this.reflectedBtn = new System.Windows.Forms.RadioButton();
             this.replicateBtn = new System.Windows.Forms.RadioButton();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonsLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.maskSizeSelectorUpDown = new System.Windows.Forms.NumericUpDown();
             this.lblLayout.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.buttonsLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maskSizeSelectorUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // applyBtn
             // 
             this.applyBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.applyBtn.Location = new System.Drawing.Point(266, 463);
+            this.applyBtn.Location = new System.Drawing.Point(89, 329);
             this.applyBtn.Name = "applyBtn";
             this.applyBtn.Size = new System.Drawing.Size(154, 77);
             this.applyBtn.TabIndex = 6;
@@ -59,9 +59,9 @@
             this.lblLayout.Controls.Add(this.thresholdLbl);
             this.lblLayout.Controls.Add(this.maskSizeSelectorUpDown);
             this.lblLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLayout.Location = new System.Drawing.Point(57, 64);
+            this.lblLayout.Location = new System.Drawing.Point(12, 12);
             this.lblLayout.Name = "lblLayout";
-            this.lblLayout.Size = new System.Drawing.Size(314, 100);
+            this.lblLayout.Size = new System.Drawing.Size(314, 56);
             this.lblLayout.TabIndex = 7;
             // 
             // label1
@@ -84,7 +84,7 @@
             // isolatedBtn
             // 
             this.isolatedBtn.AutoSize = true;
-            this.isolatedBtn.Location = new System.Drawing.Point(3, 3);
+            this.isolatedBtn.Location = new System.Drawing.Point(3, 28);
             this.isolatedBtn.Name = "isolatedBtn";
             this.isolatedBtn.Size = new System.Drawing.Size(105, 29);
             this.isolatedBtn.TabIndex = 8;
@@ -96,7 +96,7 @@
             // reflectedBtn
             // 
             this.reflectedBtn.AutoSize = true;
-            this.reflectedBtn.Location = new System.Drawing.Point(3, 38);
+            this.reflectedBtn.Location = new System.Drawing.Point(3, 63);
             this.reflectedBtn.Name = "reflectedBtn";
             this.reflectedBtn.Size = new System.Drawing.Size(96, 29);
             this.reflectedBtn.TabIndex = 9;
@@ -108,7 +108,7 @@
             // replicateBtn
             // 
             this.replicateBtn.AutoSize = true;
-            this.replicateBtn.Location = new System.Drawing.Point(3, 73);
+            this.replicateBtn.Location = new System.Drawing.Point(3, 98);
             this.replicateBtn.Name = "replicateBtn";
             this.replicateBtn.Size = new System.Drawing.Size(117, 29);
             this.replicateBtn.TabIndex = 10;
@@ -117,20 +117,22 @@
             this.replicateBtn.UseVisualStyleBackColor = true;
             this.replicateBtn.CheckedChanged += new System.EventHandler(this.replicateBtn_CheckedChanged);
             // 
-            // flowLayoutPanel1
+            // buttonsLayout
             // 
-            this.flowLayoutPanel1.Controls.Add(this.isolatedBtn);
-            this.flowLayoutPanel1.Controls.Add(this.reflectedBtn);
-            this.flowLayoutPanel1.Controls.Add(this.replicateBtn);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(66, 280);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 126);
-            this.flowLayoutPanel1.TabIndex = 11;
+            this.buttonsLayout.Controls.Add(this.label2);
+            this.buttonsLayout.Controls.Add(this.isolatedBtn);
+            this.buttonsLayout.Controls.Add(this.reflectedBtn);
+            this.buttonsLayout.Controls.Add(this.replicateBtn);
+            this.buttonsLayout.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.buttonsLayout.Location = new System.Drawing.Point(12, 87);
+            this.buttonsLayout.Name = "buttonsLayout";
+            this.buttonsLayout.Size = new System.Drawing.Size(231, 203);
+            this.buttonsLayout.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(77, 252);
+            this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(215, 25);
             this.label2.TabIndex = 12;
@@ -169,19 +171,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 638);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.buttonsLayout);
             this.Controls.Add(this.lblLayout);
             this.Controls.Add(this.applyBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BlurSelectView";
             this.Text = "BlurSelectView";
             this.lblLayout.ResumeLayout(false);
             this.lblLayout.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.buttonsLayout.ResumeLayout(false);
+            this.buttonsLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maskSizeSelectorUpDown)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -194,7 +195,7 @@
         private System.Windows.Forms.RadioButton isolatedBtn;
         private System.Windows.Forms.RadioButton reflectedBtn;
         private System.Windows.Forms.RadioButton replicateBtn;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel buttonsLayout;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown maskSizeSelectorUpDown;
     }
