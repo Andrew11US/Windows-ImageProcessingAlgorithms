@@ -427,6 +427,7 @@
             this.cannyToolStripMenuItem.Name = "cannyToolStripMenuItem";
             this.cannyToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.cannyToolStripMenuItem.Text = "Canny";
+            this.cannyToolStripMenuItem.Click += new System.EventHandler(this.cannyToolStripMenuItem_Click);
             // 
             // sharpenMasksToolStripMenuItem
             // 

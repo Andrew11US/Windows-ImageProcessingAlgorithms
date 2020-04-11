@@ -572,5 +572,29 @@ namespace ImageProcessingAlgorithms
             imageView.Show();
             //*///
         }
+
+        private void cannyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
+            string path = ((ImageView)ActiveMdiChild).path;
+            Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
+            Image<Gray, byte> outputImage = new Image<Gray, byte>(path);
+            outputImage = inputImage.Canny(100, 150);
+
+            // MARK: Uncomment following line to present image in native EmguCV Window
+            //CvInvoke.Imshow("Output image", outputImage);
+
+            // NOTE: Remove '/' at the beginning to present image in a new Window
+            //       Add '/' to alter currently selected
+
+            /*///
+            ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).Refresh();
+            /*/
+            ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
+            imageView.MdiParent = this;
+            imageView.Show();
+            //*///
+        }
     }
 }
