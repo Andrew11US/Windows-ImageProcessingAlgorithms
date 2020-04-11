@@ -31,3 +31,4 @@ C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\D
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\Emgu.CV.UI.dll
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\ZedGraph.dll
 C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\bin\Debug\Emgu.CV.UI.xml
+C:\Users\andre\Desktop\ImageProcessingAlgorithms\ImageProcessingAlgorithms\obj\Debug\ImageProcessingAlgorithms.BlurSelectView.resources

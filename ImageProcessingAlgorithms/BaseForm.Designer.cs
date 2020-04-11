@@ -386,12 +386,14 @@
             this.blurToolStripMenuItem.Name = "blurToolStripMenuItem";
             this.blurToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.blurToolStripMenuItem.Text = "Blur";
+            this.blurToolStripMenuItem.Click += new System.EventHandler(this.blurToolStripMenuItem_Click);
             // 
             // gaussianBlurToolStripMenuItem
             // 
             this.gaussianBlurToolStripMenuItem.Name = "gaussianBlurToolStripMenuItem";
             this.gaussianBlurToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.gaussianBlurToolStripMenuItem.Text = "Gaussian Blur";
+            this.gaussianBlurToolStripMenuItem.Click += new System.EventHandler(this.gaussianBlurToolStripMenuItem_Click);
             // 
             // operatorsToolStripMenuItem
             // 

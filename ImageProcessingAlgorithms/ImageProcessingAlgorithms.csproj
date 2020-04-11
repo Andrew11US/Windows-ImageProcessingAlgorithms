@@ -61,6 +61,12 @@
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BitmapWrapper.cs" />
+    <Compile Include="BlurSelectView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BlurSelectView.Designer.cs">
+      <DependentUpon>BlurSelectView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Histogram.cs" />
     <Compile Include="HistogramRGBView.cs">
       <SubType>Form</SubType>
@@ -115,6 +121,9 @@
     </Compile>
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BlurSelectView.resx">
+      <DependentUpon>BlurSelectView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistogramRGBView.resx">
       <DependentUpon>HistogramRGBView.cs</DependentUpon>

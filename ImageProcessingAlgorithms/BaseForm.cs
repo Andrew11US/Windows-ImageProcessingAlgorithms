@@ -1,5 +1,6 @@
 ﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace ImageProcessingAlgorithms
         ThresholdGrayscaleView thresholdGrayscaleView;
         PosterizeView posterizeView;
         PointOperationsView pointOperationsView;
+        BlurSelectView blurSelectView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -264,10 +266,71 @@ namespace ImageProcessingAlgorithms
             //Bitmap b = dst.ToBitmap();
             //pictureBox1.Image = b;
 
-            output = dst.ToBitmap();
+            output = (Bitmap)dst.ToBitmap();
             ImageView imageView = new ImageView((Bitmap)output.Clone());
             imageView.MdiParent = this;
             imageView.Show();
+        }
+
+        private void blurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap output;
+            string path = ((ImageView)ActiveMdiChild).path;
+            Mat src = new Mat();
+            Mat dst = new Mat();
+            //src = ImageManager.ConvertBitmapToMat((Bitmap)((ImageView)ActiveMdiChild).image.bitmap.Clone());
+            //dst = new Mat(src,new Rectangle(0,0,src.Width, src.Height));
+
+            //Matrix<int> kernel = new Matrix<int>(new int[3, 3] { { 1, 1, 1 }, { 1, -4, 1 }, { 1, 1, 1 } });
+            src = CvInvoke.Imread(path);
+            dst = src.Clone();
+            //CvInvoke.Filter2D(src, dst, kernel, new Point(kernel.Width/2, kernel.Height/2));
+            CvInvoke.Blur(src, dst, new Size(3, 3), new Point(1, 1), BorderType.Default);
+            //CvInvoke.GaussianBlur(src, dst, new Size(3, 3), 0); 
+            //CvInvoke.Imshow("Outout image", dst);
+            //Bitmap b = dst.ToBitmap();
+            //pictureBox1.Image = b;
+
+            output = (Bitmap)dst.ToBitmap().Clone();
+            ImageView imageView = new ImageView((Bitmap)output.Clone());
+            imageView.MdiParent = this;
+            imageView.Show();
+        }
+
+        private void gaussianBlurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
+            string path = ((ImageView)ActiveMdiChild).path;
+            blurSelectView = new BlurSelectView(((ImageView)ActiveMdiChild).FileName);
+
+            if (blurSelectView.ShowDialog() == DialogResult.OK)
+            {
+                Mat src = new Mat();
+                Mat dst = new Mat();
+                src = CvInvoke.Imread(path);
+                dst = src.Clone();
+                CvInvoke.GaussianBlur(src, dst, new Size(blurSelectView.maskSize, blurSelectView.maskSize), 0,0, blurSelectView.borderType);
+                // MARK: Uncomment following line to present image in native EmguCV Window
+                //CvInvoke.Imshow("Outout image", dst);
+
+
+                // MARK: Remove '/' at the beginning to present image in a new Window
+                // Add '/' to alter currently selected
+
+                /*///
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+                /*/
+                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+                //*///
+
+
+
+
+
+            }
         }
     }
 }
