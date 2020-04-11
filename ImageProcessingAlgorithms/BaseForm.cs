@@ -26,6 +26,7 @@ namespace ImageProcessingAlgorithms
         PointOperationsView pointOperationsView;
         BlurSelectView blurSelectView;
         SharpenView sharpenView;
+        CustomMaskView customMaskView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -357,6 +358,37 @@ namespace ImageProcessingAlgorithms
                 src = CvInvoke.Imread(path);
                 dst = src.Clone();
                 CvInvoke.Filter2D(src, dst, sharpenView.kernel, new Point(-1,-1), 0, sharpenView.borderType);
+
+                // MARK: Uncomment following line to present image in native EmguCV Window
+                //CvInvoke.Imshow("Output image", dst);
+
+                // NOTE: Remove '/' at the beginning to present image in a new Window
+                //       Add '/' to alter currently selected
+
+                /*///
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+                /*/
+                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+                //*///
+            }
+        }
+
+        private void customMask3x3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
+            string path = ((ImageView)ActiveMdiChild).path;
+            customMaskView = new CustomMaskView(((ImageView)ActiveMdiChild).FileName);
+
+            if (customMaskView.ShowDialog() == DialogResult.OK)
+            {
+                Mat src = new Mat();
+                Mat dst = new Mat();
+                src = CvInvoke.Imread(path);
+                dst = src.Clone();
+                CvInvoke.Filter2D(src, dst, customMaskView.kernel, new Point(-1, -1), 0, customMaskView.borderType);
 
                 // MARK: Uncomment following line to present image in native EmguCV Window
                 //CvInvoke.Imshow("Output image", dst);

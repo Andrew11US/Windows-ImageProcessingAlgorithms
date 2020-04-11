@@ -20,6 +20,7 @@ namespace ImageProcessingAlgorithms
         {
             InitializeComponent();
             mask1Btn.Checked = true;
+            isolatedBtn.Checked = true;
             Text = "Blur Configuration : " + name;
             ClientSize = new Size(300, 200);
             pictureBox1.Size = new Size(50, 50);

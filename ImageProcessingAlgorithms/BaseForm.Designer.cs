@@ -441,6 +441,7 @@
             this.customMask3x3ToolStripMenuItem.Name = "customMask3x3ToolStripMenuItem";
             this.customMask3x3ToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.customMask3x3ToolStripMenuItem.Text = "Custom mask 3x3";
+            this.customMask3x3ToolStripMenuItem.Click += new System.EventHandler(this.customMask3x3ToolStripMenuItem_Click);
             // 
             // medianFiltrationToolStripMenuItem
             // 
