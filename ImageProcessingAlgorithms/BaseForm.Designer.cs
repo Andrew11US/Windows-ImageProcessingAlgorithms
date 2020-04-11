@@ -72,7 +72,7 @@
             this.laplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cannyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sharpenMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pewwitMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prewwitMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customMask3x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medianFiltrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
@@ -84,6 +84,8 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -367,7 +369,7 @@
             this.gaussianBlurToolStripMenuItem,
             this.operatorsToolStripMenuItem,
             this.sharpenMasksToolStripMenuItem,
-            this.pewwitMasksToolStripMenuItem,
+            this.prewwitMasksToolStripMenuItem,
             this.customMask3x3ToolStripMenuItem,
             this.medianFiltrationToolStripMenuItem});
             this.lab3ToolStripMenuItem.Name = "lab3ToolStripMenuItem";
@@ -408,19 +410,19 @@
             // sobelToolStripMenuItem
             // 
             this.sobelToolStripMenuItem.Name = "sobelToolStripMenuItem";
-            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(201, 40);
+            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.sobelToolStripMenuItem.Text = "Sobel";
             // 
             // laplaceToolStripMenuItem
             // 
             this.laplaceToolStripMenuItem.Name = "laplaceToolStripMenuItem";
-            this.laplaceToolStripMenuItem.Size = new System.Drawing.Size(201, 40);
+            this.laplaceToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.laplaceToolStripMenuItem.Text = "Laplace";
             // 
             // cannyToolStripMenuItem
             // 
             this.cannyToolStripMenuItem.Name = "cannyToolStripMenuItem";
-            this.cannyToolStripMenuItem.Size = new System.Drawing.Size(201, 40);
+            this.cannyToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.cannyToolStripMenuItem.Text = "Canny";
             // 
             // sharpenMasksToolStripMenuItem
@@ -430,11 +432,14 @@
             this.sharpenMasksToolStripMenuItem.Text = "Sharpen masks";
             this.sharpenMasksToolStripMenuItem.Click += new System.EventHandler(this.sharpenMasksToolStripMenuItem_Click);
             // 
-            // pewwitMasksToolStripMenuItem
+            // prewwitMasksToolStripMenuItem
             // 
-            this.pewwitMasksToolStripMenuItem.Name = "pewwitMasksToolStripMenuItem";
-            this.pewwitMasksToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.pewwitMasksToolStripMenuItem.Text = "Pewitt masks";
+            this.prewwitMasksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.horizontalToolStripMenuItem,
+            this.verticalToolStripMenuItem});
+            this.prewwitMasksToolStripMenuItem.Name = "prewwitMasksToolStripMenuItem";
+            this.prewwitMasksToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.prewwitMasksToolStripMenuItem.Text = "Prewitt operator";
             // 
             // customMask3x3ToolStripMenuItem
             // 
@@ -519,6 +524,20 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 30);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // horizontalToolStripMenuItem
+            // 
+            this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
+            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.horizontalToolStripMenuItem.Text = "Horizontal";
+            this.horizontalToolStripMenuItem.Click += new System.EventHandler(this.horizontalToolStripMenuItem_Click);
+            // 
+            // verticalToolStripMenuItem
+            // 
+            this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
+            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.verticalToolStripMenuItem.Text = "Vertical";
+            this.verticalToolStripMenuItem.Click += new System.EventHandler(this.verticalToolStripMenuItem_Click);
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -595,10 +614,12 @@
         private System.Windows.Forms.ToolStripMenuItem laplaceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cannyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sharpenMasksToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pewwitMasksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prewwitMasksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customMask3x3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem medianFiltrationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem makeGrayscaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem horizontalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem;
     }
 }
 
