@@ -25,7 +25,7 @@ namespace ImageProcessingAlgorithms
         public double Kurtosis { get; }
         public double Entropy { get; }
 
-        public Histogram(BitmapWrapper bmp)
+        public Histogram(FastBitmap bmp)
         {
             HistogramTable = new int[256];
             for (int i = 0; i < bmp.Size.Width; ++i)
@@ -73,7 +73,7 @@ namespace ImageProcessingAlgorithms
             //Skewness /= temp;
             //Kurtosis = (Kurtosis / (Variance * Variance)) - 3;
         }
-        public Histogram(BitmapWrapper bmp, bool isGrayscale)
+        public Histogram(FastBitmap bmp, bool isGrayscale)
         {
             if (isGrayscale)
             {

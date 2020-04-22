@@ -29,6 +29,7 @@ namespace ImageProcessingAlgorithms
         CustomMaskView customMaskView;
         DirectionView directionView;
         CannyView cannyView;
+        MorphologyView morphologyView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -130,14 +131,14 @@ namespace ImageProcessingAlgorithms
 
         private void equalizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             ImageManager.EqualizeHistogram(bmp, ((ImageView)ActiveMdiChild).Histogram, EqualizationMethod.Averages);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             ((ImageView)ActiveMdiChild).Refresh();
         }
         private void stretchHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             stretchView = new StretchView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
             if (stretchView.ShowDialog() == DialogResult.OK)
@@ -150,7 +151,7 @@ namespace ImageProcessingAlgorithms
 
         private void posterizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             posterizeView = new PosterizeView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
             if (posterizeView.ShowDialog() == DialogResult.OK)
@@ -178,7 +179,7 @@ namespace ImageProcessingAlgorithms
 
         private void thresholdToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             thresholdView = new ThresholdView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
             if (thresholdView.ShowDialog() == DialogResult.OK)
@@ -191,7 +192,7 @@ namespace ImageProcessingAlgorithms
 
         private void inverseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             ImageManager.Inversion(bmp);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             ((ImageView)ActiveMdiChild).Refresh();
@@ -199,7 +200,7 @@ namespace ImageProcessingAlgorithms
 
         private void adjustToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             ImageManager.AdjustHistogram(bmp, ((ImageView)ActiveMdiChild).Histogram);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             ((ImageView)ActiveMdiChild).Refresh();
@@ -207,7 +208,7 @@ namespace ImageProcessingAlgorithms
 
         private void thresholdGrayscaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             thresholdGrayscaleView = new ThresholdGrayscaleView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
             if (thresholdGrayscaleView.ShowDialog() == DialogResult.OK)
@@ -225,7 +226,7 @@ namespace ImageProcessingAlgorithms
 
         private void makeGrayscaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             ImageManager.Grayscale(bmp);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             ((ImageView)ActiveMdiChild).Refresh();
@@ -239,9 +240,9 @@ namespace ImageProcessingAlgorithms
 
             if (pointOperationsView.ShowDialog() == DialogResult.OK)
             {
-                BitmapWrapper bmp1 = null;
-                BitmapWrapper bmp2 = null;
-                BitmapWrapper output;
+                FastBitmap bmp1 = null;
+                FastBitmap bmp2 = null;
+                FastBitmap output;
                 foreach (Form form in MdiChildren)
                 {
                     if (((ImageView)form).Text == pointOperationsView.Image1)
@@ -576,7 +577,7 @@ namespace ImageProcessingAlgorithms
 
         private void cannyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapWrapper bmp = ((ImageView)ActiveMdiChild).image;
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             cannyView = new CannyView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
             if (cannyView.ShowDialog() == DialogResult.OK)
@@ -587,6 +588,141 @@ namespace ImageProcessingAlgorithms
                 outputImage = inputImage.Canny(cannyView.lowerBound, cannyView.upperBound);
                 // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
 
+                // MARK: Uncomment following line to present image in native EmguCV Window
+                //CvInvoke.Imshow("Output image", outputImage);
+
+                // NOTE: Remove '/' at the beginning to present image in a new Window
+                //       Add '/' to alter currently selected
+
+                /*///
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+                /*/
+                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+                //*///
+            }
+        }
+
+        private void erodeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            morphologyView = new MorphologyView(((ImageView)ActiveMdiChild).FileName);
+
+            if (morphologyView.ShowDialog() == DialogResult.OK)
+            {
+                string path = ((ImageView)ActiveMdiChild).path;
+                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
+                Image<Bgr, byte> outputImage = new Image<Bgr, byte>(path);
+
+                // MARK: Creating custom kernel in order to get possibility to select morphological element
+                Mat kernel = CvInvoke.GetStructuringElement(morphologyView.elementShape, new Size(3, 3), new Point(-1, -1));
+                outputImage = inputImage.MorphologyEx(MorphOp.Erode, kernel, new Point(-1, -1), morphologyView.iterations, BorderType.Isolated, new MCvScalar(1, 0));
+
+                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
+
+                // MARK: Uncomment following line to present image in native EmguCV Window
+                //CvInvoke.Imshow("Output image", outputImage);
+
+                // NOTE: Remove '/' at the beginning to present image in a new Window
+                //       Add '/' to alter currently selected
+
+                /*///
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+                /*/
+                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+                //*///
+            }
+        }
+
+        private void dilateToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            morphologyView = new MorphologyView(((ImageView)ActiveMdiChild).FileName);
+
+            if (morphologyView.ShowDialog() == DialogResult.OK)
+            {
+                string path = ((ImageView)ActiveMdiChild).path;
+                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
+                Image<Bgr, byte> outputImage = new Image<Bgr, byte>(path);
+
+                // MARK: Creating custom kernel in order to get possibility to select morphological element
+                Mat kernel = CvInvoke.GetStructuringElement(morphologyView.elementShape, new Size(3, 3), new Point(-1, -1));
+                outputImage = inputImage.MorphologyEx(MorphOp.Dilate, kernel, new Point(-1, -1), morphologyView.iterations, BorderType.Isolated, new MCvScalar(1, 0));
+
+                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
+
+                // MARK: Uncomment following line to present image in native EmguCV Window
+                //CvInvoke.Imshow("Output image", outputImage);
+
+                // NOTE: Remove '/' at the beginning to present image in a new Window
+                //       Add '/' to alter currently selected
+
+                /*///
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+                /*/
+                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+                //*///
+            }
+        }
+
+        private void openToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            morphologyView = new MorphologyView(((ImageView)ActiveMdiChild).FileName);
+
+            if (morphologyView.ShowDialog() == DialogResult.OK)
+            {
+                string path = ((ImageView)ActiveMdiChild).path;
+                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
+                Image<Bgr, byte> outputImage = new Image<Bgr, byte>(path);
+
+                // MARK: Creating custom kernel in order to get possibility to select morphological element
+                Mat kernel = CvInvoke.GetStructuringElement(morphologyView.elementShape, new Size(3, 3), new Point(-1, -1));
+                outputImage = inputImage.MorphologyEx(MorphOp.Open, kernel, new Point(-1, -1), morphologyView.iterations, BorderType.Isolated, new MCvScalar(1, 0));
+
+                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
+
+                // MARK: Uncomment following line to present image in native EmguCV Window
+                //CvInvoke.Imshow("Output image", outputImage);
+
+                // NOTE: Remove '/' at the beginning to present image in a new Window
+                //       Add '/' to alter currently selected
+
+                /*///
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+                /*/
+                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+                //*///
+            }
+        }
+
+        private void closeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            morphologyView = new MorphologyView(((ImageView)ActiveMdiChild).FileName);
+
+            if (morphologyView.ShowDialog() == DialogResult.OK)
+            {
+                string path = ((ImageView)ActiveMdiChild).path;
+                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
+                Image<Bgr, byte> outputImage = new Image<Bgr, byte>(path);
+
+                // MARK: Creating custom kernel in order to get possibility to select morphological element
+                Mat kernel = CvInvoke.GetStructuringElement(morphologyView.elementShape, new Size(3, 3), new Point(-1, -1));
+                outputImage = inputImage.MorphologyEx(MorphOp.Close, kernel, new Point(-1, -1), morphologyView.iterations, BorderType.Isolated, new MCvScalar(1, 0));
+
+                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
 
                 // MARK: Uncomment following line to present image in native EmguCV Window
                 //CvInvoke.Imshow("Output image", outputImage);

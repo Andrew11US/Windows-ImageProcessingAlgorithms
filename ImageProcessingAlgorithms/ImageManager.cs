@@ -20,7 +20,7 @@ namespace ImageProcessingAlgorithms
             return false;
         }
 
-        public static void Grayscale(BitmapWrapper bmp)
+        public static void Grayscale(FastBitmap bmp)
         {
             Color color;
             byte newColor;
@@ -35,9 +35,9 @@ namespace ImageProcessingAlgorithms
             }
         }
 
-        //public static BitmapWrapper Turtle(BitmapWrapper bitmap)
+        //public static FastBitmap Turtle(FastBitmap bitmap)
         //{
-        //    BitmapWrapper bmp = new BitmapWrapper((Bitmap)(bitmap.bitmap.Clone()));
+        //    FastBitmap bmp = new FastBitmap((Bitmap)(bitmap.bitmap.Clone()));
         //    int[,] rtab = new int[bmp.Width, bmp.Height];
         //    int[,] gtab = new int[bmp.Width, bmp.Height];
         //    int[,] btab = new int[bmp.Width, bmp.Height];
@@ -155,11 +155,11 @@ namespace ImageProcessingAlgorithms
         //    return bmp;
         //}
 
-        public static BitmapWrapper Hide(BitmapWrapper bmp1, BitmapWrapper bmp2)
+        public static FastBitmap Hide(FastBitmap bmp1, FastBitmap bmp2)
         {
-            BitmapWrapper bmpSecret = new BitmapWrapper((Bitmap)bmp2.bitmap.Clone());
+            FastBitmap bmpSecret = new FastBitmap((Bitmap)bmp2.bitmap.Clone());
             Threshold(bmpSecret, 127);
-            BitmapWrapper bmp = new BitmapWrapper(bmp1.Width, bmp1.Height);
+            FastBitmap bmp = new FastBitmap(bmp1.Width, bmp1.Height);
 
             for (int i = 0; i < bmp1.Width; ++i)
             {
@@ -175,9 +175,9 @@ namespace ImageProcessingAlgorithms
             return bmp;
         }
 
-        public static BitmapWrapper Recover(BitmapWrapper bmp)
+        public static FastBitmap Recover(FastBitmap bmp)
         {
-            BitmapWrapper bmpRecovered = new BitmapWrapper(bmp.Width, bmp.Height);
+            FastBitmap bmpRecovered = new FastBitmap(bmp.Width, bmp.Height);
 
             for (int i = 0; i < bmp.Width; i++)
             {
@@ -191,9 +191,9 @@ namespace ImageProcessingAlgorithms
             return bmpRecovered;
         }
 
-        public static BitmapWrapper Operation(BitmapWrapper bmp1, BitmapWrapper bmp2, Operations op)
+        public static FastBitmap Operation(FastBitmap bmp1, FastBitmap bmp2, Operations op)
         {
-            BitmapWrapper bmp = new BitmapWrapper(Math.Max(bmp1.Width, bmp2.Width), Math.Max(bmp1.Height, bmp2.Height));
+            FastBitmap bmp = new FastBitmap(Math.Max(bmp1.Width, bmp2.Width), Math.Max(bmp1.Height, bmp2.Height));
             for (int i = 0; i < bmp.Size.Width; ++i)
             {
                 for (int j = 0; j < bmp.Size.Height; ++j)
@@ -243,7 +243,7 @@ namespace ImageProcessingAlgorithms
             return bmp;
         }
 
-        public static void GammaCorrect(BitmapWrapper bmp, int value)
+        public static void GammaCorrect(FastBitmap bmp, int value)
         {
             byte[] upo = new byte[256];
             for (int i = 0; i < 256; ++i)
@@ -255,7 +255,7 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, upo);
         }
 
-        public static void Binarize(BitmapWrapper bmp, int low, int high)
+        public static void Binarize(FastBitmap bmp, int low, int high)
         {
             byte[] upo = new byte[256];
             for (int i = 0; i < 256; ++i)
@@ -269,7 +269,7 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, upo);
         }
 
-        public static void Binarize2(BitmapWrapper bmp, int low, int high)
+        public static void Binarize2(FastBitmap bmp, int low, int high)
         {
             byte[] upo = new byte[256];
             for (int i = 0; i < 256; ++i)
@@ -283,7 +283,7 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, upo);
         }
 
-        public static void Posterize(BitmapWrapper bmp, int value)
+        public static void Posterize(FastBitmap bmp, int value)
         {
             byte[] upo = new byte[256];
             float param1 = 255.0f / (value - 1);
@@ -295,7 +295,7 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, upo);
         }
 
-        public static void Stretch(BitmapWrapper bmp, int low, int high)
+        public static void Stretch(FastBitmap bmp, int low, int high)
         {
             byte[] upo = new byte[256];
             if ((high - low) <= 0)
@@ -318,7 +318,7 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, upo);
         }
 
-        public static List<Color> GetPixelNeighborhood4(BitmapWrapper bmp, int i, int j)
+        public static List<Color> GetPixelNeighborhood4(FastBitmap bmp, int i, int j)
         {
             List<Color> list = new List<Color>();
             foreach (Point offset in new Point[] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1) })
@@ -329,7 +329,7 @@ namespace ImageProcessingAlgorithms
             return list;
         }
 
-        public static List<Color> GetPixelNeighborhood8(BitmapWrapper bmp, int i, int j)
+        public static List<Color> GetPixelNeighborhood8(FastBitmap bmp, int i, int j)
         {
             List<Color> list = new List<Color>();
             foreach (Point offset in new Point[] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1), new Point(1, 1), new Point(-1, -1), new Point(-1, 1), new Point(1, -1) })
@@ -340,9 +340,9 @@ namespace ImageProcessingAlgorithms
             return list;
         }
 
-        public static BitmapWrapper ApplyMask(BitmapWrapper bmp, int[,] mask, int divisor)
+        public static FastBitmap ApplyMask(FastBitmap bmp, int[,] mask, int divisor)
         {
-            BitmapWrapper bitmap = new BitmapWrapper((Bitmap)bmp.bitmap.Clone());
+            FastBitmap bitmap = new FastBitmap((Bitmap)bmp.bitmap.Clone());
 
             if (divisor == 0)
                 divisor = 1;
@@ -377,7 +377,7 @@ namespace ImageProcessingAlgorithms
             return bitmap;
         }
 
-        public static void ApplyUPO(BitmapWrapper bmp, byte[] lut)
+        public static void ApplyUPO(FastBitmap bmp, byte[] lut)
         {
             for (int i = 0; i < bmp.Size.Width; ++i)
             {
@@ -390,7 +390,7 @@ namespace ImageProcessingAlgorithms
             }
         }
 
-        public static void Thinning(BitmapWrapper bmp)
+        public static void Thinning(FastBitmap bmp)
         {
             int[] dx = { 0, 1, 1, 1, 0, -1, -1, -1 };
             int[] dy = { 1, 1, 0, -1, -1, -1, 0, 1 };
@@ -460,7 +460,7 @@ namespace ImageProcessingAlgorithms
             }
         }
 
-        public static void Threshold(BitmapWrapper bmp, int threshold)
+        public static void Threshold(FastBitmap bmp, int threshold)
         {
             byte[] upo = new byte[256];
             for (int i = 0; i < 256; ++i)
@@ -470,7 +470,7 @@ namespace ImageProcessingAlgorithms
             }
             ApplyUPO(bmp, upo);
         }
-        public static void ThresholdGrayscale(BitmapWrapper bmp, int lower, int upper)
+        public static void ThresholdGrayscale(FastBitmap bmp, int lower, int upper)
         {
             byte[] upo = new byte[256];
             for (int i = 0; i < 256; ++i)
@@ -481,14 +481,14 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, upo);
         }
 
-        public static void Inversion(BitmapWrapper bmp)
+        public static void Inversion(FastBitmap bmp)
         {
             byte[] upo = new byte[256];
             for (int i = 0; i < 256; ++i) upo[i] = (byte)(255 - i);
             ApplyUPO(bmp, upo);
         }
 
-        public static void AdjustHistogram(BitmapWrapper bmp, Histogram histogram)
+        public static void AdjustHistogram(FastBitmap bmp, Histogram histogram)
         {
             byte[] d = new byte[256];
             byte[] lut = new byte[256];
@@ -514,7 +514,7 @@ namespace ImageProcessingAlgorithms
             ApplyUPO(bmp, lut);
         }
 
-        public static void EqualizeHistogram(BitmapWrapper bmp, Histogram hist, EqualizationMethod method)
+        public static void EqualizeHistogram(FastBitmap bmp, Histogram hist, EqualizationMethod method)
         {
             int R = 0;
             double hInt = 0.0;

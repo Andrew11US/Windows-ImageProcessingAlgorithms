@@ -17,7 +17,7 @@ namespace ImageProcessingAlgorithms
     {
         // Variables declarations
         public string path;
-        public BitmapWrapper bitmap;
+        public FastBitmap bitmap;
         private Graphics graphics;
         public bool imageChanged = false;
         public int ChildID { get; set; }
@@ -29,7 +29,7 @@ namespace ImageProcessingAlgorithms
         {
             get { return new Histogram(bitmap, false); }
         }
-        public BitmapWrapper image
+        public FastBitmap image
         {
             get => bitmap;
             set => bitmap = value;
@@ -46,7 +46,7 @@ namespace ImageProcessingAlgorithms
             try
             {
                 Bitmap bmp = (Bitmap)Image.FromFile(path);
-                bitmap = new BitmapWrapper((Bitmap)Image.FromFile(path));
+                bitmap = new FastBitmap((Bitmap)Image.FromFile(path));
                 pictureBox.Left = 0;
                 pictureBox.Top = 0;
                 ClientSize = bmp.Size;
@@ -67,7 +67,7 @@ namespace ImageProcessingAlgorithms
             try
             {
                 Bitmap bmp = b;
-                bitmap = new BitmapWrapper((Bitmap)bmp.Clone());
+                bitmap = new FastBitmap((Bitmap)bmp.Clone());
                 pictureBox.Left = 0;
                 pictureBox.Top = 0;
                 ClientSize = bmp.Size;
@@ -95,7 +95,7 @@ namespace ImageProcessingAlgorithms
         //    bmpTemp.Dispose();
         //    reader.Close();
 
-        //    bitmap = new BitmapWrapper(bmpTemp2);
+        //    bitmap = new FastBitmap(bmpTemp2);
         //    bitmap.bitmap.SetResolution(96, 96);
 
         //    Text = Path.GetFileName(path);

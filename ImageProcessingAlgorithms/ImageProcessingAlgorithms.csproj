@@ -60,7 +60,7 @@
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BitmapWrapper.cs" />
+    <Compile Include="FastBitmap.cs" />
     <Compile Include="BlurSelectView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +104,12 @@
     </Compile>
     <Compile Include="ImageView.Designer.cs">
       <DependentUpon>ImageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MorphologyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MorphologyForm.Designer.cs">
+      <DependentUpon>MorphologyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PointOperationsView.cs">
       <SubType>Form</SubType>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImageView.resx">
       <DependentUpon>ImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MorphologyForm.resx">
+      <DependentUpon>MorphologyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointOperationsView.resx">
       <DependentUpon>PointOperationsView.cs</DependentUpon>
