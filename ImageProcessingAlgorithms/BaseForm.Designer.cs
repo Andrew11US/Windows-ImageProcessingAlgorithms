@@ -81,6 +81,29 @@
             this.sharpenMasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customMask3x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.directionDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.morphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.erodeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dilateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.twoStepFiltrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skeletonizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.segmentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thresholdToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.adaptiveThresholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otsuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.watershedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.areaAndPerimeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shapeMarkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aspectRatioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.solidityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.equivalentDiameterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.classificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -90,29 +113,6 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.lab4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lab5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.segmentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thresholdToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.adaptiveThresholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.otsuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.watershedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lab6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.shapeMarkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aspectRatioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.extentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.solidityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.equivalentDiameterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.classificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.morphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.erodeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.dilateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.twoStepFiltrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.skeletonizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.areaAndPerimeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -534,6 +534,176 @@
             this.directionDetectionToolStripMenuItem.Text = "Direction Detection";
             this.directionDetectionToolStripMenuItem.Click += new System.EventHandler(this.directionDetectionToolStripMenuItem_Click);
             // 
+            // lab4ToolStripMenuItem
+            // 
+            this.lab4ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.morphologyToolStripMenuItem,
+            this.twoStepFiltrationToolStripMenuItem,
+            this.skeletonizationToolStripMenuItem});
+            this.lab4ToolStripMenuItem.Name = "lab4ToolStripMenuItem";
+            this.lab4ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
+            this.lab4ToolStripMenuItem.Text = "Lab4";
+            // 
+            // morphologyToolStripMenuItem
+            // 
+            this.morphologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.erodeToolStripMenuItem1,
+            this.dilateToolStripMenuItem1,
+            this.openToolStripMenuItem2,
+            this.closeToolStripMenuItem1});
+            this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
+            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.morphologyToolStripMenuItem.Text = "Morphology";
+            // 
+            // erodeToolStripMenuItem1
+            // 
+            this.erodeToolStripMenuItem1.Name = "erodeToolStripMenuItem1";
+            this.erodeToolStripMenuItem1.Size = new System.Drawing.Size(185, 40);
+            this.erodeToolStripMenuItem1.Text = "Erode";
+            this.erodeToolStripMenuItem1.Click += new System.EventHandler(this.erodeToolStripMenuItem1_Click);
+            // 
+            // dilateToolStripMenuItem1
+            // 
+            this.dilateToolStripMenuItem1.Name = "dilateToolStripMenuItem1";
+            this.dilateToolStripMenuItem1.Size = new System.Drawing.Size(185, 40);
+            this.dilateToolStripMenuItem1.Text = "Dilate";
+            this.dilateToolStripMenuItem1.Click += new System.EventHandler(this.dilateToolStripMenuItem1_Click);
+            // 
+            // openToolStripMenuItem2
+            // 
+            this.openToolStripMenuItem2.Name = "openToolStripMenuItem2";
+            this.openToolStripMenuItem2.Size = new System.Drawing.Size(185, 40);
+            this.openToolStripMenuItem2.Text = "Open";
+            this.openToolStripMenuItem2.Click += new System.EventHandler(this.openToolStripMenuItem2_Click);
+            // 
+            // closeToolStripMenuItem1
+            // 
+            this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
+            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(185, 40);
+            this.closeToolStripMenuItem1.Text = "Close";
+            this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
+            // 
+            // twoStepFiltrationToolStripMenuItem
+            // 
+            this.twoStepFiltrationToolStripMenuItem.Name = "twoStepFiltrationToolStripMenuItem";
+            this.twoStepFiltrationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.twoStepFiltrationToolStripMenuItem.Text = "Two step filtration";
+            this.twoStepFiltrationToolStripMenuItem.Click += new System.EventHandler(this.twoStepFiltrationToolStripMenuItem_Click);
+            // 
+            // skeletonizationToolStripMenuItem
+            // 
+            this.skeletonizationToolStripMenuItem.Name = "skeletonizationToolStripMenuItem";
+            this.skeletonizationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.skeletonizationToolStripMenuItem.Text = "Skeletonization";
+            this.skeletonizationToolStripMenuItem.Click += new System.EventHandler(this.skeletonizationToolStripMenuItem_Click);
+            // 
+            // lab5ToolStripMenuItem
+            // 
+            this.lab5ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.segmentationToolStripMenuItem,
+            this.watershedToolStripMenuItem});
+            this.lab5ToolStripMenuItem.Name = "lab5ToolStripMenuItem";
+            this.lab5ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
+            this.lab5ToolStripMenuItem.Text = "Lab5";
+            // 
+            // segmentationToolStripMenuItem
+            // 
+            this.segmentationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thresholdToolStripMenuItem1,
+            this.adaptiveThresholdToolStripMenuItem,
+            this.otsuToolStripMenuItem});
+            this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
+            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(260, 40);
+            this.segmentationToolStripMenuItem.Text = "Segmentation";
+            // 
+            // thresholdToolStripMenuItem1
+            // 
+            this.thresholdToolStripMenuItem1.Name = "thresholdToolStripMenuItem1";
+            this.thresholdToolStripMenuItem1.Size = new System.Drawing.Size(310, 40);
+            this.thresholdToolStripMenuItem1.Text = "Threshold";
+            // 
+            // adaptiveThresholdToolStripMenuItem
+            // 
+            this.adaptiveThresholdToolStripMenuItem.Name = "adaptiveThresholdToolStripMenuItem";
+            this.adaptiveThresholdToolStripMenuItem.Size = new System.Drawing.Size(310, 40);
+            this.adaptiveThresholdToolStripMenuItem.Text = "Adaptive Threshold";
+            // 
+            // otsuToolStripMenuItem
+            // 
+            this.otsuToolStripMenuItem.Name = "otsuToolStripMenuItem";
+            this.otsuToolStripMenuItem.Size = new System.Drawing.Size(310, 40);
+            this.otsuToolStripMenuItem.Text = "Otsu Method";
+            // 
+            // watershedToolStripMenuItem
+            // 
+            this.watershedToolStripMenuItem.Name = "watershedToolStripMenuItem";
+            this.watershedToolStripMenuItem.Size = new System.Drawing.Size(260, 40);
+            this.watershedToolStripMenuItem.Text = "Watershed";
+            // 
+            // lab6ToolStripMenuItem
+            // 
+            this.lab6ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mementsToolStripMenuItem,
+            this.areaAndPerimeterToolStripMenuItem,
+            this.shapeMarkersToolStripMenuItem,
+            this.classificationToolStripMenuItem});
+            this.lab6ToolStripMenuItem.Name = "lab6ToolStripMenuItem";
+            this.lab6ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
+            this.lab6ToolStripMenuItem.Text = "Lab6";
+            // 
+            // mementsToolStripMenuItem
+            // 
+            this.mementsToolStripMenuItem.Name = "mementsToolStripMenuItem";
+            this.mementsToolStripMenuItem.Size = new System.Drawing.Size(309, 40);
+            this.mementsToolStripMenuItem.Text = "Mements";
+            // 
+            // areaAndPerimeterToolStripMenuItem
+            // 
+            this.areaAndPerimeterToolStripMenuItem.Name = "areaAndPerimeterToolStripMenuItem";
+            this.areaAndPerimeterToolStripMenuItem.Size = new System.Drawing.Size(309, 40);
+            this.areaAndPerimeterToolStripMenuItem.Text = "Area and Perimeter";
+            // 
+            // shapeMarkersToolStripMenuItem
+            // 
+            this.shapeMarkersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aspectRatioToolStripMenuItem,
+            this.extentToolStripMenuItem,
+            this.solidityToolStripMenuItem,
+            this.equivalentDiameterToolStripMenuItem});
+            this.shapeMarkersToolStripMenuItem.Name = "shapeMarkersToolStripMenuItem";
+            this.shapeMarkersToolStripMenuItem.Size = new System.Drawing.Size(309, 40);
+            this.shapeMarkersToolStripMenuItem.Text = "Shape Markers";
+            // 
+            // aspectRatioToolStripMenuItem
+            // 
+            this.aspectRatioToolStripMenuItem.Name = "aspectRatioToolStripMenuItem";
+            this.aspectRatioToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.aspectRatioToolStripMenuItem.Text = "Aspect Ratio";
+            // 
+            // extentToolStripMenuItem
+            // 
+            this.extentToolStripMenuItem.Name = "extentToolStripMenuItem";
+            this.extentToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.extentToolStripMenuItem.Text = "Extent";
+            // 
+            // solidityToolStripMenuItem
+            // 
+            this.solidityToolStripMenuItem.Name = "solidityToolStripMenuItem";
+            this.solidityToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.solidityToolStripMenuItem.Text = "Solidity";
+            // 
+            // equivalentDiameterToolStripMenuItem
+            // 
+            this.equivalentDiameterToolStripMenuItem.Name = "equivalentDiameterToolStripMenuItem";
+            this.equivalentDiameterToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.equivalentDiameterToolStripMenuItem.Text = "Equivalent diameter";
+            // 
+            // classificationToolStripMenuItem
+            // 
+            this.classificationToolStripMenuItem.Name = "classificationToolStripMenuItem";
+            this.classificationToolStripMenuItem.Size = new System.Drawing.Size(309, 40);
+            this.classificationToolStripMenuItem.Text = "Classification";
+            // 
             // toolStrip
             // 
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(28, 28);
@@ -602,175 +772,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 30);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // lab4ToolStripMenuItem
-            // 
-            this.lab4ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.morphologyToolStripMenuItem,
-            this.twoStepFiltrationToolStripMenuItem,
-            this.skeletonizationToolStripMenuItem});
-            this.lab4ToolStripMenuItem.Name = "lab4ToolStripMenuItem";
-            this.lab4ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
-            this.lab4ToolStripMenuItem.Text = "Lab4";
-            // 
-            // lab5ToolStripMenuItem
-            // 
-            this.lab5ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.segmentationToolStripMenuItem,
-            this.watershedToolStripMenuItem});
-            this.lab5ToolStripMenuItem.Name = "lab5ToolStripMenuItem";
-            this.lab5ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
-            this.lab5ToolStripMenuItem.Text = "Lab5";
-            // 
-            // segmentationToolStripMenuItem
-            // 
-            this.segmentationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thresholdToolStripMenuItem1,
-            this.adaptiveThresholdToolStripMenuItem,
-            this.otsuToolStripMenuItem});
-            this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
-            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.segmentationToolStripMenuItem.Text = "Segmentation";
-            // 
-            // thresholdToolStripMenuItem1
-            // 
-            this.thresholdToolStripMenuItem1.Name = "thresholdToolStripMenuItem1";
-            this.thresholdToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
-            this.thresholdToolStripMenuItem1.Text = "Threshold";
-            // 
-            // adaptiveThresholdToolStripMenuItem
-            // 
-            this.adaptiveThresholdToolStripMenuItem.Name = "adaptiveThresholdToolStripMenuItem";
-            this.adaptiveThresholdToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.adaptiveThresholdToolStripMenuItem.Text = "Adaptive Threshold";
-            // 
-            // otsuToolStripMenuItem
-            // 
-            this.otsuToolStripMenuItem.Name = "otsuToolStripMenuItem";
-            this.otsuToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.otsuToolStripMenuItem.Text = "Otsu Method";
-            // 
-            // watershedToolStripMenuItem
-            // 
-            this.watershedToolStripMenuItem.Name = "watershedToolStripMenuItem";
-            this.watershedToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.watershedToolStripMenuItem.Text = "Watershed";
-            // 
-            // lab6ToolStripMenuItem
-            // 
-            this.lab6ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mementsToolStripMenuItem,
-            this.areaAndPerimeterToolStripMenuItem,
-            this.shapeMarkersToolStripMenuItem,
-            this.classificationToolStripMenuItem});
-            this.lab6ToolStripMenuItem.Name = "lab6ToolStripMenuItem";
-            this.lab6ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
-            this.lab6ToolStripMenuItem.Text = "Lab6";
-            // 
-            // mementsToolStripMenuItem
-            // 
-            this.mementsToolStripMenuItem.Name = "mementsToolStripMenuItem";
-            this.mementsToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.mementsToolStripMenuItem.Text = "Mements";
-            // 
-            // shapeMarkersToolStripMenuItem
-            // 
-            this.shapeMarkersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aspectRatioToolStripMenuItem,
-            this.extentToolStripMenuItem,
-            this.solidityToolStripMenuItem,
-            this.equivalentDiameterToolStripMenuItem});
-            this.shapeMarkersToolStripMenuItem.Name = "shapeMarkersToolStripMenuItem";
-            this.shapeMarkersToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.shapeMarkersToolStripMenuItem.Text = "Shape Markers";
-            // 
-            // aspectRatioToolStripMenuItem
-            // 
-            this.aspectRatioToolStripMenuItem.Name = "aspectRatioToolStripMenuItem";
-            this.aspectRatioToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.aspectRatioToolStripMenuItem.Text = "Aspect Ratio";
-            // 
-            // extentToolStripMenuItem
-            // 
-            this.extentToolStripMenuItem.Name = "extentToolStripMenuItem";
-            this.extentToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.extentToolStripMenuItem.Text = "Extent";
-            // 
-            // solidityToolStripMenuItem
-            // 
-            this.solidityToolStripMenuItem.Name = "solidityToolStripMenuItem";
-            this.solidityToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.solidityToolStripMenuItem.Text = "Solidity";
-            // 
-            // equivalentDiameterToolStripMenuItem
-            // 
-            this.equivalentDiameterToolStripMenuItem.Name = "equivalentDiameterToolStripMenuItem";
-            this.equivalentDiameterToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.equivalentDiameterToolStripMenuItem.Text = "Equivalent diameter";
-            // 
-            // classificationToolStripMenuItem
-            // 
-            this.classificationToolStripMenuItem.Name = "classificationToolStripMenuItem";
-            this.classificationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.classificationToolStripMenuItem.Text = "Classification";
-            // 
-            // morphologyToolStripMenuItem
-            // 
-            this.morphologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.erodeToolStripMenuItem1,
-            this.dilateToolStripMenuItem1,
-            this.openToolStripMenuItem2,
-            this.closeToolStripMenuItem1});
-            this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
-            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.morphologyToolStripMenuItem.Text = "Morphology";
-            // 
-            // erodeToolStripMenuItem1
-            // 
-            this.erodeToolStripMenuItem1.Name = "erodeToolStripMenuItem1";
-            this.erodeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
-            this.erodeToolStripMenuItem1.Text = "Erode";
-            this.erodeToolStripMenuItem1.Click += new System.EventHandler(this.erodeToolStripMenuItem1_Click);
-            // 
-            // dilateToolStripMenuItem1
-            // 
-            this.dilateToolStripMenuItem1.Name = "dilateToolStripMenuItem1";
-            this.dilateToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
-            this.dilateToolStripMenuItem1.Text = "Dilate";
-            this.dilateToolStripMenuItem1.Click += new System.EventHandler(this.dilateToolStripMenuItem1_Click);
-            // 
-            // openToolStripMenuItem2
-            // 
-            this.openToolStripMenuItem2.Name = "openToolStripMenuItem2";
-            this.openToolStripMenuItem2.Size = new System.Drawing.Size(315, 40);
-            this.openToolStripMenuItem2.Text = "Open";
-            this.openToolStripMenuItem2.Click += new System.EventHandler(this.openToolStripMenuItem2_Click);
-            // 
-            // closeToolStripMenuItem1
-            // 
-            this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
-            this.closeToolStripMenuItem1.Text = "Close";
-            this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
-            // 
-            // twoStepFiltrationToolStripMenuItem
-            // 
-            this.twoStepFiltrationToolStripMenuItem.Name = "twoStepFiltrationToolStripMenuItem";
-            this.twoStepFiltrationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.twoStepFiltrationToolStripMenuItem.Text = "Two step filtration";
-            this.twoStepFiltrationToolStripMenuItem.Click += new System.EventHandler(this.twoStepFiltrationToolStripMenuItem_Click);
-            // 
-            // skeletonizationToolStripMenuItem
-            // 
-            this.skeletonizationToolStripMenuItem.Name = "skeletonizationToolStripMenuItem";
-            this.skeletonizationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.skeletonizationToolStripMenuItem.Text = "Skeletonization";
-            // 
-            // areaAndPerimeterToolStripMenuItem
-            // 
-            this.areaAndPerimeterToolStripMenuItem.Name = "areaAndPerimeterToolStripMenuItem";
-            this.areaAndPerimeterToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.areaAndPerimeterToolStripMenuItem.Text = "Area and Perimeter";
             // 
             // BaseForm
             // 

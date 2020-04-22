@@ -768,7 +768,6 @@ namespace ImageProcessingAlgorithms
                     CvInvoke.Filter2D(tmp, dst, doubleFiltrationView.second3x3, new Point(-1, -1), 0, doubleFiltrationView.borderType);
                 }
                 
-
                 // MARK: Uncomment following line to present image in native EmguCV Window
                 //CvInvoke.Imshow("Output image", dst);
 
@@ -784,6 +783,14 @@ namespace ImageProcessingAlgorithms
                 imageView.Show();
                 //*///
             }
+        }
+
+        private void skeletonizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            ImageManager.Thinning(bmp);
+            ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+            ((ImageView)ActiveMdiChild).Refresh();
         }
     }
 }
