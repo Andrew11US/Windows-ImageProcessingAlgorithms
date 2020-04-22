@@ -60,6 +60,12 @@
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DoubleFiltrationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoubleFiltrationView.Designer.cs">
+      <DependentUpon>DoubleFiltrationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="FastBitmap.cs" />
     <Compile Include="BlurSelectView.cs">
       <SubType>Form</SubType>
@@ -163,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DirectionView.resx">
       <DependentUpon>DirectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoubleFiltrationView.resx">
+      <DependentUpon>DoubleFiltrationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistogramRGBView.resx">
       <DependentUpon>HistogramRGBView.cs</DependentUpon>

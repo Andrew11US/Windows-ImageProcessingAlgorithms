@@ -200,6 +200,7 @@
             // 
             // matrixLayout
             // 
+            this.matrixLayout.BackColor = System.Drawing.Color.Red;
             this.matrixLayout.Controls.Add(this.mask1Box);
             this.matrixLayout.Controls.Add(this.mask2Box);
             this.matrixLayout.Controls.Add(this.mask3Box);

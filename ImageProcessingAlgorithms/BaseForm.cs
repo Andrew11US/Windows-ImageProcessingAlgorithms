@@ -30,6 +30,7 @@ namespace ImageProcessingAlgorithms
         DirectionView directionView;
         CannyView cannyView;
         MorphologyView morphologyView;
+        DoubleFiltrationView doubleFiltrationView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -735,6 +736,50 @@ namespace ImageProcessingAlgorithms
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
                 ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
+                imageView.MdiParent = this;
+                imageView.Show();
+                //*///
+            }
+        }
+
+        private void twoStepFiltrationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+
+            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
+            string path = ((ImageView)ActiveMdiChild).path;
+            doubleFiltrationView = new DoubleFiltrationView(((ImageView)ActiveMdiChild).FileName);
+
+            if (doubleFiltrationView.ShowDialog() == DialogResult.OK)
+            {
+                Mat src = new Mat();
+                Mat dst = new Mat();
+                Mat tmp = new Mat();
+                src = CvInvoke.Imread(path);
+                tmp = src.Clone();
+                dst = src.Clone();
+                if (doubleFiltrationView.use5x5)
+                {
+                    CvInvoke.Filter2D(src, dst, doubleFiltrationView.kernel, new Point(-1, -1), 0, doubleFiltrationView.borderType);
+                }
+                else
+                {
+                    CvInvoke.Filter2D(src, tmp, doubleFiltrationView.first3x3, new Point(-1, -1), 0, doubleFiltrationView.borderType);
+                    CvInvoke.Filter2D(tmp, dst, doubleFiltrationView.second3x3, new Point(-1, -1), 0, doubleFiltrationView.borderType);
+                }
+                
+
+                // MARK: Uncomment following line to present image in native EmguCV Window
+                //CvInvoke.Imshow("Output image", dst);
+
+                // NOTE: Remove '/' at the beginning to present image in a new Window
+                //       Add '/' to alter currently selected
+
+                /*///
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+                /*/
+                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
                 imageView.MdiParent = this;
                 imageView.Show();
                 //*///

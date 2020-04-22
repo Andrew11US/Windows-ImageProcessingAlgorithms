@@ -99,7 +99,6 @@
             this.watershedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.squarePerimeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shapeMarkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectRatioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,6 +112,7 @@
             this.closeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.twoStepFiltrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skeletonizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.areaAndPerimeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -660,7 +660,7 @@
             // 
             this.lab6ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mementsToolStripMenuItem,
-            this.squarePerimeterToolStripMenuItem,
+            this.areaAndPerimeterToolStripMenuItem,
             this.shapeMarkersToolStripMenuItem,
             this.classificationToolStripMenuItem});
             this.lab6ToolStripMenuItem.Name = "lab6ToolStripMenuItem";
@@ -672,12 +672,6 @@
             this.mementsToolStripMenuItem.Name = "mementsToolStripMenuItem";
             this.mementsToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.mementsToolStripMenuItem.Text = "Mements";
-            // 
-            // squarePerimeterToolStripMenuItem
-            // 
-            this.squarePerimeterToolStripMenuItem.Name = "squarePerimeterToolStripMenuItem";
-            this.squarePerimeterToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
-            this.squarePerimeterToolStripMenuItem.Text = "Square & Perimeter";
             // 
             // shapeMarkersToolStripMenuItem
             // 
@@ -764,12 +758,19 @@
             this.twoStepFiltrationToolStripMenuItem.Name = "twoStepFiltrationToolStripMenuItem";
             this.twoStepFiltrationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.twoStepFiltrationToolStripMenuItem.Text = "Two step filtration";
+            this.twoStepFiltrationToolStripMenuItem.Click += new System.EventHandler(this.twoStepFiltrationToolStripMenuItem_Click);
             // 
             // skeletonizationToolStripMenuItem
             // 
             this.skeletonizationToolStripMenuItem.Name = "skeletonizationToolStripMenuItem";
             this.skeletonizationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.skeletonizationToolStripMenuItem.Text = "Skeletonization";
+            // 
+            // areaAndPerimeterToolStripMenuItem
+            // 
+            this.areaAndPerimeterToolStripMenuItem.Name = "areaAndPerimeterToolStripMenuItem";
+            this.areaAndPerimeterToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.areaAndPerimeterToolStripMenuItem.Text = "Area and Perimeter";
             // 
             // BaseForm
             // 
@@ -873,13 +874,13 @@
         private System.Windows.Forms.ToolStripMenuItem watershedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lab6ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mementsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem squarePerimeterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shapeMarkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aspectRatioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem solidityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem equivalentDiameterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem classificationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem areaAndPerimeterToolStripMenuItem;
     }
 }
 
