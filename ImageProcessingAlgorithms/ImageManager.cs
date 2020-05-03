@@ -35,162 +35,6 @@ namespace ImageProcessingAlgorithms
             }
         }
 
-        //public static FastBitmap Turtle(FastBitmap bitmap)
-        //{
-        //    FastBitmap bmp = new FastBitmap((Bitmap)(bitmap.bitmap.Clone()));
-        //    int[,] rtab = new int[bmp.Width, bmp.Height];
-        //    int[,] gtab = new int[bmp.Width, bmp.Height];
-        //    int[,] btab = new int[bmp.Width, bmp.Height];
-        //    int i, j;
-        //    for (i = 1; i < bmp.Width - 1; i++)
-        //    {
-        //        for (j = 1; j < bmp.Height - 1; j++)
-        //        {
-        //            rtab[i, j] = bmp[i, j].R;
-        //            gtab[i, j] = bmp[i, j].G;
-        //            btab[i, j] = bmp[i, j].B;
-        //        }
-        //    }
-        //    int d = 0;
-        //    int pami = 0, pamj = 0, ja = 0, ia = 0;
-        //    int x, y;
-        //    int[] wynik = new int[bmp.Width * bmp.Height];
-        //    int[] droga = new int[bmp.Width * bmp.Height];
-        //    for (i = 1; i < bmp.Height - 1; i++)
-        //    {
-        //        for (j = 1; j < bmp.Width - 1; j++)
-        //        {
-        //            if (rtab[j, i] != 0 || gtab[j, i] != 0 || btab[j, i] != 0)
-        //            {
-        //                ja = j;
-        //                ia = i;
-        //                pamj = j;
-        //                pami = i;
-        //                wynik[bmp.Width * i + j] = 255;
-        //                goto cont;
-        //            }
-        //        }
-        //    }
-        //cont:
-        //    j = pamj;
-        //    i = pami - 1;
-        //    wynik[bmp.Width * i + j] = 255;
-        //    droga[d] = 1;
-        //    do
-        //    {
-        //        x = j - pamj;
-        //        y = i - pami;
-        //        pamj = j;
-        //        pami = i;
-        //        d++;
-        //        if (rtab[j, i] != 0 || gtab[j, i] != 0 || btab[j, i] != 0)
-        //        {
-        //            if (x == 0 && y == (-1))
-        //            {
-        //                j--;
-        //                droga[d] = 2;
-        //            }
-        //            if (x == 1 && y == 0)
-        //            {
-        //                i--;
-        //                droga[d] = 1;
-        //            }
-        //            if (x == 0 && y == 1)
-        //            {
-        //                j++;
-        //                droga[d] = 0;
-        //            }
-        //            if (x == (-1) && y == 0)
-        //            {
-        //                i++;
-        //                droga[d] = 3;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (x == 0 && y == (-1))
-        //            {
-        //                j++;
-        //                droga[d] = 0;
-        //            }
-        //            if (x == 1 && y == 0)
-        //            {
-        //                i++;
-        //                droga[d] = 3;
-        //            }
-        //            if (x == 0 && y == 1)
-        //            {
-        //                j--;
-        //                droga[d] = 2;
-        //            }
-        //            if (x == (-1) && y == 0)
-        //            {
-        //                i--;
-        //                droga[d] = 1;
-        //            }
-        //        }
-        //        wynik[bmp.Width * i + j] = 255;
-        //    }
-        //    while (j != ja || i != ia);
-        //    for (i = 0; i < bmp.Height; i++)
-        //    {
-        //        for (j = 0; j < bmp.Width; j++)
-        //        {
-        //            if (wynik[bmp.Width * i + j] == 255)
-        //            {
-        //                rtab[j, i] = 255;
-        //                gtab[j, i] = 0;
-        //                btab[j, i] = 0;
-        //            }
-        //        }
-        //    }
-
-        //    for (i = 0; i < bmp.Width; i++)
-        //    {
-        //        for (j = 0; j < bmp.Height; j++)
-        //        {
-        //            bmp[i, j] = Color.FromArgb(rtab[i, j], gtab[i, j], btab[i, j]);
-        //        }
-        //    }
-        //    return bmp;
-        //}
-
-        public static FastBitmap Hide(FastBitmap bmp1, FastBitmap bmp2)
-        {
-            FastBitmap bmpSecret = new FastBitmap((Bitmap)bmp2.bitmap.Clone());
-            Threshold(bmpSecret, 127);
-            FastBitmap bmp = new FastBitmap(bmp1.Width, bmp1.Height);
-
-            for (int i = 0; i < bmp1.Width; ++i)
-            {
-                for (int j = 0; j < bmp1.Height; ++j)
-                {
-                    int newColor = bmp1[i, j].R & (0xFE);
-                    if (i < bmpSecret.Width && j < bmpSecret.Height)
-                        newColor |= bmpSecret[i, j].R == 0 ? 0x00 : 0x01;
-                    bmp[i, j] = Color.FromArgb(newColor, newColor, newColor);
-                }
-            }
-
-            return bmp;
-        }
-
-        public static FastBitmap Recover(FastBitmap bmp)
-        {
-            FastBitmap bmpRecovered = new FastBitmap(bmp.Width, bmp.Height);
-
-            for (int i = 0; i < bmp.Width; i++)
-            {
-                for (int j = 0; j < bmp.Height; j++)
-                {
-                    int newColor = (bmp[i, j].R & 0x01) == 0x01 ? 255 : 0;
-                    bmpRecovered[i, j] = Color.FromArgb(newColor, newColor, newColor);
-                }
-            }
-
-            return bmpRecovered;
-        }
-
         public static FastBitmap Operation(FastBitmap bmp1, FastBitmap bmp2, Operations op)
         {
             FastBitmap bmp = new FastBitmap(Math.Max(bmp1.Width, bmp2.Width), Math.Max(bmp1.Height, bmp2.Height));
@@ -234,9 +78,6 @@ namespace ImageProcessingAlgorithms
                         case Operations.XOR:
                             bmp[i, j] = Color.FromArgb(255, Math.Max(0, Math.Min(255, c1.R ^ c2.R)), Math.Max(0, Math.Min(255, c1.G ^ c2.G)), Math.Max(0, Math.Min(255, c1.B ^ c2.B)));
                             break;
-                        //case Operations.NOT:
-                        //    bmp[i, j] = Color.FromArgb(255, Math.Max(0, Math.Min(255, ~c1.R)), Math.Max(0, Math.Min(255, ~c1.G)), Math.Max(0, Math.Min(255, ~c1.B)));
-                        //    break;
                     }
                 }
             }
@@ -493,20 +334,13 @@ namespace ImageProcessingAlgorithms
             byte[] d = new byte[256];
             byte[] lut = new byte[256];
             double cumulatedValue = 0.0;
-            //int d0 = d[0];
+
             for (int i = 0; i < 256; ++i)
             {
                 cumulatedValue += histogram.HistogramTable[i];
                 d[i] = (byte)(cumulatedValue / (i + 1));
             }
-            //for (int k = 0; k < 256; ++k)
-            //{
-            //    if (d[k] != 0)
-            //    {
-            //        d0 = d[k];
-            //        break;
-            //    }
-            //}
+
             for (int j = 0; j < 256; ++j)
             {
                 lut[j] = (byte)((d[j] - d[0]) / (1 - d[0]) * 255);
