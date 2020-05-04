@@ -11,6 +11,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Author: Andrii Halabuda
+/// Group: ID06IO2
+/// Student ID: 17460
+/// 
+/// Completed: 4 of 6
+/// 
+/// </summary>
+
 namespace ImageProcessingAlgorithms
 {
     public partial class BaseForm : Form

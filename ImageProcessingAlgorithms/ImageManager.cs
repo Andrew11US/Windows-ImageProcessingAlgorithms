@@ -84,141 +84,42 @@ namespace ImageProcessingAlgorithms
             return bmp;
         }
 
-        public static void GammaCorrect(FastBitmap bmp, int value)
-        {
-            byte[] upo = new byte[256];
-            for (int i = 0; i < 256; ++i)
-            {
-                int pos = (int)((255.0 * Math.Pow(i / 255.0, 1.0 / value)) + 0.5);
-                pos = Math.Min(Math.Max(pos, 0), 255);
-                upo[i] = (byte)pos;
-            }
-            ApplyUPO(bmp, upo);
-        }
-
-        public static void Binarize(FastBitmap bmp, int low, int high)
-        {
-            byte[] upo = new byte[256];
-            for (int i = 0; i < 256; ++i)
-            {
-                if (i < low)
-                    upo[i] = 0;
-                else if (i >= high)
-                    upo[i] = 0;
-                else upo[i] = 255;
-            }
-            ApplyUPO(bmp, upo);
-        }
-
-        public static void Binarize2(FastBitmap bmp, int low, int high)
-        {
-            byte[] upo = new byte[256];
-            for (int i = 0; i < 256; ++i)
-            {
-                if (i < low)
-                    upo[i] = 0;
-                else if (i >= high)
-                    upo[i] = 0;
-                else upo[i] = (byte)i;
-            }
-            ApplyUPO(bmp, upo);
-        }
-
         public static void Posterize(FastBitmap bmp, int value)
         {
-            byte[] upo = new byte[256];
+            byte[] lut = new byte[256];
             float param1 = 255.0f / (value - 1);
             float param2 = 256.0f / (value);
             for (int i = 0; i < 256; ++i)
             {
-                upo[i] = (byte)((byte)(i / param2) * param1);
+                lut[i] = (byte)((byte)(i / param2) * param1);
             }
-            ApplyUPO(bmp, upo);
+            ApplyLUT(bmp, lut);
         }
 
         public static void Stretch(FastBitmap bmp, int low, int high)
         {
-            byte[] upo = new byte[256];
+            byte[] lut = new byte[256];
             if ((high - low) <= 0)
             {
                 for (int i = 0; i < 256; ++i)
                 {
-                    upo[i] = 255;
+                    lut[i] = 255;
                 }
             }
             float parameter = 255.0f / (high - low);
             for (int i = 0; i < 256; ++i)
             {
                 if (i < low)
-                    upo[i] = 0;
+                    lut[i] = 0;
                 else if (i >= high)
-                    upo[i] = 255;
+                    lut[i] = 255;
                 else
-                    upo[i] = (byte)((i - low) * parameter);
+                    lut[i] = (byte)((i - low) * parameter);
             }
-            ApplyUPO(bmp, upo);
+            ApplyLUT(bmp, lut);
         }
 
-        public static List<Color> GetPixelNeighborhood4(FastBitmap bmp, int i, int j)
-        {
-            List<Color> list = new List<Color>();
-            foreach (Point offset in new Point[] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1) })
-            {
-                if (i + offset.X >= 0 && i + offset.X < bmp.Width && j + offset.Y >= 0 && j + offset.Y < bmp.Height)
-                    list.Add(bmp[i + offset.X, j + offset.Y]);
-            }
-            return list;
-        }
-
-        public static List<Color> GetPixelNeighborhood8(FastBitmap bmp, int i, int j)
-        {
-            List<Color> list = new List<Color>();
-            foreach (Point offset in new Point[] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1), new Point(1, 1), new Point(-1, -1), new Point(-1, 1), new Point(1, -1) })
-            {
-                if (i + offset.X >= 0 && i + offset.X < bmp.Width && j + offset.Y >= 0 && j + offset.Y < bmp.Height)
-                    list.Add(bmp[i + offset.X, j + offset.Y]);
-            }
-            return list;
-        }
-
-        public static FastBitmap ApplyMask(FastBitmap bmp, int[,] mask, int divisor)
-        {
-            FastBitmap bitmap = new FastBitmap((Bitmap)bmp.bitmap.Clone());
-
-            if (divisor == 0)
-                divisor = 1;
-
-            int size = mask.GetLength(0) / 2;
-            Point[,] temp = new Point[mask.GetLength(0), mask.GetLength(0)];
-
-            for (int i = -size; i <= size; ++i)
-                for (int j = -size; j <= size; ++j)
-                    temp[i + size, j + size] = new Point(i, j);
-
-            for (int i = size; i < bmp.Width - size; ++i)
-            {
-                for (int j = size; j < bmp.Height - size; ++j)
-                {
-                    int newColor = 0;
-                    for (int k = 0; k < mask.GetLength(0); ++k)
-                    {
-                        for (int l = 0; l < mask.GetLength(0); ++l)
-                        {
-                            Color color = bmp[i + temp[k, l].X, j + temp[k, l].Y];
-                            newColor += mask[k, l] * color.R;
-                        }
-                    }
-                    newColor /= divisor;
-
-                    newColor = Math.Max(0, Math.Min(newColor, 255));
-                    bitmap[i, j] = Color.FromArgb(255, newColor, newColor, newColor);
-                }
-            }
-
-            return bitmap;
-        }
-
-        public static void ApplyUPO(FastBitmap bmp, byte[] lut)
+        public static void ApplyLUT(FastBitmap bmp, byte[] lut)
         {
             for (int i = 0; i < bmp.Size.Width; ++i)
             {
@@ -303,30 +204,30 @@ namespace ImageProcessingAlgorithms
 
         public static void Threshold(FastBitmap bmp, int threshold)
         {
-            byte[] upo = new byte[256];
+            byte[] lut = new byte[256];
             for (int i = 0; i < 256; ++i)
             {
-                if (i < threshold) upo[i] = 0;
-                else upo[i] = 255;
+                if (i < threshold) lut[i] = 0;
+                else lut[i] = 255;
             }
-            ApplyUPO(bmp, upo);
+            ApplyLUT(bmp, lut);
         }
         public static void ThresholdGrayscale(FastBitmap bmp, int lower, int upper)
         {
-            byte[] upo = new byte[256];
+            byte[] lut = new byte[256];
             for (int i = 0; i < 256; ++i)
             {
-                if (i < lower || i > upper) upo[i] = 0;
-                else upo[i] = (byte)i;
+                if (i < lower || i > upper) lut[i] = 0;
+                else lut[i] = (byte)i;
             }
-            ApplyUPO(bmp, upo);
+            ApplyLUT(bmp, lut);
         }
 
         public static void Inversion(FastBitmap bmp)
         {
-            byte[] upo = new byte[256];
-            for (int i = 0; i < 256; ++i) upo[i] = (byte)(255 - i);
-            ApplyUPO(bmp, upo);
+            byte[] lut = new byte[256];
+            for (int i = 0; i < 256; ++i) lut[i] = (byte)(255 - i);
+            ApplyLUT(bmp, lut);
         }
 
         public static void AdjustHistogram(FastBitmap bmp, Histogram histogram)
@@ -345,7 +246,7 @@ namespace ImageProcessingAlgorithms
             {
                 lut[j] = (byte)((d[j] - d[0]) / (1 - d[0]) * 255);
             }
-            ApplyUPO(bmp, lut);
+            ApplyLUT(bmp, lut);
         }
 
         public static void EqualizeHistogram(FastBitmap bmp, Histogram hist, EqualizationMethod method)
@@ -427,30 +328,6 @@ namespace ImageProcessingAlgorithms
                     }
                 }
             }
-        }
-
-        public static Mat ConvertBitmapToMat(Bitmap bmp)
-        {
-            // Lock the bitmap's bits.  
-            Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
-
-            System.Drawing.Imaging.BitmapData bmpData =
-                bmp.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite,
-                    bmp.PixelFormat);
-
-            // data = scan0 is a pointer to our memory block.
-            IntPtr data = bmpData.Scan0;
-
-            // step = stride = amount of bytes for a single line of the image
-            int step = bmpData.Stride;
-
-            // So you can try to get you Mat instance like this:
-            Mat mat = new Mat(bmp.Height, bmp.Width, Emgu.CV.CvEnum.DepthType.Cv32F, 4, data, step);
-
-            // Unlock the bits.
-            bmp.UnlockBits(bmpData);
-
-            return mat;
         }
 
     }

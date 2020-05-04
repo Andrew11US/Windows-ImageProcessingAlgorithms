@@ -552,7 +552,7 @@
             this.openToolStripMenuItem2,
             this.closeToolStripMenuItem1});
             this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
-            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
             this.morphologyToolStripMenuItem.Text = "Morphology";
             // 
             // erodeToolStripMenuItem1
@@ -586,14 +586,14 @@
             // twoStepFiltrationToolStripMenuItem
             // 
             this.twoStepFiltrationToolStripMenuItem.Name = "twoStepFiltrationToolStripMenuItem";
-            this.twoStepFiltrationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.twoStepFiltrationToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
             this.twoStepFiltrationToolStripMenuItem.Text = "Two step filtration";
             this.twoStepFiltrationToolStripMenuItem.Click += new System.EventHandler(this.twoStepFiltrationToolStripMenuItem_Click);
             // 
             // skeletonizationToolStripMenuItem
             // 
             this.skeletonizationToolStripMenuItem.Name = "skeletonizationToolStripMenuItem";
-            this.skeletonizationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
+            this.skeletonizationToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
             this.skeletonizationToolStripMenuItem.Text = "Skeletonization";
             this.skeletonizationToolStripMenuItem.Click += new System.EventHandler(this.skeletonizationToolStripMenuItem_Click);
             // 
@@ -603,8 +603,8 @@
             this.segmentationToolStripMenuItem,
             this.watershedToolStripMenuItem});
             this.lab5ToolStripMenuItem.Name = "lab5ToolStripMenuItem";
-            this.lab5ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
-            this.lab5ToolStripMenuItem.Text = "Lab5";
+            this.lab5ToolStripMenuItem.Size = new System.Drawing.Size(129, 34);
+            this.lab5ToolStripMenuItem.Text = "Lab5 (Dev)";
             // 
             // segmentationToolStripMenuItem
             // 
@@ -648,8 +648,8 @@
             this.shapeMarkersToolStripMenuItem,
             this.classificationToolStripMenuItem});
             this.lab6ToolStripMenuItem.Name = "lab6ToolStripMenuItem";
-            this.lab6ToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
-            this.lab6ToolStripMenuItem.Text = "Lab6";
+            this.lab6ToolStripMenuItem.Size = new System.Drawing.Size(129, 34);
+            this.lab6ToolStripMenuItem.Text = "Lab6 (Dev)";
             // 
             // mementsToolStripMenuItem
             // 
@@ -715,7 +715,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 42);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip.Size = new System.Drawing.Size(1218, 38);
+            this.toolStrip.Size = new System.Drawing.Size(1218, 44);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
