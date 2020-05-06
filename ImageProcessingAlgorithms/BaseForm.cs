@@ -25,7 +25,7 @@ namespace ImageProcessingAlgorithms
 {
     public partial class BaseForm : Form
     {
-        // Window Forms
+        // Adjustment Views
         ImageView imageView;
         HistogramView histogramView;
         HistogramRGBView histogramRGBView;
@@ -52,7 +52,8 @@ namespace ImageProcessingAlgorithms
         public BaseForm()
         {
             InitializeComponent();
-            //ClientSize = new Size(1500, 1000);
+            ClientSize = new Size(1200, 700);
+            CenterToScreen();
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -223,11 +224,13 @@ namespace ImageProcessingAlgorithms
 
         private void thresholdGrayscaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Creating FastBitmap and calling adjustment view
             FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             thresholdGrayscaleView = new ThresholdGrayscaleView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
             if (thresholdGrayscaleView.ShowDialog() == DialogResult.OK)
             {
+                // Calling threshold
                 ImageManager.ThresholdGrayscale(bmp, thresholdGrayscaleView.lowerBound, thresholdGrayscaleView.upperBound);
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
@@ -265,7 +268,7 @@ namespace ImageProcessingAlgorithms
                     if (((ImageView)form).Text == pointOperationsView.Image2)
                         bmp2 = ((ImageView)form).image;
                 }
-
+                // Performing selected operation and assigning result to new image view
                 output = ImageManager.Operation(bmp1, bmp2, (Operations)Enum.Parse(typeof(Operations), pointOperationsView.Operation));
                 ImageView imageView = new ImageView((Bitmap)output.bitmap.Clone());
                 imageView.MdiParent = this;
@@ -429,7 +432,7 @@ namespace ImageProcessingAlgorithms
         {
             // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
             string path = ((ImageView)ActiveMdiChild).path;
-            //BorderType borderType = BorderType.Default;
+            
             Matrix<double> kernel = new Matrix<double>(new double[3, 3] { { 1, 0, -1 }, { 1, 0, -1 }, { 1, 0, -1 } });
             Mat src = new Mat();
             Mat dst = new Mat();
@@ -457,7 +460,7 @@ namespace ImageProcessingAlgorithms
         {
             // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
             string path = ((ImageView)ActiveMdiChild).path;
-            //BorderType borderType = BorderType.Default;
+            
             Matrix<double> kernel = new Matrix<double>(new double[3, 3] { { 1, 1, 1 }, { 0, 0, 0 }, { -1, -1, -1 } });
             Mat src = new Mat();
             Mat dst = new Mat();
@@ -882,7 +885,7 @@ namespace ImageProcessingAlgorithms
         private void watershedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = ((ImageView)ActiveMdiChild).path;
-
+            // Variables
             Mat src;
             Mat gray = new Mat();
             Mat thresh = new Mat();
@@ -947,6 +950,7 @@ namespace ImageProcessingAlgorithms
 
         private void imageMetricsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Show image metrics
             metricsView = new MetricsView(((ImageView)ActiveMdiChild).image, ((ImageView)ActiveMdiChild).path, ((ImageView)ActiveMdiChild).FileName);
             metricsView.ShowDialog();
         }
@@ -1003,6 +1007,7 @@ namespace ImageProcessingAlgorithms
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Show about prompt
             aboutView = new AboutView();
             aboutView.ShowDialog();
         }

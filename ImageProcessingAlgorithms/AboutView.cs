@@ -34,6 +34,7 @@ namespace ImageProcessingAlgorithms
 
         private void ShowAbout()
         {
+            // Compund string output using StringBuilder
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.
                 Append("Aplikacja zbiorcza z ćwiczeń laboratoryjnych").Append(Environment.NewLine)
