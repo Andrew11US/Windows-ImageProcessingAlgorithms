@@ -21,12 +21,13 @@ namespace ImageProcessingAlgorithms
             InitializeComponent();
             bitmap = bmp;
             Text = "Threshold : " + name;
-            //previewPictureBox.Image = (Bitmap)bmp.bitmap.Clone();
-            ClientSize = new Size(532, 600);
+            previewPictureBox.Image = (Bitmap)bmp.bitmap.Clone();
+            ClientSize = new Size(532, 700);
             histogramPanel.Size = new Size(512, 256);
             thresholdSlider.Size = new Size(532, 50);
             lblLayout.Size = new Size(512, 50);
-            previewPictureBox.Size = new Size(512, 256);
+            previewPictureBox.Size = new Size(512, 300);
+            previewPictureBox.BackgroundImageLayout = ImageLayout.Center;
 
             histogramPanel.Left = 10;
             histogramPanel.Top = 10;
@@ -34,11 +35,11 @@ namespace ImageProcessingAlgorithms
             thresholdSlider.Left = 0;
             lblLayout.Top = 296;
             lblLayout.Left = 10;
-            applyBtn.Top = 326;
+            applyBtn.Top = 640;
             applyBtn.Left = 230;
 
             previewPictureBox.Left = 10;
-            previewPictureBox.Top = 390;
+            previewPictureBox.Top = 326;
 
             graphics = histogramPanel.CreateGraphics();
 
@@ -63,6 +64,7 @@ namespace ImageProcessingAlgorithms
             thresholdValue = thresholdSlider.Value;
             thresholdLbl.Text = thresholdValue.ToString();
 
+            // Dynamic image set when scrollBar is changing
             FastBitmap temp = new FastBitmap((Bitmap)bitmap.bitmap.Clone());
             ImageManager.Threshold(temp, thresholdValue);
             previewPictureBox.Image = null;
