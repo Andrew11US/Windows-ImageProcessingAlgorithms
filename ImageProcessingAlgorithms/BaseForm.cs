@@ -17,7 +17,7 @@ using System.Windows.Forms;
 /// Group: ID06IO2
 /// Student ID: 17460
 /// 
-/// Completed: 4 of 6
+/// Completed: 6 of 6
 /// 
 /// </summary>
 
@@ -44,6 +44,7 @@ namespace ImageProcessingAlgorithms
         SegmentationThresholdView segmentationThresholdView;
         MetricsView metricsView;
         ShapeDetectionView shapeDetectionView;
+        AboutView aboutView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -960,7 +961,8 @@ namespace ImageProcessingAlgorithms
             Image<Gray, byte> thresh = new Image<Gray, byte>(path);
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
 
-            // Thresholding
+            // Smoothing and Thresholding
+            gray = gray.SmoothGaussian(3);
             CvInvoke.Threshold(gray, thresh, 127, 255, ThresholdType.Binary);
 
             // Calling findContours from threshold
@@ -1001,18 +1003,8 @@ namespace ImageProcessingAlgorithms
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //            .header1("Revamp"),
-            //.header2("WIT University Project"),
-            //.normal(""),
-            //.header2("Title: Image Processing app for iOS Devices"),
-            //.normal("Author: Andrii Halabuda"),
-            //.normal("Group: ID06IO2"),
-            //.normal("Student ID: 17460"),
-            //.normal("Subject: Algorytmy Przetwarzania Obrazów 2020 WIT"),
-            //.normal("Prowadzący: mgr inż. Łukasz Roszkowiak"),
-            //.normal(""),
-            //.normal("Warsaw School of Information Technologies"),
-            //.normal("Warsaw 2020")
+            aboutView = new AboutView();
+            aboutView.ShowDialog();
         }
     }
 }
