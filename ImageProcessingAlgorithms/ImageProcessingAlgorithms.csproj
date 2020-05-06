@@ -143,6 +143,12 @@
     <Compile Include="SegmentationThresholdView.Designer.cs">
       <DependentUpon>SegmentationThresholdView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShapeDetectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShapeDetectionView.Designer.cs">
+      <DependentUpon>ShapeDetectionView.cs</DependentUpon>
+    </Compile>
     <Compile Include="SharpenView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +223,9 @@
     </Compile>
     <EmbeddedResource Include="SegmentationThresholdView.resx">
       <DependentUpon>SegmentationThresholdView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShapeDetectionView.resx">
+      <DependentUpon>ShapeDetectionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SharpenView.resx">
       <DependentUpon>SharpenView.cs</DependentUpon>

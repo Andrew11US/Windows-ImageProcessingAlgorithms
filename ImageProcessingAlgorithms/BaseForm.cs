@@ -43,6 +43,7 @@ namespace ImageProcessingAlgorithms
         DoubleFiltrationView doubleFiltrationView;
         SegmentationThresholdView segmentationThresholdView;
         MetricsView metricsView;
+        ShapeDetectionView shapeDetectionView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -952,12 +953,12 @@ namespace ImageProcessingAlgorithms
         private void shapeDetectorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = ((ImageView)ActiveMdiChild).path;
+            string shape;
 
             // Variables
             Image<Gray, byte> gray = new Image<Gray, byte>(path);
             Image<Gray, byte> thresh = new Image<Gray, byte>(path);
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
-            string shape;
 
             // Thresholding
             CvInvoke.Threshold(gray, thresh, 127, 255, ThresholdType.Binary);
@@ -965,7 +966,7 @@ namespace ImageProcessingAlgorithms
             // Calling findContours from threshold
             CvInvoke.FindContours(gray, contours, new Mat(), RetrType.List, ChainApproxMethod.ChainApproxSimple);
 
-            // Getting contour from std::vector
+            // Getting contour from vector
             VectorOfPoint cnt = contours[0];
             VectorOfPoint approx = new VectorOfPoint();
             
@@ -976,29 +977,26 @@ namespace ImageProcessingAlgorithms
             // Detecting shape using approximation of polygon
             if (approx.Size == 3)
             {
-                shape = "Triangle";
+                shape = "triangle";
             }
             else if (approx.Size == 4)
             {
                 if (aspectRatio >= 0.95 && aspectRatio <= 1.05)
                 {
-                    shape = "Square";
+                    shape = "square";
                 }
                 else
                 {
-                    shape = "Rectangle";
+                    shape = "rectangle";
                 }
-            }
-            else if (approx.Size == 5)
-            {
-                shape = "Pentagon";
             }
             else
             {
-                shape = "Circle";
+                shape = "circle";
             }
 
-            Console.WriteLine(shape);
+            shapeDetectionView = new ShapeDetectionView(((ImageView)ActiveMdiChild).FileName, shape);
+            shapeDetectionView.ShowDialog();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
