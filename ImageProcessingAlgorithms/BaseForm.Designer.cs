@@ -408,7 +408,7 @@
             // pointOperationsToolStripMenuItem
             // 
             this.pointOperationsToolStripMenuItem.Name = "pointOperationsToolStripMenuItem";
-            this.pointOperationsToolStripMenuItem.Size = new System.Drawing.Size(311, 40);
+            this.pointOperationsToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.pointOperationsToolStripMenuItem.Text = "Point Operations";
             this.pointOperationsToolStripMenuItem.Click += new System.EventHandler(this.pointOperationsToolStripMenuItem_Click);
             // 
@@ -418,7 +418,7 @@
             this.blurToolStripMenuItem1,
             this.gaussianBlurToolStripMenuItem1});
             this.blurToolStripMenuItem.Name = "blurToolStripMenuItem";
-            this.blurToolStripMenuItem.Size = new System.Drawing.Size(311, 40);
+            this.blurToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.blurToolStripMenuItem.Text = "Linear Softening";
             // 
             // blurToolStripMenuItem1
@@ -443,7 +443,7 @@
             this.cannyToolStripMenuItem,
             this.prewittToolStripMenuItem});
             this.operatorsToolStripMenuItem.Name = "operatorsToolStripMenuItem";
-            this.operatorsToolStripMenuItem.Size = new System.Drawing.Size(311, 40);
+            this.operatorsToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.operatorsToolStripMenuItem.Text = "Edge Detection";
             // 
             // sobelToolStripMenuItem
@@ -509,28 +509,28 @@
             // medianFiltrationToolStripMenuItem
             // 
             this.medianFiltrationToolStripMenuItem.Name = "medianFiltrationToolStripMenuItem";
-            this.medianFiltrationToolStripMenuItem.Size = new System.Drawing.Size(311, 40);
+            this.medianFiltrationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.medianFiltrationToolStripMenuItem.Text = "Median Filtration";
             this.medianFiltrationToolStripMenuItem.Click += new System.EventHandler(this.medianFiltrationToolStripMenuItem_Click);
             // 
             // sharpenMasksToolStripMenuItem
             // 
             this.sharpenMasksToolStripMenuItem.Name = "sharpenMasksToolStripMenuItem";
-            this.sharpenMasksToolStripMenuItem.Size = new System.Drawing.Size(311, 40);
+            this.sharpenMasksToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.sharpenMasksToolStripMenuItem.Text = "Sharpen";
             this.sharpenMasksToolStripMenuItem.Click += new System.EventHandler(this.sharpenMasksToolStripMenuItem_Click);
             // 
             // customMask3x3ToolStripMenuItem
             // 
             this.customMask3x3ToolStripMenuItem.Name = "customMask3x3ToolStripMenuItem";
-            this.customMask3x3ToolStripMenuItem.Size = new System.Drawing.Size(311, 40);
+            this.customMask3x3ToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.customMask3x3ToolStripMenuItem.Text = "Custom mask 3x3";
             this.customMask3x3ToolStripMenuItem.Click += new System.EventHandler(this.customMask3x3ToolStripMenuItem_Click);
             // 
             // directionDetectionToolStripMenuItem
             // 
             this.directionDetectionToolStripMenuItem.Name = "directionDetectionToolStripMenuItem";
-            this.directionDetectionToolStripMenuItem.Size = new System.Drawing.Size(311, 40);
+            this.directionDetectionToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.directionDetectionToolStripMenuItem.Text = "Direction Detection";
             this.directionDetectionToolStripMenuItem.Click += new System.EventHandler(this.directionDetectionToolStripMenuItem_Click);
             // 
@@ -552,48 +552,48 @@
             this.openToolStripMenuItem2,
             this.closeToolStripMenuItem1});
             this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
-            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.morphologyToolStripMenuItem.Text = "Morphology";
             // 
             // erodeToolStripMenuItem1
             // 
             this.erodeToolStripMenuItem1.Name = "erodeToolStripMenuItem1";
-            this.erodeToolStripMenuItem1.Size = new System.Drawing.Size(185, 40);
+            this.erodeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
             this.erodeToolStripMenuItem1.Text = "Erode";
             this.erodeToolStripMenuItem1.Click += new System.EventHandler(this.erodeToolStripMenuItem1_Click);
             // 
             // dilateToolStripMenuItem1
             // 
             this.dilateToolStripMenuItem1.Name = "dilateToolStripMenuItem1";
-            this.dilateToolStripMenuItem1.Size = new System.Drawing.Size(185, 40);
+            this.dilateToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
             this.dilateToolStripMenuItem1.Text = "Dilate";
             this.dilateToolStripMenuItem1.Click += new System.EventHandler(this.dilateToolStripMenuItem1_Click);
             // 
             // openToolStripMenuItem2
             // 
             this.openToolStripMenuItem2.Name = "openToolStripMenuItem2";
-            this.openToolStripMenuItem2.Size = new System.Drawing.Size(185, 40);
+            this.openToolStripMenuItem2.Size = new System.Drawing.Size(315, 40);
             this.openToolStripMenuItem2.Text = "Open";
             this.openToolStripMenuItem2.Click += new System.EventHandler(this.openToolStripMenuItem2_Click);
             // 
             // closeToolStripMenuItem1
             // 
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(185, 40);
+            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
             this.closeToolStripMenuItem1.Text = "Close";
             this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
             // 
             // twoStepFiltrationToolStripMenuItem
             // 
             this.twoStepFiltrationToolStripMenuItem.Name = "twoStepFiltrationToolStripMenuItem";
-            this.twoStepFiltrationToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.twoStepFiltrationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.twoStepFiltrationToolStripMenuItem.Text = "Two step filtration";
             this.twoStepFiltrationToolStripMenuItem.Click += new System.EventHandler(this.twoStepFiltrationToolStripMenuItem_Click);
             // 
             // skeletonizationToolStripMenuItem
             // 
             this.skeletonizationToolStripMenuItem.Name = "skeletonizationToolStripMenuItem";
-            this.skeletonizationToolStripMenuItem.Size = new System.Drawing.Size(297, 40);
+            this.skeletonizationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.skeletonizationToolStripMenuItem.Text = "Skeletonization";
             this.skeletonizationToolStripMenuItem.Click += new System.EventHandler(this.skeletonizationToolStripMenuItem_Click);
             // 
@@ -613,31 +613,32 @@
             this.adaptiveThresholdToolStripMenuItem,
             this.otsuToolStripMenuItem});
             this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
-            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(260, 40);
+            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.segmentationToolStripMenuItem.Text = "Segmentation";
             // 
             // thresholdToolStripMenuItem1
             // 
             this.thresholdToolStripMenuItem1.Name = "thresholdToolStripMenuItem1";
-            this.thresholdToolStripMenuItem1.Size = new System.Drawing.Size(310, 40);
+            this.thresholdToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
             this.thresholdToolStripMenuItem1.Text = "Threshold";
+            this.thresholdToolStripMenuItem1.Click += new System.EventHandler(this.thresholdToolStripMenuItem1_Click);
             // 
             // adaptiveThresholdToolStripMenuItem
             // 
             this.adaptiveThresholdToolStripMenuItem.Name = "adaptiveThresholdToolStripMenuItem";
-            this.adaptiveThresholdToolStripMenuItem.Size = new System.Drawing.Size(310, 40);
+            this.adaptiveThresholdToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.adaptiveThresholdToolStripMenuItem.Text = "Adaptive Threshold";
             // 
             // otsuToolStripMenuItem
             // 
             this.otsuToolStripMenuItem.Name = "otsuToolStripMenuItem";
-            this.otsuToolStripMenuItem.Size = new System.Drawing.Size(310, 40);
+            this.otsuToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.otsuToolStripMenuItem.Text = "Otsu Method";
             // 
             // watershedToolStripMenuItem
             // 
             this.watershedToolStripMenuItem.Name = "watershedToolStripMenuItem";
-            this.watershedToolStripMenuItem.Size = new System.Drawing.Size(260, 40);
+            this.watershedToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.watershedToolStripMenuItem.Text = "Watershed";
             // 
             // lab6ToolStripMenuItem
@@ -715,7 +716,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 42);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip.Size = new System.Drawing.Size(1218, 44);
+            this.toolStrip.Size = new System.Drawing.Size(1218, 38);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 

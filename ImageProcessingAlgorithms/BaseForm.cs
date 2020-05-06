@@ -40,6 +40,7 @@ namespace ImageProcessingAlgorithms
         CannyView cannyView;
         MorphologyView morphologyView;
         DoubleFiltrationView doubleFiltrationView;
+        SegmentationThresholdView segmentationThresholdView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -800,6 +801,19 @@ namespace ImageProcessingAlgorithms
             ImageManager.Thinning(bmp);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
             ((ImageView)ActiveMdiChild).Refresh();
+        }
+
+        private void thresholdToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            segmentationThresholdView = new SegmentationThresholdView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName, bmp);
+
+            if (segmentationThresholdView.ShowDialog() == DialogResult.OK)
+            {
+                ImageManager.Threshold(bmp, segmentationThresholdView.thresholdValue);
+                ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
+                ((ImageView)ActiveMdiChild).Refresh();
+            }
         }
     }
 }
