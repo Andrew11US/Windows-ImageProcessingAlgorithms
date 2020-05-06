@@ -635,6 +635,7 @@
             this.otsuToolStripMenuItem.Name = "otsuToolStripMenuItem";
             this.otsuToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.otsuToolStripMenuItem.Text = "Otsu Method";
+            this.otsuToolStripMenuItem.Click += new System.EventHandler(this.otsuToolStripMenuItem_Click);
             // 
             // watershedToolStripMenuItem
             // 
