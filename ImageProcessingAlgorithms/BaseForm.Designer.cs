@@ -642,6 +642,7 @@
             this.watershedToolStripMenuItem.Name = "watershedToolStripMenuItem";
             this.watershedToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.watershedToolStripMenuItem.Text = "Watershed";
+            this.watershedToolStripMenuItem.Click += new System.EventHandler(this.watershedToolStripMenuItem_Click);
             // 
             // lab6ToolStripMenuItem
             // 

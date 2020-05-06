@@ -856,7 +856,7 @@ namespace ImageProcessingAlgorithms
             dst = src.Clone();
 
             CvInvoke.CvtColor(src, src, ColorConversion.Bgra2Gray);
-            CvInvoke.Threshold(src, dst, 128, 255, ThresholdType.Binary | ThresholdType.Otsu);
+            CvInvoke.Threshold(src, dst, 127, 255, ThresholdType.Binary | ThresholdType.Otsu);
             CvInvoke.CvtColor(dst, dst, ColorConversion.Gray2Bgr);
 
             // MARK: Uncomment following line to present image in native EmguCV Window
@@ -870,6 +870,62 @@ namespace ImageProcessingAlgorithms
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
             ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
+            imageView.MdiParent = this;
+            imageView.Show();
+            //*///
+        }
+
+        private void watershedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = ((ImageView)ActiveMdiChild).path;
+
+            Mat src;
+            Mat gray = new Mat();
+            Mat thresh = new Mat();
+            Mat kernel = new Mat();
+            Mat opening = new Mat();
+            Mat item_bg = new Mat();
+            Mat item_fg = new Mat();
+            Mat dist_transform = new Mat();
+
+            Mat dst = new Mat();
+            src = CvInvoke.Imread(path);
+            dst = src.Clone();
+
+            CvInvoke.CvtColor(src, gray, ColorConversion.Bgra2Gray);
+            CvInvoke.Threshold(gray, thresh, 0, 255, ThresholdType.BinaryInv | ThresholdType.Otsu);
+            kernel = CvInvoke.GetStructuringElement(ElementShape.Ellipse, new Size(3, 3), new Point(-1, -1));
+            CvInvoke.MorphologyEx(thresh, opening, MorphOp.Open, kernel, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(1, 0));
+            CvInvoke.Dilate(opening, item_bg, kernel, new Point(-1, -1), 4, BorderType.Default, new MCvScalar(1, 0));
+
+            CvInvoke.DistanceTransform(opening, dist_transform, null, DistType.L2, 5);
+
+            CvInvoke.Threshold(dist_transform, item_fg, 0.5, 255, ThresholdType.Binary);
+            CvInvoke.MorphologyEx(item_fg, item_fg, MorphOp.Erode, kernel, new Point(-1, -1), 10, BorderType.Default, new MCvScalar(1, 0));
+
+            CvInvoke.CvtColor(item_fg, item_fg, ColorConversion.Gray2Bgr);
+
+
+            //cv.distanceTransform(opening, distTrans, cv.DIST_L2, 5);
+            //cv.normalize(distTrans, distTrans, 1, 0, cv.NORM_INF);
+
+            //CvInvoke.MorphologyEx(thresh, opening, MorphOp.Open, kernel, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(1, 0));
+
+            //CvInvoke.CvtColor(dst, dst, ColorConversion.Gray2Bgr);
+
+
+
+            // MARK: Uncomment following line to present image in native EmguCV Window
+            //CvInvoke.Imshow("Output image", dst);
+
+            // NOTE: Remove '/' at the beginning to present image in a new Window
+            //       Add '/' to alter currently selected
+
+            /*///
+            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).Refresh();
+            /*/
+            ImageView imageView = new ImageView((Bitmap)item_fg.ToBitmap().Clone());
             imageView.MdiParent = this;
             imageView.Show();
             //*///
