@@ -41,6 +41,7 @@ namespace ImageProcessingAlgorithms
         MorphologyView morphologyView;
         DoubleFiltrationView doubleFiltrationView;
         SegmentationThresholdView segmentationThresholdView;
+        MetricsView metricsView;
 
         // Additional variables
         private int childFormNumber = 0;
@@ -939,6 +940,12 @@ namespace ImageProcessingAlgorithms
             imageView.MdiParent = this;
             imageView.Show();
             //*///
+        }
+
+        private void imageMetricsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            metricsView = new MetricsView(((ImageView)ActiveMdiChild).image, ((ImageView)ActiveMdiChild).path, ((ImageView)ActiveMdiChild).FileName);
+            metricsView.ShowDialog();
         }
     }
 }

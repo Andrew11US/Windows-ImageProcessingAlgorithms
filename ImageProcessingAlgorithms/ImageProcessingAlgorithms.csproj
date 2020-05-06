@@ -111,6 +111,12 @@
     <Compile Include="ImageView.Designer.cs">
       <DependentUpon>ImageView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MetricsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MetricsView.Designer.cs">
+      <DependentUpon>MetricsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MorphologyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImageView.resx">
       <DependentUpon>ImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MetricsView.resx">
+      <DependentUpon>MetricsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MorphologyForm.resx">
       <DependentUpon>MorphologyForm.cs</DependentUpon>
