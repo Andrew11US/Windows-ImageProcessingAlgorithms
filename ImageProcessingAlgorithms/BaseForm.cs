@@ -1,6 +1,7 @@
 ﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
+using Emgu.CV.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -946,6 +947,74 @@ namespace ImageProcessingAlgorithms
         {
             metricsView = new MetricsView(((ImageView)ActiveMdiChild).image, ((ImageView)ActiveMdiChild).path, ((ImageView)ActiveMdiChild).FileName);
             metricsView.ShowDialog();
+        }
+
+        private void shapeDetectorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = ((ImageView)ActiveMdiChild).path;
+
+            // Variables
+            Image<Gray, byte> gray = new Image<Gray, byte>(path);
+            Image<Gray, byte> thresh = new Image<Gray, byte>(path);
+            VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
+            string shape;
+
+            // Thresholding
+            CvInvoke.Threshold(gray, thresh, 127, 255, ThresholdType.Binary);
+
+            // Calling findContours from threshold
+            CvInvoke.FindContours(gray, contours, new Mat(), RetrType.List, ChainApproxMethod.ChainApproxSimple);
+
+            // Getting contour from std::vector
+            VectorOfPoint cnt = contours[0];
+            VectorOfPoint approx = new VectorOfPoint();
+            
+            CvInvoke.ApproxPolyDP(cnt, approx, 3, true);
+            Rectangle rect = CvInvoke.BoundingRectangle(cnt);
+            double aspectRatio = (double)(rect.Width) / rect.Height;
+
+            // Detecting shape using approximation of polygon
+            if (approx.Size == 3)
+            {
+                shape = "Triangle";
+            }
+            else if (approx.Size == 4)
+            {
+                if (aspectRatio >= 0.95 && aspectRatio <= 1.05)
+                {
+                    shape = "Square";
+                }
+                else
+                {
+                    shape = "Rectangle";
+                }
+            }
+            else if (approx.Size == 5)
+            {
+                shape = "Pentagon";
+            }
+            else
+            {
+                shape = "Circle";
+            }
+
+            Console.WriteLine(shape);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //            .header1("Revamp"),
+            //.header2("WIT University Project"),
+            //.normal(""),
+            //.header2("Title: Image Processing app for iOS Devices"),
+            //.normal("Author: Andrii Halabuda"),
+            //.normal("Group: ID06IO2"),
+            //.normal("Student ID: 17460"),
+            //.normal("Subject: Algorytmy Przetwarzania Obrazów 2020 WIT"),
+            //.normal("Prowadzący: mgr inż. Łukasz Roszkowiak"),
+            //.normal(""),
+            //.normal("Warsaw School of Information Technologies"),
+            //.normal("Warsaw 2020")
         }
     }
 }
