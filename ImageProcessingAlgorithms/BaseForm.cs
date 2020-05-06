@@ -887,33 +887,43 @@ namespace ImageProcessingAlgorithms
             Mat item_bg = new Mat();
             Mat item_fg = new Mat();
             Mat dist_transform = new Mat();
-
+            Mat unknown = new Mat();
+            Mat markers = new Mat();
             Mat dst = new Mat();
             src = CvInvoke.Imread(path);
             dst = src.Clone();
 
+            // Converting to Gray
             CvInvoke.CvtColor(src, gray, ColorConversion.Bgra2Gray);
+            // Thresholding with Otsu
             CvInvoke.Threshold(gray, thresh, 0, 255, ThresholdType.BinaryInv | ThresholdType.Otsu);
+            // Morphology operations
             kernel = CvInvoke.GetStructuringElement(ElementShape.Ellipse, new Size(3, 3), new Point(-1, -1));
             CvInvoke.MorphologyEx(thresh, opening, MorphOp.Open, kernel, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(1, 0));
             CvInvoke.Dilate(opening, item_bg, kernel, new Point(-1, -1), 4, BorderType.Default, new MCvScalar(1, 0));
-
+            // Distance transformation
             CvInvoke.DistanceTransform(opening, dist_transform, null, DistType.L2, 5);
-
+            // Enhancing visibility
             CvInvoke.Threshold(dist_transform, item_fg, 0.5, 255, ThresholdType.Binary);
             CvInvoke.MorphologyEx(item_fg, item_fg, MorphOp.Erode, kernel, new Point(-1, -1), 10, BorderType.Default, new MCvScalar(1, 0));
+            
+            item_fg.ConvertTo(item_fg, DepthType.Cv8U);
+            // Subtraction foreground from background
+            CvInvoke.Subtract(item_bg, item_fg, unknown);
+            // Getting markers
+            CvInvoke.ConnectedComponents(item_fg, markers);
+            // Converting to appropriate types for watershed
+            dst.ConvertTo(dst, DepthType.Cv8U);
+            markers.ConvertTo(markers, DepthType.Cv32S);
+            // Calling Watershed from cvInvoke
+            CvInvoke.Watershed(dst, markers);
+            // Converting dst to Image to perform subscription directly without pointers
+            Image<Bgr, byte> outputImage = dst.ToImage<Bgr, byte>(false);
 
-            CvInvoke.CvtColor(item_fg, item_fg, ColorConversion.Gray2Bgr);
-
-
-            //cv.distanceTransform(opening, distTrans, cv.DIST_L2, 5);
-            //cv.normalize(distTrans, distTrans, 1, 0, cv.NORM_INF);
-
-            //CvInvoke.MorphologyEx(thresh, opening, MorphOp.Open, kernel, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(1, 0));
-
-            //CvInvoke.CvtColor(dst, dst, ColorConversion.Gray2Bgr);
-
-
+            // Draw distinct objects red
+            for (int i = 0; i < markers.Rows; ++i)
+                for (int j = 0; j < markers.Cols; ++j)
+                    outputImage.Data[i, j, 2] = 255;
 
             // MARK: Uncomment following line to present image in native EmguCV Window
             //CvInvoke.Imshow("Output image", dst);
@@ -925,7 +935,7 @@ namespace ImageProcessingAlgorithms
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
-            ImageView imageView = new ImageView((Bitmap)item_fg.ToBitmap().Clone());
+            ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
             imageView.MdiParent = this;
             imageView.Show();
             //*///
