@@ -23,16 +23,16 @@ namespace ImageProcessingAlgorithms
             InitializeComponent();
             Text = "Image Metrics : " + name;
             this.path = path;
-            ClientSize = new Size(300, 250);
+            ClientSize = new Size(300, 600);
             label1.Size = new Size(280, 30);
-            textBox1.Size = new Size(280, 100);
+            textBox1.Size = new Size(280, 490);
 
             label1.Top = 10;
             label1.Left = 80;
             textBox1.Top = 50;
             textBox1.Left = 10;
 
-            doneBtn.Top = 160;
+            doneBtn.Top = 550;
             doneBtn.Left = 110;
             doneBtn.Focus();
 
@@ -67,59 +67,35 @@ namespace ImageProcessingAlgorithms
             ///// Calling findContours from canny threshold
             CvInvoke.FindContours(gray, contours, hierarchy, RetrType.Tree, ChainApproxMethod.ChainApproxSimple);
 
-            /// Getting contour from std::vector
+            /// Getting contour from contours
             VectorOfPoint cnt = contours[0];
 
             /// Contour area and perimeter
             area = CvInvoke.ContourArea(cnt);
             perimeter = CvInvoke.ArcLength(cnt, true);
-
-
-
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("N: ").Append(m.M00);
-            stringBuilder.Append("Area ").Append(area);
-            stringBuilder.Append("per: ").Append(perimeter);
-
-            textBox1.Text = stringBuilder.ToString();
-
-
-
-
-
-  
-           
-
-
-            /*
-            /// Getting contour from std::vector
-            std::vector<cv::Point> cnt = contours[0];
-            /// Contour area and perimeter
-            area = contourArea(cnt);
-            perimeter = arcLength(cnt, true);
-
+            
             /// Calculation of aspect ratio
-            cv::Rect rect = boundingRect(cnt);
-            double aspectRatio = (double)(rect.width) / rect.height;
+            Rectangle rect = CvInvoke.BoundingRectangle(cnt);
+            double aspectRatio = (double)(rect.Width) / rect.Height;
 
             /// Calculation of extent
-            int rect_area = rect.width * rect.height;
-            double extent = double(area) / rect_area;
+            int rect_area = rect.Width * rect.Height;
+            double extent = area / rect_area;
 
             /// Calculation of solidity
-            std::vector<cv::Point> hull;
-            convexHull(cnt, hull);
-            double hull_area = contourArea(hull);
-            double solidity = double(area) / hull_area;
+            VectorOfPoint hull = new VectorOfPoint();
+            CvInvoke.ConvexHull(cnt, hull);
+            double hull_area = CvInvoke.ContourArea(hull);
+            double solidity = area / hull_area;
 
             /// Calculation of equivalent diameter
-            double eq_diameter = sqrt(4 * area / M_PI);
+            double eq_diameter = Math.Sqrt(4 * area / Math.PI);
 
             // Calculating dimensions
-            for (int i = 0; i < gray.rows; ++i)
+            for (int i = 0; i < gray.Rows; ++i)
             {
                 width = 0;
-                for (int j = 0; j < gray.cols; ++j)
+                for (int j = 0; j < gray.Cols; ++j)
                 {
                     width++;
                     totalPixels++;
@@ -128,27 +104,47 @@ namespace ImageProcessingAlgorithms
             }
 
             // Calculating central point
-            if (int(m.m00) != 0)
+            if (Convert.ToInt32(m.M00) != 0)
             {
-                cX = int(m.m10 / m.m00);
-                cY = int(m.m01 / m.m00);
+                cX = Convert.ToInt32(m.M10 / m.M00);
+                cY = Convert.ToInt32(m.M01 / m.M00);
             }
 
-            // Adding data to metrics NSArray
-            NSMutableArray* arr = [NSMutableArray arrayWithObjects:@(m.m00),@(m.m01),@(m.m10),@(m.m11),@(m.mu20),@(m.mu11),@(m.mu02),@(m.mu30), nil];
-    [arr addObject:@(cX)];
-    [arr addObject:@(cY)];
-    [arr addObject:@(width)];
-    [arr addObject:@(height)];
-    [arr addObject:@(totalPixels)];
-    [arr addObject:@(channels)];
-    [arr addObject:@(area)];
-    [arr addObject:@(perimeter)];
-    [arr addObject:@(aspectRatio)];
-    [arr addObject:@(extent)];
-    [arr addObject:@(solidity)];
-    [arr addObject:@(eq_diameter)];
-    */
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.
+                Append("Image Dimensions").Append(Environment.NewLine)
+                .Append("Width: ").Append(width).Append(Environment.NewLine)
+                .Append("Height: ").Append(height).Append(Environment.NewLine)
+                .Append("Total pixels: ").Append(totalPixels).Append(Environment.NewLine)
+                .Append("Megapixels: ").Append((double)(totalPixels) / 1000000).Append(" MPs").Append(Environment.NewLine)
+                .Append("Channels: ").Append(gray.NumberOfChannels).Append(Environment.NewLine)
+                .Append(Environment.NewLine)
+                .Append("Moments").Append(Environment.NewLine)
+                .Append("Moment m(0,0): ").Append(m.M00).Append(Environment.NewLine)
+                .Append("Moment m(0,1): ").Append(m.M01).Append(Environment.NewLine)
+                .Append("Moment m(1,0): ").Append(m.M10).Append(Environment.NewLine)
+                .Append("Moment m(1,1): ").Append(m.M11).Append(Environment.NewLine)
+                .Append(Environment.NewLine)
+                .Append("Central Moments").Append(Environment.NewLine)
+                .Append("Central Moment mu(20): ").Append(m.Mu20).Append(Environment.NewLine)
+                .Append("Central Moment mu(11): ").Append(m.Mu11).Append(Environment.NewLine)
+                .Append("Central Moment mu(02): ").Append(m.Mu02).Append(Environment.NewLine)
+                .Append("Central Moment mu(30): ").Append(m.Mu30).Append(Environment.NewLine)
+                .Append(Environment.NewLine)
+                .Append("Center of mass").Append(Environment.NewLine)
+                .Append("Central Point: ").Append("(").Append(cX).Append(", ").Append(cY).Append(")").Append(Environment.NewLine)
+                .Append(Environment.NewLine)
+                .Append("Object Properties").Append(Environment.NewLine)
+                .Append("Area: ").Append(Convert.ToInt32(area)).Append(Environment.NewLine)
+                .Append("Perimeter: ").Append(Convert.ToInt32(perimeter)).Append(Environment.NewLine)
+                .Append(Environment.NewLine)
+                .Append("Contour Properties").Append(Environment.NewLine)
+                .Append("Aspect Ratio: 1 : ").Append(aspectRatio).Append(Environment.NewLine)
+                .Append("Extent: ").Append(extent).Append(Environment.NewLine)
+                .Append("Solidity: ").Append(solidity).Append(Environment.NewLine)
+                .Append("Equivalent Diameter: ").Append(eq_diameter).Append(Environment.NewLine);
+
+            textBox1.Text = stringBuilder.ToString();
         }
 
         private void doneBtn_Click(object sender, EventArgs e)
