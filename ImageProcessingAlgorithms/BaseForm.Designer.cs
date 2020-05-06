@@ -628,6 +628,7 @@
             this.adaptiveThresholdToolStripMenuItem.Name = "adaptiveThresholdToolStripMenuItem";
             this.adaptiveThresholdToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.adaptiveThresholdToolStripMenuItem.Text = "Adaptive Threshold";
+            this.adaptiveThresholdToolStripMenuItem.Click += new System.EventHandler(this.adaptiveThresholdToolStripMenuItem_Click);
             // 
             // otsuToolStripMenuItem
             // 

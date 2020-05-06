@@ -815,5 +815,35 @@ namespace ImageProcessingAlgorithms
                 ((ImageView)ActiveMdiChild).Refresh();
             }
         }
+
+        private void adaptiveThresholdToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = ((ImageView)ActiveMdiChild).path;
+
+            Mat src = new Mat();
+            Mat dst = new Mat();
+            src = CvInvoke.Imread(path);
+            dst = src.Clone();
+
+            CvInvoke.CvtColor(src, src, ColorConversion.Bgra2Gray);
+            CvInvoke.AdaptiveThreshold(src, dst, 255, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 3, 0);
+            CvInvoke.CvtColor(dst, dst, ColorConversion.Gray2Bgr);
+
+            // MARK: Uncomment following line to present image in native EmguCV Window
+            //CvInvoke.Imshow("Output image", dst);
+
+            // NOTE: Remove '/' at the beginning to present image in a new Window
+            //       Add '/' to alter currently selected
+
+            /*///
+            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).Refresh();
+            /*/
+            ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
+            imageView.MdiParent = this;
+            imageView.Show();
+            //*///
+
+        }
     }
 }
