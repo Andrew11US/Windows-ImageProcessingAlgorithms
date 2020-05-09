@@ -127,7 +127,16 @@ namespace ImageProcessingAlgorithms
 
         public void Save()
         {
-            Save(path);
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Image Files (*.jpg)|*.jpg|All Files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                int width = Convert.ToInt32(bitmap.Width);
+                int height = Convert.ToInt32(bitmap.Height);
+                Bitmap bmp = new Bitmap(width, height);
+                pictureBox.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
+                bmp.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+            }
         }
 
         public void Save(string filePath)

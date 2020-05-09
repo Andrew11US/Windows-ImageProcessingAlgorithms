@@ -229,6 +229,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SegmentationThresholdView.resx">
       <DependentUpon>SegmentationThresholdView.cs</DependentUpon>
@@ -292,6 +293,18 @@
     <Content Include="vcruntime140_1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="vswin2019\ArrangeShapes\ArrangeShapes_16x.png" />
+    <None Include="vswin2019\ArrangeSelection\ArrangeSelection_16x.png" />
+    <None Include="vswin2019\Arrange\Arrange_16x.png" />
+    <None Include="vswin2019\CascadingDropDown\CascadingDropDown_16x.png" />
+    <None Include="vswin2019\CloseAll\CloseAll_16x.png" />
+    <None Include="vswin2019\InformationSymbol\InformationSymbol_16x.png" />
+    <None Include="vswin2019\OpenFolder\OpenFolder_16x.png" />
+    <None Include="vswin2019\OpenFile\OpenFile_16x.png" />
+    <None Include="vswin2019\Exit\Exit_16x.png" />
+    <None Include="vswin2019\Open\ASX_Open_blue_16x.png" />
+    <None Include="vswin2019\Save\Save_16x.png" />
+    <None Include="vswin2019\Close\Close_16x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

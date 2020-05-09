@@ -87,12 +87,21 @@ namespace ImageProcessingAlgorithms
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+            //SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            //saveFileDialog.Filter = "Image Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            //if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+            //{
+            //    string FileName = saveFileDialog.FileName;
+            //}
+
+            try
             {
-                string FileName = saveFileDialog.FileName;
+                ((ImageView)ActiveMdiChild).Save();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Error saving file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -239,7 +248,8 @@ namespace ImageProcessingAlgorithms
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ActiveMdiChild.Close();
+            // Close inner window if axists
+            if (ActiveMdiChild != null) ActiveMdiChild.Close();
         }
 
         private void makeGrayscaleToolStripMenuItem_Click(object sender, EventArgs e)
