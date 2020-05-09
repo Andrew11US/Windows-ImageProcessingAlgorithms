@@ -113,6 +113,16 @@ namespace ImageProcessingAlgorithms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CloneToDesktop_16x {
+            get {
+                object obj = ResourceManager.GetObject("CloneToDesktop_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Close_16x {
             get {
                 object obj = ResourceManager.GetObject("Close_16x", resourceCulture);
@@ -126,6 +136,16 @@ namespace ImageProcessingAlgorithms.Properties {
         internal static System.Drawing.Bitmap CloseAll_16x {
             get {
                 object obj = ResourceManager.GetObject("CloseAll_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Copy_16x {
+            get {
+                object obj = ResourceManager.GetObject("Copy_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

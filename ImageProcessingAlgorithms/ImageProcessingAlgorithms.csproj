@@ -293,6 +293,8 @@
     <Content Include="vcruntime140_1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="vswin2019\Copy\Copy_16x.png" />
+    <None Include="vswin2019\CloneToDesktop\CloneToDesktop_16x.png" />
     <None Include="vswin2019\ArrangeShapes\ArrangeShapes_16x.png" />
     <None Include="vswin2019\ArrangeSelection\ArrangeSelection_16x.png" />
     <None Include="vswin2019\Arrange\Arrange_16x.png" />

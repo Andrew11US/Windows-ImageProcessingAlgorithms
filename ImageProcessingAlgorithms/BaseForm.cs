@@ -124,6 +124,7 @@ namespace ImageProcessingAlgorithms
 
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Loop through and close all child forms
             foreach (Form childForm in MdiChildren) childForm.Close();
         }
 
@@ -249,6 +250,7 @@ namespace ImageProcessingAlgorithms
 
         private void pointOperationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Point operations
             List<string> images = new List<string>();
             foreach (Form form in MdiChildren) images.Add(((ImageView)form).Text);
             pointOperationsView = new PointOperationsView(images.ToArray());
@@ -275,31 +277,19 @@ namespace ImageProcessingAlgorithms
 
         private void medianFiltrationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
+            // Median blur using EmguCV
             blurSelectView = new BlurSelectView(((ImageView)ActiveMdiChild).FileName);
 
             if (blurSelectView.ShowDialog() == DialogResult.OK)
             {
                 Mat src = new Mat();
                 Mat dst = new Mat();
-                src = CvInvoke.Imread(path);
+                src = ((ImageView)ActiveMdiChild).Mat;
                 dst = src.Clone();
                 CvInvoke.MedianBlur(src, dst, blurSelectView.maskSize);
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", dst);
 
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(dst);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
@@ -322,31 +312,18 @@ namespace ImageProcessingAlgorithms
 
         private void gaussianBlurToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
             blurSelectView = new BlurSelectView(((ImageView)ActiveMdiChild).FileName);
 
             if (blurSelectView.ShowDialog() == DialogResult.OK)
             {
                 Mat src = new Mat();
                 Mat dst = new Mat();
-                src = CvInvoke.Imread(path);
+                src = ((ImageView)ActiveMdiChild).Mat;
                 dst = src.Clone();
                 CvInvoke.GaussianBlur(src, dst, new Size(blurSelectView.maskSize, blurSelectView.maskSize), 0, 0, blurSelectView.borderType);
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", dst);
 
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(dst);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
@@ -995,6 +972,16 @@ namespace ImageProcessingAlgorithms
             // Show about the project info
             aboutView = new AboutView();
             aboutView.ShowDialog();
+        }
+
+        private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ActiveMdiChild is ImageView)
+            {
+                ImageView duplicateView = new ImageView((Bitmap)((ImageView)ActiveMdiChild).bitmap.bitmap.Clone());
+                duplicateView.MdiParent = this;
+                duplicateView.Show();
+            }
         }
     }
 }

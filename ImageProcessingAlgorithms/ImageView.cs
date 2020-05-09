@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace ImageProcessingAlgorithms
 {
@@ -71,6 +72,8 @@ namespace ImageProcessingAlgorithms
                 Text = GetHash(bmp.ToString());   
                 pictureBox.Image = bmp;
 
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+                mat = img.Mat;
                 this.path = "";
             }
             catch (Exception error)
@@ -81,6 +84,10 @@ namespace ImageProcessingAlgorithms
 
         public void setImage(Bitmap bmp)
         {
+            // Getting Mat from bitmap
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            mat = img.Mat;
+
             pictureBox.Image = null;
             pictureBox.Image = bmp;
             bitmap = new FastBitmap((Bitmap)bmp.Clone());
