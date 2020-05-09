@@ -24,6 +24,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
+            CenterToScreen();
             Text = "Histogram : " + name;
             toolStripStatusLabel1.Text = "Color Levels";
 

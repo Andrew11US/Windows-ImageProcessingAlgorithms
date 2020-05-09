@@ -27,6 +27,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
+            CenterToScreen();
             isolatedBtn.Checked = true;
             Text = "Double Filtration : " + name;
             CalculateFirst3x3();

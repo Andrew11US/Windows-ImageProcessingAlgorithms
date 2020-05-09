@@ -19,6 +19,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
+            CenterToScreen();
             crossRadio.Checked = true;
             Text = "Element Selection : " + name;
             label1.Text = "Iterations: " + trackBar1.Value;

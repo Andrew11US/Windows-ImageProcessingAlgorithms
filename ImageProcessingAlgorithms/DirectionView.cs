@@ -23,6 +23,7 @@ namespace ImageProcessingAlgorithms
         public DirectionView(string name)
         {
             InitializeComponent();
+            CenterToScreen();
             nwBtn.Checked = true;
             isolatedBtn.Checked = true;
             Text = "Direction Detection : " + name;

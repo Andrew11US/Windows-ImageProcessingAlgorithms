@@ -21,7 +21,8 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
-            Text = "Threshold without gray level reduction : " + name;
+            CenterToScreen();
+            Text = "Threshold grayscale: " + name;
             ClientSize = new Size(532, 400);
             histogramPanel.Size = new Size(512, 256);
             trackBarLower.Size = new Size(532, 50);

@@ -31,6 +31,7 @@ namespace ImageProcessingAlgorithms
             buttonsLayout.Left = 80;
             applyBtn.Top = 140;
             applyBtn.Left = 110;
+            CenterToScreen();
         }
 
         private void maskSizeSelectorUpDown_ValueChanged(object sender, EventArgs e)

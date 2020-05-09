@@ -19,6 +19,7 @@ namespace ImageProcessingAlgorithms
         public CannyView(Histogram histogram, string name)
         {
             InitializeComponent();
+            CenterToScreen();
             Text = "Canny : " + name;
             ClientSize = new Size(532, 400);
             histogramPanel.Size = new Size(512, 256);

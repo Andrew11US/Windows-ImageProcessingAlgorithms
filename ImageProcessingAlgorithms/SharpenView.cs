@@ -15,6 +15,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
+            CenterToScreen();
             mask1Btn.Checked = true;
             isolatedBtn.Checked = true;
             Text = "Sharpen Configuration : " + name;

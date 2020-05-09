@@ -21,6 +21,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
+            CenterToScreen();
             Text = "Histogram Stretching : " + name;
             ClientSize = new Size(532, 400 + statusStrip1.Height);
             histogramPanel.Size = new Size(512, 256);

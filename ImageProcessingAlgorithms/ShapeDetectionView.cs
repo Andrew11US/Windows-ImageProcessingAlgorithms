@@ -16,6 +16,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
+            CenterToScreen();
             Text = "Shape Detection : " + name;
 
             ClientSize = new Size(300, 150);

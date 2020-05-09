@@ -28,6 +28,7 @@ namespace ImageProcessingAlgorithms
             doneBtn.Top = 310;
             doneBtn.Left = 210;
             doneBtn.Focus();
+            CenterToScreen();
 
             ShowAbout();
         }

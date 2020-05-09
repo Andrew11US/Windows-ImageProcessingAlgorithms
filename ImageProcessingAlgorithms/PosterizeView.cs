@@ -20,6 +20,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
+            CenterToScreen();
             Text = "Posterize : " + name;
             ClientSize = new Size(532, 380);
             histogramPanel.Size = new Size(512, 256);

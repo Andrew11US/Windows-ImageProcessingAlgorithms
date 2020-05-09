@@ -22,6 +22,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
+            CenterToScreen();
             Text = "Image Metrics : " + name;
             ClientSize = new Size(300, 600);
             label1.Size = new Size(280, 30);

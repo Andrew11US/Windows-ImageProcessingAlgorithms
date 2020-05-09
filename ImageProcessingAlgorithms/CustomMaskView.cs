@@ -25,6 +25,7 @@ namespace ImageProcessingAlgorithms
         public CustomMaskView(string name)
         {
             InitializeComponent();
+            CenterToScreen();
             isolatedBtn.Checked = true;
             Text = "Custom mask : " + name;
             ClientSize = new Size(300, 200);

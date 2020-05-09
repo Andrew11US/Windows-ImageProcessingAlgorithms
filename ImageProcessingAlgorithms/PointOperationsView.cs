@@ -20,7 +20,7 @@ namespace ImageProcessingAlgorithms
         {
             // UI setup
             InitializeComponent();
-            
+            CenterToScreen();
             Text = "Point Operation";
             ClientSize = new Size(220, 220);
             image1ComboBox.Width = 200;
