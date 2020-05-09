@@ -295,6 +295,7 @@ namespace ImageProcessingAlgorithms
 
         private void blurToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Blur filter
             blurSelectView = new BlurSelectView(((ImageView)ActiveMdiChild).FileName);
 
             if (blurSelectView.ShowDialog() == DialogResult.OK)
@@ -312,6 +313,7 @@ namespace ImageProcessingAlgorithms
 
         private void gaussianBlurToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Gaussian bluring filter
             blurSelectView = new BlurSelectView(((ImageView)ActiveMdiChild).FileName);
 
             if (blurSelectView.ShowDialog() == DialogResult.OK)
@@ -329,403 +331,220 @@ namespace ImageProcessingAlgorithms
 
         private void sharpenMasksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
+            // Sharpen filter
             sharpenView = new SharpenView(((ImageView)ActiveMdiChild).FileName);
 
             if (sharpenView.ShowDialog() == DialogResult.OK)
             {
                 Mat src = new Mat();
                 Mat dst = new Mat();
-                src = CvInvoke.Imread(path);
+                src = ((ImageView)ActiveMdiChild).Mat;
                 dst = src.Clone();
                 CvInvoke.Filter2D(src, dst, sharpenView.kernel, new Point(-1, -1), 0, sharpenView.borderType);
 
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", dst);
-
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(dst);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
         private void customMask3x3ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
+            // Custom mask 3x3
             customMaskView = new CustomMaskView(((ImageView)ActiveMdiChild).FileName);
 
             if (customMaskView.ShowDialog() == DialogResult.OK)
             {
                 Mat src = new Mat();
                 Mat dst = new Mat();
-                src = CvInvoke.Imread(path);
+                src = ((ImageView)ActiveMdiChild).Mat;
                 dst = src.Clone();
                 CvInvoke.Filter2D(src, dst, customMaskView.kernel, new Point(-1, -1), 0, customMaskView.borderType);
 
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", dst);
-
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(dst);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
         private void verticalToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
-            
+            // Vertical Prewitt operator
             Matrix<double> kernel = new Matrix<double>(new double[3, 3] { { 1, 0, -1 }, { 1, 0, -1 }, { 1, 0, -1 } });
             Mat src = new Mat();
             Mat dst = new Mat();
-            src = CvInvoke.Imread(path);
+            src = ((ImageView)ActiveMdiChild).Mat;
             dst = src.Clone();
             CvInvoke.Filter2D(src, dst, kernel, new Point(-1, -1), 0, BorderType.Isolated);
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", dst);
-
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
-
-            //*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).setImage(dst);
             ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
         }
 
         private void horizontalToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
-            
+            // Horizontal Prewitt operator
             Matrix<double> kernel = new Matrix<double>(new double[3, 3] { { 1, 1, 1 }, { 0, 0, 0 }, { -1, -1, -1 } });
             Mat src = new Mat();
             Mat dst = new Mat();
-            src = CvInvoke.Imread(path);
+            src = ((ImageView)ActiveMdiChild).Mat;
             dst = src.Clone();
             CvInvoke.Filter2D(src, dst, kernel, new Point(-1, -1), 0, BorderType.Isolated);
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", dst);
-
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
-
-            //*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).setImage(dst);
             ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
         }
 
         private void directionDetectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
+            // Direction detection operators - 8 directions
             directionView = new DirectionView(((ImageView)ActiveMdiChild).FileName);
 
             if (directionView.ShowDialog() == DialogResult.OK)
             {
                 Mat src = new Mat();
                 Mat dst = new Mat();
-                src = CvInvoke.Imread(path);
+                src = ((ImageView)ActiveMdiChild).Mat;
                 dst = src.Clone();
                 CvInvoke.Filter2D(src, dst, directionView.kernel, new Point(-1, -1), 0, directionView.borderType);
 
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", dst);
-
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(dst);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
         private void gxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
+            // Sobel gx operator
             Mat src = new Mat();
             Mat dst = new Mat();
-            src = CvInvoke.Imread(path);
+            src = ((ImageView)ActiveMdiChild).Mat;
             dst = src.Clone();
             CvInvoke.Sobel(src, dst, src.Depth, 1, 0, 3);
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", dst);
-
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
-
-            //*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).setImage(dst);
             ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
         }
 
         private void gyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
+            // Sobel gy operator
             Mat src = new Mat();
             Mat dst = new Mat();
-            src = CvInvoke.Imread(path);
+            src = ((ImageView)ActiveMdiChild).Mat;
             dst = src.Clone();
             CvInvoke.Sobel(src, dst, src.Depth, 0, 1, 3);
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", dst);
-
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
-
-            //*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).setImage(dst);
             ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
         }
 
         private void laplacianToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
+            // Laplacian operator
             Mat src = new Mat();
             Mat dst = new Mat();
-            src = CvInvoke.Imread(path);
+            src = ((ImageView)ActiveMdiChild).Mat;
             dst = src.Clone();
             CvInvoke.Laplacian(src, dst, src.Depth, 1, 1, 0);
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", dst);
-
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
-
-            //*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).setImage(dst);
             ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
         }
 
         private void cannyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            // Canny edge operator
             cannyView = new CannyView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
             if (cannyView.ShowDialog() == DialogResult.OK)
             {
-                string path = ((ImageView)ActiveMdiChild).path;
-                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
-                Image<Gray, byte> outputImage = new Image<Gray, byte>(path);
+                Image<Bgr, byte> inputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
+                Image<Gray, byte> outputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Gray, byte>();
                 outputImage = inputImage.Canny(cannyView.lowerBound, cannyView.upperBound);
-                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
 
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", outputImage);
-
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(outputImage.Mat);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
         private void erodeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            // Morphology - erode
             morphologyView = new MorphologyView(((ImageView)ActiveMdiChild).FileName);
 
             if (morphologyView.ShowDialog() == DialogResult.OK)
             {
-                string path = ((ImageView)ActiveMdiChild).path;
-                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
-                Image<Bgr, byte> outputImage = new Image<Bgr, byte>(path);
+                Image<Bgr, byte> inputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
+                Image<Bgr, byte> outputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
 
                 // MARK: Creating custom kernel in order to get possibility to select morphological element
                 Mat kernel = CvInvoke.GetStructuringElement(morphologyView.elementShape, new Size(3, 3), new Point(-1, -1));
                 outputImage = inputImage.MorphologyEx(MorphOp.Erode, kernel, new Point(-1, -1), morphologyView.iterations, BorderType.Isolated, new MCvScalar(1, 0));
 
-                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", outputImage);
-
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(outputImage.Mat);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
         private void dilateToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            // Morphology - dilate
             morphologyView = new MorphologyView(((ImageView)ActiveMdiChild).FileName);
 
             if (morphologyView.ShowDialog() == DialogResult.OK)
             {
-                string path = ((ImageView)ActiveMdiChild).path;
-                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
-                Image<Bgr, byte> outputImage = new Image<Bgr, byte>(path);
+                Image<Bgr, byte> inputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
+                Image<Bgr, byte> outputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
 
                 // MARK: Creating custom kernel in order to get possibility to select morphological element
                 Mat kernel = CvInvoke.GetStructuringElement(morphologyView.elementShape, new Size(3, 3), new Point(-1, -1));
                 outputImage = inputImage.MorphologyEx(MorphOp.Dilate, kernel, new Point(-1, -1), morphologyView.iterations, BorderType.Isolated, new MCvScalar(1, 0));
 
-                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", outputImage);
-
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(outputImage.Mat);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
         private void openToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            // Morphology - Open
             morphologyView = new MorphologyView(((ImageView)ActiveMdiChild).FileName);
 
             if (morphologyView.ShowDialog() == DialogResult.OK)
             {
-                string path = ((ImageView)ActiveMdiChild).path;
-                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
-                Image<Bgr, byte> outputImage = new Image<Bgr, byte>(path);
+                Image<Bgr, byte> inputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
+                Image<Bgr, byte> outputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
 
                 // MARK: Creating custom kernel in order to get possibility to select morphological element
                 Mat kernel = CvInvoke.GetStructuringElement(morphologyView.elementShape, new Size(3, 3), new Point(-1, -1));
                 outputImage = inputImage.MorphologyEx(MorphOp.Open, kernel, new Point(-1, -1), morphologyView.iterations, BorderType.Isolated, new MCvScalar(1, 0));
 
-                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", outputImage);
-
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(outputImage.Mat);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
         private void closeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
+            // Morphology - Close
             morphologyView = new MorphologyView(((ImageView)ActiveMdiChild).FileName);
 
             if (morphologyView.ShowDialog() == DialogResult.OK)
             {
-                string path = ((ImageView)ActiveMdiChild).path;
-                Image<Bgr, byte> inputImage = new Image<Bgr, byte>(path);
-                Image<Bgr, byte> outputImage = new Image<Bgr, byte>(path);
+                Image<Bgr, byte> inputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
+                Image<Bgr, byte> outputImage = ((ImageView)ActiveMdiChild).Mat.ToImage<Bgr, byte>();
 
                 // MARK: Creating custom kernel in order to get possibility to select morphological element
                 Mat kernel = CvInvoke.GetStructuringElement(morphologyView.elementShape, new Size(3, 3), new Point(-1, -1));
                 outputImage = inputImage.MorphologyEx(MorphOp.Close, kernel, new Point(-1, -1), morphologyView.iterations, BorderType.Isolated, new MCvScalar(1, 0));
 
-                // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", outputImage);
-
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(outputImage.Mat);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
         private void twoStepFiltrationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
-
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
+            // Two step filtration 3x3 -> 5x5
             doubleFiltrationView = new DoubleFiltrationView(((ImageView)ActiveMdiChild).FileName);
 
             if (doubleFiltrationView.ShowDialog() == DialogResult.OK)
@@ -733,7 +552,7 @@ namespace ImageProcessingAlgorithms
                 Mat src = new Mat();
                 Mat dst = new Mat();
                 Mat tmp = new Mat();
-                src = CvInvoke.Imread(path);
+                src = ((ImageView)ActiveMdiChild).Mat;
                 tmp = src.Clone();
                 dst = src.Clone();
                 if (doubleFiltrationView.use5x5)
@@ -745,21 +564,9 @@ namespace ImageProcessingAlgorithms
                     CvInvoke.Filter2D(src, tmp, doubleFiltrationView.first3x3, new Point(-1, -1), 0, doubleFiltrationView.borderType);
                     CvInvoke.Filter2D(tmp, dst, doubleFiltrationView.second3x3, new Point(-1, -1), 0, doubleFiltrationView.borderType);
                 }
-                
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", dst);
 
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                //*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(dst);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
@@ -774,6 +581,7 @@ namespace ImageProcessingAlgorithms
 
         private void thresholdToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            // Segmentation thresholding
             FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             segmentationThresholdView = new SegmentationThresholdView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName, bmp);
 
@@ -787,67 +595,39 @@ namespace ImageProcessingAlgorithms
 
         private void adaptiveThresholdToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string path = ((ImageView)ActiveMdiChild).path;
-
+            // Segmentation - adaptive thresholding
             Mat src = new Mat();
             Mat dst = new Mat();
-            src = CvInvoke.Imread(path);
+            src = ((ImageView)ActiveMdiChild).Mat;
             dst = src.Clone();
 
             CvInvoke.CvtColor(src, src, ColorConversion.Bgra2Gray);
             CvInvoke.AdaptiveThreshold(src, dst, 255, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 3, 0);
             CvInvoke.CvtColor(dst, dst, ColorConversion.Gray2Bgr);
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", dst);
-
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
-
-            //*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).setImage(dst);
             ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
-
         }
 
         private void otsuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string path = ((ImageView)ActiveMdiChild).path;
-
+            // Otsu thresholding
             Mat src = new Mat();
             Mat dst = new Mat();
-            src = CvInvoke.Imread(path);
+            src = ((ImageView)ActiveMdiChild).Mat;
             dst = src.Clone();
 
             CvInvoke.CvtColor(src, src, ColorConversion.Bgra2Gray);
             CvInvoke.Threshold(src, dst, 127, 255, ThresholdType.Binary | ThresholdType.Otsu);
             CvInvoke.CvtColor(dst, dst, ColorConversion.Gray2Bgr);
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", dst);
-
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
-
-            //*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).setImage(dst);
             ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
         }
 
         private void watershedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string path = ((ImageView)ActiveMdiChild).path;
-            // Variables
+            // Segmentation - watershed
             Mat src;
             Mat gray = new Mat();
             Mat thresh = new Mat();
@@ -859,7 +639,7 @@ namespace ImageProcessingAlgorithms
             Mat unknown = new Mat();
             Mat markers = new Mat();
             Mat dst = new Mat();
-            src = CvInvoke.Imread(path);
+            src = ((ImageView)ActiveMdiChild).Mat;
             dst = src.Clone();
 
             // Converting to Gray
@@ -894,20 +674,8 @@ namespace ImageProcessingAlgorithms
                 for (int j = 0; j < markers.Cols; ++j)
                     outputImage.Data[i, j, 2] = 255;
 
-            // MARK: Uncomment following line to present image in native EmguCV Window
-            //CvInvoke.Imshow("Output image", dst);
-
-            // NOTE: Remove '/' at the beginning to present image in a new Window
-            //       Add '/' to alter currently selected
-
-            //*///
-            ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+            ((ImageView)ActiveMdiChild).setImage(dst);
             ((ImageView)ActiveMdiChild).Refresh();
-            /*/
-            ImageView imageView = new ImageView((Bitmap)outputImage.ToBitmap().Clone());
-            imageView.MdiParent = this;
-            imageView.Show();
-            //*///
         }
 
         private void imageMetricsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -919,12 +687,11 @@ namespace ImageProcessingAlgorithms
 
         private void shapeDetectorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string path = ((ImageView)ActiveMdiChild).path;
             string shape;
 
             // Variables
-            Image<Gray, byte> gray = new Image<Gray, byte>(path);
-            Image<Gray, byte> thresh = new Image<Gray, byte>(path);
+            Image<Gray, byte> gray = ((ImageView)ActiveMdiChild).Mat.ToImage<Gray, byte>();
+            Image<Gray, byte> thresh = ((ImageView)ActiveMdiChild).Mat.ToImage<Gray, byte>();
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
 
             // Smoothing and Thresholding
@@ -976,6 +743,7 @@ namespace ImageProcessingAlgorithms
 
         private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Clone selected imageView
             if (ActiveMdiChild is ImageView)
             {
                 ImageView duplicateView = new ImageView((Bitmap)((ImageView)ActiveMdiChild).bitmap.bitmap.Clone());
