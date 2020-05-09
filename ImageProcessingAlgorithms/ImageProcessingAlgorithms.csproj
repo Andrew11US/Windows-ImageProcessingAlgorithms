@@ -290,6 +290,9 @@
     <None Include="Resources\cross.png" />
     <None Include="Resources\cross50x50.png" />
     <None Include="Resources\rect50x50.png" />
+    <None Include="Resources\mask1.png" />
+    <None Include="Resources\mask2.png" />
+    <None Include="Resources\mask3.png" />
     <Content Include="vcruntime140.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

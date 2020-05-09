@@ -150,6 +150,7 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.BackgroundImage = global::ImageProcessingAlgorithms.Properties.Resources.mask3;
             this.pictureBox3.Location = new System.Drawing.Point(442, 59);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(137, 107);
@@ -158,6 +159,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BackgroundImage = global::ImageProcessingAlgorithms.Properties.Resources.mask2;
             this.pictureBox2.Location = new System.Drawing.Point(247, 59);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(143, 107);
@@ -166,7 +168,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::ImageProcessingAlgorithms.Properties.Resources.cross50x50;
+            this.pictureBox1.BackgroundImage = global::ImageProcessingAlgorithms.Properties.Resources.mask1;
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
             this.pictureBox1.InitialImage = global::ImageProcessingAlgorithms.Properties.Resources.cross;
             this.pictureBox1.Location = new System.Drawing.Point(78, 59);
