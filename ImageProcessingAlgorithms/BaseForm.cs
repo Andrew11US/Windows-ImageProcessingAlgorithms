@@ -870,7 +870,7 @@ namespace ImageProcessingAlgorithms
             // Segmentation - watershed
             if (ActiveMdiChild is ImageView)
             {
-                Mat src;
+                Mat src = ((ImageView) ActiveMdiChild).Mat;
                 Mat gray = new Mat();
                 Mat thresh = new Mat();
                 Mat kernel = new Mat();
@@ -880,10 +880,8 @@ namespace ImageProcessingAlgorithms
                 Mat dist_transform = new Mat();
                 Mat unknown = new Mat();
                 Mat markers = new Mat();
-                Mat dst = new Mat();
-                src = ((ImageView)ActiveMdiChild).Mat;
-                dst = src.Clone();
-
+                Mat dst = src.Clone();
+                
                 // Converting to Gray
                 CvInvoke.CvtColor(src, gray, ColorConversion.Bgra2Gray);
                 // Thresholding with Otsu
@@ -916,7 +914,7 @@ namespace ImageProcessingAlgorithms
                     for (int j = 0; j < markers.Cols; ++j)
                         outputImage.Data[i, j, 2] = 255;
 
-                ((ImageView)ActiveMdiChild).setImage(dst);
+                ((ImageView)ActiveMdiChild).setImage(outputImage.Mat);
                 ((ImageView)ActiveMdiChild).Refresh();
             }
             else
