@@ -17,9 +17,10 @@ namespace ImageProcessingAlgorithms
         public BorderType borderType = BorderType.Default;
         public BlurSelectView(string name)
         {
+            // UI setup
             InitializeComponent();
             isolatedBtn.Checked = true;
-            Text = "Blur Configuration : " + name;
+            Text = "Blur : " + name;
             ClientSize = new Size(300, 200);
             lblLayout.Size = new Size(280, 50);
             buttonsLayout.Size = new Size(280, 80);

@@ -14,6 +14,7 @@ namespace ImageProcessingAlgorithms
     {
         public ShapeDetectionView(string name, string shape)
         {
+            // UI setup
             InitializeComponent();
             Text = "Shape Detection : " + name;
 

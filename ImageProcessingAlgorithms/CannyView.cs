@@ -19,7 +19,7 @@ namespace ImageProcessingAlgorithms
         public CannyView(Histogram histogram, string name)
         {
             InitializeComponent();
-            Text = "Histogram Stretching : " + name;
+            Text = "Canny : " + name;
             ClientSize = new Size(532, 400);
             histogramPanel.Size = new Size(512, 256);
             trackBarLower.Size = new Size(532, 50);

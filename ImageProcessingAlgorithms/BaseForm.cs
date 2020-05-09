@@ -18,6 +18,9 @@ using System.Windows.Forms;
 /// Student ID: 17460
 /// 
 /// Completed: 6 of 6
+/// 9 May 2020
+/// 
+/// GitHub repository: Andrew11US/Windows-ImageProcessingAlgorithms
 /// 
 /// </summary>
 
@@ -59,10 +62,12 @@ namespace ImageProcessingAlgorithms
             // Open File dialog to select an image for editing
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            // Types filter
             openFileDialog.Filter = "Image files |*.jpg; *.jpeg; *.png; *.gif; *.tiff; *.bmp|All files (*.*)|*.*";
 
             try
             {
+                // Openning file dialog
                 if (openFileDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     imageView = new ImageView(openFileDialog.FileName);
@@ -187,7 +192,7 @@ namespace ImageProcessingAlgorithms
             if (ActiveMdiChild is ImageView)
             {
                 FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
-                ImageManager.EqualizeHistogram(bmp, ((ImageView)ActiveMdiChild).Histogram, EqualizationMethod.Averages);
+                ImageManager.EqualizeHistogram(bmp, ((ImageView)ActiveMdiChild).Histogram);
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
             }
@@ -925,7 +930,7 @@ namespace ImageProcessingAlgorithms
             // Show image metrics
             if (ActiveMdiChild is ImageView)
             {
-                metricsView = new MetricsView(((ImageView)ActiveMdiChild).image, ((ImageView)ActiveMdiChild).path, ((ImageView)ActiveMdiChild).FileName);
+                metricsView = new MetricsView(((ImageView)ActiveMdiChild), ((ImageView)ActiveMdiChild).FileName);
                 metricsView.ShowDialog();
             }
             else

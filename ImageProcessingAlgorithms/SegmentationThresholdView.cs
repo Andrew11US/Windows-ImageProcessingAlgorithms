@@ -12,12 +12,14 @@ namespace ImageProcessingAlgorithms
 {
     public partial class SegmentationThresholdView : Form
     {
+        // Variables
         private Graphics graphics;
         private Bitmap histogramImage;
         public int thresholdValue = 128;
         private FastBitmap bitmap;
         public SegmentationThresholdView(Histogram histogram, string name, FastBitmap bmp)
         {
+            // UI setup
             InitializeComponent();
             bitmap = bmp;
             Text = "Threshold : " + name;
@@ -42,7 +44,7 @@ namespace ImageProcessingAlgorithms
             previewPictureBox.Top = 326;
 
             graphics = histogramPanel.CreateGraphics();
-
+            // Crating histogram
             float[] values = new float[256];
             for (int i = 0; i < 256; ++i)
             {
@@ -61,6 +63,7 @@ namespace ImageProcessingAlgorithms
 
         private void slider_Scroll(object sender, EventArgs e)
         {
+            // Getting threshold value
             thresholdValue = thresholdSlider.Value;
             thresholdLbl.Text = thresholdValue.ToString();
 
@@ -72,6 +75,7 @@ namespace ImageProcessingAlgorithms
         }
         private void histogramPanel_Paint(object sender, PaintEventArgs e)
         {
+            // Drawing on panel
             graphics.DrawImage(histogramImage, new Point());
         }
     }

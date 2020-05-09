@@ -12,12 +12,14 @@ namespace ImageProcessingAlgorithms
 {
     public partial class ThresholdGrayscaleView : Form
     {
+        // Variables
         private Graphics graphics;
         private Bitmap histogramImage;
         public int lowerBound;
         public int upperBound;
         public ThresholdGrayscaleView(Histogram histogram, string name)
         {
+            // UI setup
             InitializeComponent();
             Text = "Threshold without gray level reduction : " + name;
             ClientSize = new Size(532, 400);
@@ -25,7 +27,7 @@ namespace ImageProcessingAlgorithms
             trackBarLower.Size = new Size(532, 50);
             trackBarUpper.Size = new Size(532, 50);
             rowLayout.Size = new Size(512, 50);
-            //applyBtn.Size = new Size(512, 50);
+
             histogramPanel.Left = 10;
             histogramPanel.Top = 10;
             trackBarLower.Top = 266;
@@ -36,17 +38,18 @@ namespace ImageProcessingAlgorithms
             rowLayout.Left = 150;
             applyBtn.Top = 356;
             applyBtn.Left = 230;
-            graphics = histogramPanel.CreateGraphics();
 
+            graphics = histogramPanel.CreateGraphics();
+            // Creating historgam
             float[] values = new float[256];
             for (int i = 0; i < 256; ++i)
             {
                 values[i] = (float)histogram.HistogramTable[i] / histogram.Max;
             }
-
+            // Creating bitmap image
             histogramImage = new Bitmap(512, 256);
             Graphics graphicsImage = Graphics.FromImage(histogramImage);
-
+            // histogrma drawing on image
             graphicsImage.Clear(Color.White);
             for (int i = 0; i < 256; ++i)
             {
@@ -57,16 +60,19 @@ namespace ImageProcessingAlgorithms
         private void cancelBtn_Click(object sender, EventArgs e) { Close(); }
         private void trackBarLow_Scroll(object sender, EventArgs e)
         {
+            // getting lower bound
             lowerBound = trackBarLower.Value;
             lowLbl.Text = lowerBound.ToString();
         }
         private void trackBarHigh_Scroll(object sender, EventArgs e)
         {
+            // getting upper bound
             upperBound = trackBarUpper.Value;
             highLbl.Text = upperBound.ToString();
         }
         private void histogramPanel_Paint(object sender, PaintEventArgs e)
         {
+            // draeing on panel
             graphics.DrawImage(histogramImage, new Point());
         }
     }

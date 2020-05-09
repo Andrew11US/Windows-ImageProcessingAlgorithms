@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 namespace ImageProcessingAlgorithms
 {
     // Method enums
-    public enum EqualizationMethod { Averages, Random, Neighborhood4, Neighborhood8, Own };
     public enum Operations { Add, Subtract, Multiply, Divide, Difference, AND, OR, XOR };
+
+    // MARK: ImageManager stores custom image processing methods
     public class ImageManager
     {
+        // Checking pixel valid image
         public static bool isPixelValid(int x, int y, int width, int height)
         {
             if (x >= 0 && y >= 0 && x < width && y < height) return true;
@@ -24,19 +26,23 @@ namespace ImageProcessingAlgorithms
         {
             Color color;
             byte newColor;
+            // Loop through image width and height
             for (int i = 0; i < bmp.Size.Width; ++i)
             {
                 for (int j = 0; j < bmp.Size.Height; ++j)
                 {
                     color = bmp[i, j];
+                    // Assing value propationaly to every channel
                     newColor = (byte)Math.Min(0.3 * color.R + 0.59 * color.G + 0.11 * color.B, 255);
                     bmp[i, j] = Color.FromArgb(color.A, newColor, newColor, newColor);
                 }
             }
         }
 
+        // Point operations
         public static FastBitmap Operation(FastBitmap bmp1, FastBitmap bmp2, Operations op)
         {
+            // Combining two images
             FastBitmap bmp = new FastBitmap(Math.Max(bmp1.Width, bmp2.Width), Math.Max(bmp1.Height, bmp2.Height));
             for (int i = 0; i < bmp.Size.Width; ++i)
             {
@@ -52,6 +58,7 @@ namespace ImageProcessingAlgorithms
                         c2 = bmp2[i, j];
                     else
                         c2 = Color.Black;
+                    // Switching through operations and performing last one
                     switch (op)
                     {
                         case Operations.Add:
@@ -84,20 +91,26 @@ namespace ImageProcessingAlgorithms
             return bmp;
         }
 
+        // Posterization
         public static void Posterize(FastBitmap bmp, int value)
         {
+            // initializing lut
             byte[] lut = new byte[256];
             float param1 = 255.0f / (value - 1);
             float param2 = 256.0f / (value);
+            // Loop throght image and creating new lut
             for (int i = 0; i < 256; ++i)
             {
                 lut[i] = (byte)((byte)(i / param2) * param1);
             }
+            // applying lut to the image
             ApplyLUT(bmp, lut);
         }
 
+        // Histogram stretching
         public static void Stretch(FastBitmap bmp, int low, int high)
         {
+            // initializing lut
             byte[] lut = new byte[256];
             if ((high - low) <= 0)
             {
@@ -119,8 +132,10 @@ namespace ImageProcessingAlgorithms
             ApplyLUT(bmp, lut);
         }
 
+        // MARK: - Apply Look up table method
         public static void ApplyLUT(FastBitmap bmp, byte[] lut)
         {
+            // Looping and assigning new value to fastBitmap image
             for (int i = 0; i < bmp.Size.Width; ++i)
             {
                 for (int j = 0; j < bmp.Size.Height; ++j)
@@ -132,11 +147,13 @@ namespace ImageProcessingAlgorithms
             }
         }
 
+        // Thinning (Skeletonization) method
         public static void Thinning(FastBitmap bmp)
         {
+            // Init edge operators
             int[] dx = { 0, 1, 1, 1, 0, -1, -1, -1 };
             int[] dy = { 1, 1, 0, -1, -1, -1, 0, 1 };
-
+            
             bool[,] img = new bool[bmp.Width, bmp.Height];
             int W = bmp.Width;
             int H = bmp.Height;
@@ -147,7 +164,6 @@ namespace ImageProcessingAlgorithms
                     img[i, j] = bmp[i, j].B < 128;
                 }
             }
-
 
             bool pass = false;
             LinkedList<Point> list;
@@ -202,6 +218,7 @@ namespace ImageProcessingAlgorithms
             }
         }
 
+        // Binary thresholding
         public static void Threshold(FastBitmap bmp, int threshold)
         {
             byte[] lut = new byte[256];
@@ -212,6 +229,8 @@ namespace ImageProcessingAlgorithms
             }
             ApplyLUT(bmp, lut);
         }
+
+        // Threshold with grayscale
         public static void ThresholdGrayscale(FastBitmap bmp, int lower, int upper)
         {
             byte[] lut = new byte[256];
@@ -223,6 +242,7 @@ namespace ImageProcessingAlgorithms
             ApplyLUT(bmp, lut);
         }
 
+        // Inversion
         public static void Inversion(FastBitmap bmp)
         {
             byte[] lut = new byte[256];
@@ -230,6 +250,7 @@ namespace ImageProcessingAlgorithms
             ApplyLUT(bmp, lut);
         }
 
+        // Contrast enhancement
         public static void AdjustHistogram(FastBitmap bmp, Histogram histogram)
         {
             byte[] d = new byte[256];
@@ -249,7 +270,8 @@ namespace ImageProcessingAlgorithms
             ApplyLUT(bmp, lut);
         }
 
-        public static void EqualizeHistogram(FastBitmap bmp, Histogram hist, EqualizationMethod method)
+        // Histogrma equalization
+        public static void EqualizeHistogram(FastBitmap bmp, Histogram hist)
         {
             int R = 0;
             double hInt = 0.0;
@@ -269,18 +291,7 @@ namespace ImageProcessingAlgorithms
                 }
 
                 right[i] = R;
-                switch (method)
-                {
-                    case EqualizationMethod.Averages:
-                        newValue[i] = (int)((left[i] + right[i]) / 2.0);
-                        break;
-                    case EqualizationMethod.Random:
-                        newValue[i] = (int)(right[i] - left[i]);
-                        break;
-                    case EqualizationMethod.Own:
-                        newValue[i] = (int)((left[i] + right[i]) / 2.0);
-                        break;
-                }
+                newValue[i] = (int)((left[i] + right[i]) / 2.0);
             }
 
             for (int i = 0; i < bmp.Size.Width; ++i)
@@ -292,46 +303,12 @@ namespace ImageProcessingAlgorithms
                         bmp[i, j] = Color.FromArgb(color.A, (int)left[color.R], (int)left[color.R], (int)left[color.R]);
                     else
                     {
-                        switch (method)
-                        {
-                            case EqualizationMethod.Averages:
-                                bmp[i, j] = Color.FromArgb(color.A, (int)newValue[color.R], (int)newValue[color.R], (int)newValue[color.R]);
-                                break;
-                            case EqualizationMethod.Random:
-                                Random rnd = new Random();
-                                int value = (int)left[color.R] + rnd.Next(newValue[color.R] + 1);
-                                bmp[i, j] = Color.FromArgb(color.A, value, value, value);
-                                break;
-                            case EqualizationMethod.Neighborhood8:
-                                double average = 0;
-                                int count = 0;
-                                foreach (Point offset in new Point[] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1), new Point(1, 1), new Point(-1, -1), new Point(-1, 1), new Point(1, -1) })
-                                {
-                                    if (i + offset.X >= 0 && i + offset.X < bmp.Width && j + offset.Y >= 0 && j + offset.Y < bmp.Height)
-                                    {
-                                        average += bmp[i + offset.X, j + offset.Y].R;
-                                        ++count;
-                                    }
-                                }
-                                average /= count;
-                                if (average > right[color.R])
-                                    bmp[i, j] = Color.FromArgb(color.A, (int)right[color.R], (int)right[color.R], (int)right[color.R]);
-                                else if (average < left[color.R])
-                                    bmp[i, j] = Color.FromArgb(color.A, (int)left[color.R], (int)left[color.R], (int)left[color.R]);
-                                else
-                                    bmp[i, j] = Color.FromArgb(color.A, (int)average, (int)average, (int)average);
-                                break;
-                            case EqualizationMethod.Own:
-                                bmp[i, j] = Color.FromArgb(color.A, (int)newValue[color.R], (int)newValue[color.R], (int)newValue[color.R]);
-                                break;
-                        }
+                        bmp[i, j] = Color.FromArgb(color.A, (int)newValue[color.R], (int)newValue[color.R], (int)newValue[color.R]);
                     }
                 }
             }
         }
-
     }
-
 
 }
 

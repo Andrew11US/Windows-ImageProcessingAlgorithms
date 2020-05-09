@@ -22,54 +22,44 @@ namespace ImageProcessingAlgorithms
         private Bitmap histogramImageBlue;
         public HistogramRGBView(Histogram histogram, string name)
         {
+            // UI setup
             InitializeComponent();
-            Text = "Histogram of " + name;
+            Text = "Histogram : " + name;
             toolStripStatusLabel1.Text = "Color Levels";
 
             ClientSize = new Size(788, 276 + statusStrip1.Height);
-
             flowLayout.Height = 276;
-            //flowLayout.Top = 10;
             redPanel.Size = new Size(256, 256);
             greenPanel.Size = new Size(256, 256);
             bluePanel.Size = new Size(256, 256);
-
-            //redPanel.Left = 10;
-            //redPanel.Top = 10;
-
-            //greenPanel.Left = 100;
-            //greenPanel.Top = 10;
-
-            //bluePanel.Left = 500;
-            //bluePanel.Top = 10;
-
+            // Creating graphics for 3 channels
             graphicsRed = redPanel.CreateGraphics();
             graphicsGreen = greenPanel.CreateGraphics();
             graphicsBlue = bluePanel.CreateGraphics();
-
+            // Storing values
             float[] redValues = new float[256];
             float[] greenValues = new float[256];
             float[] blueValues = new float[256];
-
+            // Loop throgh histogram tables
             for (int i = 0; i < 256; ++i)
             {
                 redValues[i] = (float)histogram.HistogramTableRed[i] / histogram.Max;
                 greenValues[i] = (float)histogram.HistogramTableGreen[i] / histogram.Max;
                 blueValues[i] = (float)histogram.HistogramTableBlue[i] / histogram.Max;
             }
-
+            // Creating bitmaps for 3 channels
             histogramImageRed = new Bitmap(512, 256);
             histogramImageGreen = new Bitmap(512, 256);
             histogramImageBlue = new Bitmap(512, 256);
-
+            // Initializing graphics objects
             Graphics graphicsImageRed = Graphics.FromImage(histogramImageRed);
             Graphics graphicsImageGreen = Graphics.FromImage(histogramImageGreen);
             Graphics graphicsImageBlue = Graphics.FromImage(histogramImageBlue);
-
+            // Clearing
             graphicsImageRed.Clear(Color.White);
             graphicsImageGreen.Clear(Color.White);
             graphicsImageBlue.Clear(Color.White);
-
+            // Drawing histograms
             for (int i = 0; i < 256; ++i)
             {
                 graphicsImageRed.DrawLine(Pens.Red, new Point(i, 255), new Point(i, 256 - (int)(256f * redValues[i])));
@@ -80,17 +70,21 @@ namespace ImageProcessingAlgorithms
         }
         private void redPanel_Paint(object sender, PaintEventArgs e)
         {
+            // Show red
             graphicsRed.DrawImage(histogramImageRed, new Point());
         }
         private void greenPanel_Paint(object sender, PaintEventArgs e)
         {
+            // Show green
             graphicsGreen.DrawImage(histogramImageGreen, new Point());
         }
         private void bluePanel_Paint(object sender, PaintEventArgs e)
         {
+            // Show blue
             graphicsBlue.DrawImage(histogramImageBlue, new Point());
         }
 
+        // Show luminosity levels for mouse hover
         private void redPanel_MouseMove(object sender, MouseEventArgs e)
         {
             toolStripStatusLabel1.Text = histogram.HistogramTableRed[e.X] + " pixels with a red level of " + e.X.ToString();

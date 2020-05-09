@@ -43,27 +43,22 @@ namespace ImageProcessingAlgorithms
         public bool isGrayscale = false;
         public int Width { get; }
         public int Height { get; }
-        public Size Size
-        {
-            get { return new Size(Width, Height); }
-        }
-        public static int BytesPerPixel
-        {
-            get { return 4; }
-        }
+        public Size Size => new Size(Width, Height);
+        public static int BytesPerPixel => 4;
 
+        // color subscription
         public Color this[int x, int y]
         {
             get
             {
-                //while (x < 0)
-                //    x += Width;
-                //while (x >= Width)
-                //    x -= Width;
-                //while (y < 0)
-                //    y += Height;
-                //while (y >= Height)
-                //    y -= Height;
+                while (x < 0)
+                    x += Width;
+                while (x >= Width)
+                    x -= Width;
+                while (y < 0)
+                    y += Height;
+                while (y >= Height)
+                    y -= Height;
 
                 unsafe
                 {
@@ -128,6 +123,7 @@ namespace ImageProcessingAlgorithms
             }
         }
 
+        // Init with width and height
         public FastBitmap(int width, int height)
         {
             Width = width;
@@ -138,6 +134,7 @@ namespace ImageProcessingAlgorithms
             stride = bitmapData.Stride / BytesPerPixel;
         }
 
+        // Init from bitmap
         public FastBitmap(Bitmap bitmap)
         {
             if (bitmap == null)
@@ -161,6 +158,7 @@ namespace ImageProcessingAlgorithms
             stride = bitmapData.Stride / BytesPerPixel;
         }
 
+        // draw bitmap using graphics
         public void Draw(Graphics graphics, int x, int y)
         {
             Unlock();

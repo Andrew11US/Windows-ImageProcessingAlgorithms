@@ -45,8 +45,6 @@ namespace ImageProcessingAlgorithms
             applyBtn.Top = 145;
             applyBtn.Left = 110;
             Calculate();
-
-            // ALERT: Refactor group layout <<<<<<<<<<< !!!
         }
 
         private void Calculate()

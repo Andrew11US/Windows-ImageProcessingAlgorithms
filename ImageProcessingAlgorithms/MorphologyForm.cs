@@ -17,6 +17,7 @@ namespace ImageProcessingAlgorithms
         public int iterations = 1;
         public MorphologyView(string name)
         {
+            // UI setup
             InitializeComponent();
             crossRadio.Checked = true;
             Text = "Element Selection : " + name;
@@ -38,6 +39,7 @@ namespace ImageProcessingAlgorithms
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
+            // Number of iterations
             iterations = trackBar1.Value;
             label1.Text = "Iterations: " + iterations;
         }

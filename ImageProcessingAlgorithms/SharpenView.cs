@@ -8,10 +8,12 @@ namespace ImageProcessingAlgorithms
 {
     public partial class SharpenView : Form
     {
+        // Variables
         public BorderType borderType = BorderType.Default;
         public Matrix<float> kernel = new Matrix<float>(new float[3,3] { { 0, -1, 0 }, { -1, 4, -1 }, { 0, -1, 0 } });
         public SharpenView(string name)
         {
+            // UI setup
             InitializeComponent();
             mask1Btn.Checked = true;
             isolatedBtn.Checked = true;
@@ -45,6 +47,7 @@ namespace ImageProcessingAlgorithms
             applyBtn.Left = 110;
         }
 
+        // Mask radio buttons
         private void mask1Btn_CheckedChanged(object sender, EventArgs e)
         {
             kernel = new Matrix<float>(new float[3, 3] { { 0, -1, 0 }, { -1, 4, -1 }, { 0, -1, 0 } });
@@ -60,6 +63,7 @@ namespace ImageProcessingAlgorithms
             kernel = new Matrix<float>(new float[3, 3] { { 1, -2, 1 }, { -2, 4, -2 }, { 1, -2, 1 } });
         }
 
+        // Border style radio buttons
         private void isolatedBtn_CheckedChanged(object sender, EventArgs e)
         {
             borderType = BorderType.Isolated;

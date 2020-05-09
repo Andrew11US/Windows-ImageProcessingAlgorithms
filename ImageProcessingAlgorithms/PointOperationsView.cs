@@ -12,17 +12,13 @@ namespace ImageProcessingAlgorithms
 {
     public partial class PointOperationsView : Form
     {
+        // Getters
         public string Operation => operationComboBox.Text;
-        public string Image1
-        {
-            get { return image1ComboBox.Text; }
-        }
-        public string Image2
-        {
-            get { return image2ComboBox.Text; }
-        }
+        public string Image1 => image1ComboBox.Text;
+        public string Image2 => image2ComboBox.Text;
         public PointOperationsView(string[] images)
         {
+            // UI setup
             InitializeComponent();
             
             Text = "Point Operation";

@@ -17,12 +17,12 @@ namespace ImageProcessingAlgorithms
 {
     public partial class MetricsView : Form
     {
-        private string path;
-        public MetricsView(FastBitmap bmp, string path, string name)
+        private ImageView imageView;
+        public MetricsView(ImageView imageView, string name)
         {
+            // UI setup
             InitializeComponent();
             Text = "Image Metrics : " + name;
-            this.path = path;
             ClientSize = new Size(300, 600);
             label1.Size = new Size(280, 30);
             textBox1.Size = new Size(280, 490);
@@ -35,20 +35,19 @@ namespace ImageProcessingAlgorithms
             doneBtn.Top = 550;
             doneBtn.Left = 110;
             doneBtn.Focus();
-
-            ShowMetrics(bmp);
+            this.imageView = imageView;
+            ShowMetrics();
         }
 
-        private void ShowMetrics(FastBitmap bmp)
+        // Show metrics method
+        private void ShowMetrics()
         {
-            Mat src = new Mat();
-            Image<Gray, byte> gray = new Image<Gray, byte>(path);
+            // Variables declaration
+            Image<Gray, byte> gray = imageView.Mat.ToImage<Gray, byte>();
             Mat thresh = new Mat();
             Mat cannyOutput = new Mat();
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
             Mat hierarchy = new Mat();
-
-            src = CvInvoke.Imread(path);
 
             /// Central points
             int cX = 0, cY = 0;
@@ -56,7 +55,6 @@ namespace ImageProcessingAlgorithms
             int totalPixels = 0, width = 0, height = 0;
             double area = 0, perimeter = 0;
 
-            CvInvoke.CvtColor(src, gray, ColorConversion.Bgr2Gray);
             CvInvoke.Threshold(gray, thresh, 127, 255, ThresholdType.Binary);
 
             /// Getting moments

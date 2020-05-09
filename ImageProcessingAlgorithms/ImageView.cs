@@ -20,12 +20,9 @@ namespace ImageProcessingAlgorithms
         // Variable declarations
         public string path;
         public FastBitmap bitmap;
-        private Mat mat;
-        //public bool imageChanged = false;
-        //public int ChildID { get; set; }
         public string FileName => Path.GetFileName(path);
         public Histogram Histogram => new Histogram(bitmap, false);
-        public Mat Mat => mat;
+        public Mat Mat { get; private set; }
         public FastBitmap image
         {
             get => bitmap;
@@ -49,7 +46,7 @@ namespace ImageProcessingAlgorithms
                 pictureBox.Image = bmp;
 
                 this.path = path;
-                mat = CvInvoke.Imread(path);
+                Mat = CvInvoke.Imread(path);
             }
             catch (Exception error)
             {
@@ -73,7 +70,7 @@ namespace ImageProcessingAlgorithms
                 pictureBox.Image = bmp;
 
                 Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-                mat = img.Mat;
+                Mat = img.Mat;
                 this.path = "";
             }
             catch (Exception error)
@@ -86,7 +83,7 @@ namespace ImageProcessingAlgorithms
         {
             // Getting Mat from bitmap
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-            mat = img.Mat;
+            Mat = img.Mat;
 
             pictureBox.Image = null;
             pictureBox.Image = bmp;
@@ -95,7 +92,8 @@ namespace ImageProcessingAlgorithms
 
         public void setImage(Mat mat)
         {
-            this.mat = mat;
+            // Setting Mat object and populating to imageView
+            Mat = mat;
             pictureBox.Image = null;
             pictureBox.Image = (Bitmap)mat.ToBitmap().Clone();
             bitmap = new FastBitmap((Bitmap)mat.ToBitmap().Clone());

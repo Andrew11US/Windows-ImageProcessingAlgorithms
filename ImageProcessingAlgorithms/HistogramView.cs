@@ -13,30 +13,32 @@ namespace ImageProcessingAlgorithms
 {
     public partial class HistogramView : Form
     {
+        // Variables
         private Graphics graphics;
         private Histogram histogram;
         private Bitmap histogramImage;
         public HistogramView(Histogram histogram, string name)
         {
+            // UI setup
             InitializeComponent();
-            Text = "Histogram of " + name;
-            toolStripStatusLabel1.Text = "Gray Levels count";
+            Text = "Histogram : " + name;
+            toolStripStatusLabel1.Text = "Gray Levels";
 
             ClientSize = new Size(276, 276 + statusStrip1.Height); ;
             graphicsPanel.Size = new Size(256, 256);
             graphicsPanel.Left = 10;
             graphicsPanel.Top = 10;
             graphics = graphicsPanel.CreateGraphics();
-
+            // Loop through histogram 
             float[] values = new float[256];
             for (int i = 0; i < 256; ++i)
             {
                 values[i] = (float)histogram.HistogramTable[i] / histogram.Max;
             }
-
+            // Creating image for histogram
             histogramImage = new Bitmap(512, 256);
             Graphics graphicsImage = Graphics.FromImage(histogramImage);
-
+            // Drawing on image using graphics
             graphicsImage.Clear(Color.White);
             for (int i = 0; i < 256; ++i)
             {
@@ -47,10 +49,12 @@ namespace ImageProcessingAlgorithms
         }
         private void graphicsPanel_Paint(object sender, PaintEventArgs e)
         {
+            // drawing gray levels histogram on panel
             graphics.DrawImage(histogramImage, new Point());
         }
         private void graphicsPanel_MouseMove(object sender, MouseEventArgs e)
         {
+            // mouse hover method
             toolStripStatusLabel1.Text = histogram.HistogramTable[e.X] + " pixels with a gray level of " + e.X.ToString();
         }
     }

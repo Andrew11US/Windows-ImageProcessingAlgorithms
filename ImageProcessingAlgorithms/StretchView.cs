@@ -12,12 +12,14 @@ namespace ImageProcessingAlgorithms
 {
     public partial class StretchView : Form
     {
+        // Variables
         private Graphics graphics;
         private Bitmap histogramImage;
         public int lowerBound;
         public int upperBound;
         public StretchView(Histogram histogram, string name)
         {
+            // UI setup
             InitializeComponent();
             Text = "Histogram Stretching : " + name;
             ClientSize = new Size(532, 400 + statusStrip1.Height);
@@ -37,7 +39,7 @@ namespace ImageProcessingAlgorithms
             buttonsPanel.Top = 356;
             buttonsPanel.Left = 10;
             graphics = histogramPanel.CreateGraphics();
-
+            // Creating histogram
             float[] values = new float[256];
             for (int i = 0; i < 256; ++i)
             {
@@ -57,11 +59,13 @@ namespace ImageProcessingAlgorithms
         private void cancelBtn_Click(object sender, EventArgs e) { Close(); }
         private void trackBarLow_Scroll(object sender, EventArgs e)
         {
+            // getting lower bound value
             lowerBound = trackBarLower.Value;
             lowLbl.Text = lowerBound.ToString();
         }
         private void trackBarHigh_Scroll(object sender, EventArgs e)
         {
+            // getting upper value
             upperBound = trackBarUpper.Value;
             highLbl.Text = upperBound.ToString();
         }

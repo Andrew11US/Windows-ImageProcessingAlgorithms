@@ -14,6 +14,7 @@ namespace ImageProcessingAlgorithms
 {
     public partial class DoubleFiltrationView : Form
     {
+        // Variables
         private double divisor1 = 1;
         private double divisor2 = 1;
         private double divisor3 = 1;
@@ -24,6 +25,7 @@ namespace ImageProcessingAlgorithms
         public Matrix<double> kernel = new Matrix<double>(new double[5, 5]);
         public DoubleFiltrationView(string name)
         {
+            // UI setup
             InitializeComponent();
             isolatedBtn.Checked = true;
             Text = "Double Filtration : " + name;
@@ -34,6 +36,7 @@ namespace ImageProcessingAlgorithms
 
         private void CalculateFirst3x3()
         {
+            // Calculating first matrix
             first3x3[0, 0] = ParseInt(mask1Box.Text);
             first3x3[0, 1] = ParseInt(mask2Box.Text);
             first3x3[0, 2] = ParseInt(mask3Box.Text);
@@ -64,6 +67,7 @@ namespace ImageProcessingAlgorithms
 
         private void CalculateSecond3x3()
         {
+            // Calculating second matrix
             second3x3[0, 0] = ParseInt(mask2_1Box.Text);
             second3x3[0, 1] = ParseInt(mask2_2Box.Text);
             second3x3[0, 2] = ParseInt(mask2_3Box.Text);
@@ -94,6 +98,7 @@ namespace ImageProcessingAlgorithms
 
         private void CalculateKernel()
         {
+            // Calculating kernel from 3x3 matrix combination
             Matrix<double> temp = new Matrix<double>(new double[5, 5]);
             for (int i = 0; i < 5; ++i)
             {
@@ -149,6 +154,7 @@ namespace ImageProcessingAlgorithms
             kernelDivisorLbl.Text = divisor3.ToString();
         }
 
+        // Parse Int from String
         private int ParseInt(string s)
         {
             try { return int.Parse(s); }
@@ -157,6 +163,7 @@ namespace ImageProcessingAlgorithms
 
         private void autoCheckBox1_CheckedChanged(object sender, EventArgs e)
         {
+            // Autodivisor setup
             if (autoCheckBox1.Checked == false) divisorBox1.Enabled = true;
             else divisorBox1.Enabled = false;
             CalculateFirst3x3();
@@ -164,6 +171,7 @@ namespace ImageProcessingAlgorithms
 
         private void autoCheckBox2_CheckedChanged(object sender, EventArgs e)
         {
+            // Autodivisor setup
             if (autoCheckBox2.Checked == false) divisorBox2.Enabled = true;
             else divisorBox1.Enabled = false;
             CalculateSecond3x3();
@@ -184,6 +192,7 @@ namespace ImageProcessingAlgorithms
             borderType = BorderType.Replicate;
         }
 
+        // Apply button action
         private void applyBtn_Click(object sender, EventArgs e)
         {
             try

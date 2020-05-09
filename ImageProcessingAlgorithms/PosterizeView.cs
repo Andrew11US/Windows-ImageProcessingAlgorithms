@@ -12,11 +12,13 @@ namespace ImageProcessingAlgorithms
 {
     public partial class PosterizeView : Form
     { 
+        // Variables
         private Graphics graphics;
         private Bitmap histogramImage;
         public int grayLevels = 128;
         public PosterizeView(Histogram histogram, string name)
         {
+            // UI setup
             InitializeComponent();
             Text = "Posterize : " + name;
             ClientSize = new Size(532, 380);
@@ -34,7 +36,7 @@ namespace ImageProcessingAlgorithms
             applyBtn.Left = 230;
 
             graphics = histogramPanel.CreateGraphics();
-
+            // Creating histogram to show in posterization view
             float[] values = new float[256];
             for (int i = 0; i < 256; ++i)
             {
@@ -52,11 +54,13 @@ namespace ImageProcessingAlgorithms
         }
         private void slider_Scroll(object sender, EventArgs e)
         {
+            // Select number of gray levels
             grayLevels = thresholdSlider.Value;
             thresholdLbl.Text = grayLevels.ToString();
         }
         private void histogramPanel_Paint(object sender, PaintEventArgs e)
         {
+            // Draw histogram on panel
             graphics.DrawImage(histogramImage, new Point());
         }
     }
