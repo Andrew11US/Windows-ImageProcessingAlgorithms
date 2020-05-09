@@ -46,9 +46,7 @@ namespace ImageProcessingAlgorithms
         ShapeDetectionView shapeDetectionView;
         AboutView aboutView;
 
-        // Additional variables
-        private int childFormNumber = 0;
-
+        // Main constructor
         public BaseForm()
         {
             InitializeComponent();
@@ -56,16 +54,9 @@ namespace ImageProcessingAlgorithms
             CenterToScreen();
         }
 
-        private void ShowNewForm(object sender, EventArgs e)
-        {
-            Form childForm = new Form();
-            childForm.MdiParent = this;
-            childForm.Text = "Window " + childFormNumber++;
-            childForm.Show();
-        }
-
         private void OpenFile(object sender, EventArgs e)
         {
+            // Open File method
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             openFileDialog.Filter = "Image files |*.jpg; *.jpeg; *.png; *.gif; *.tiff; *.bmp|All files (*.*)|*.*";
@@ -87,29 +78,24 @@ namespace ImageProcessingAlgorithms
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            //saveFileDialog.Filter = "Image Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            //if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
-            //{
-            //    string FileName = saveFileDialog.FileName;
-            //}
-
+            // Save action when imageView selected
             try
             {
                 ((ImageView)ActiveMdiChild).Save();
             }
-            catch (Exception exc)
+            catch
             {
-                MessageBox.Show(exc.Message, "Error saving file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Selected Item could not be saved!", "Error saving file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            // Close action
+            Close();
         }
 
+        // Window layout actions
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.Cascade);
@@ -130,17 +116,21 @@ namespace ImageProcessingAlgorithms
             LayoutMdi(MdiLayout.ArrangeIcons);
         }
 
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Close inner window if axists
+            if (ActiveMdiChild != null) ActiveMdiChild.Close();
+        }
+
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (Form childForm in MdiChildren)
-            {
-                childForm.Close();
-            }
+            foreach (Form childForm in MdiChildren) childForm.Close();
         }
 
         private void showHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MdiChildren.Count() != 0)
+            // Histogram view setup
+            if (ActiveMdiChild is ImageView)
             {
                 showHistogramToolStripMenuItem.Enabled = true;
                 histogramView = new HistogramView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
@@ -149,13 +139,30 @@ namespace ImageProcessingAlgorithms
             }
             else
             {
-                showHistogramToolStripMenuItem.Enabled = false;
+                MessageBox.Show("Image shold be selected!","HistogramView Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
 
         }
 
+        private void showRGBHistogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // RGB Histegram view setup
+            if (ActiveMdiChild is ImageView)
+            {
+                showHistogramToolStripMenuItem.Enabled = true;
+                histogramRGBView = new HistogramRGBView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
+                histogramRGBView.MdiParent = this;
+                histogramRGBView.Show();
+            }
+            else
+            {
+                MessageBox.Show("Image shold be selected!", "HistogramView Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+        }
+
         private void equalizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Image histogram equalization
             FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             ImageManager.EqualizeHistogram(bmp, ((ImageView)ActiveMdiChild).Histogram, EqualizationMethod.Averages);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
@@ -163,6 +170,7 @@ namespace ImageProcessingAlgorithms
         }
         private void stretchHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Image histogram stretching
             FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             stretchView = new StretchView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
 
@@ -184,21 +192,6 @@ namespace ImageProcessingAlgorithms
                 ImageManager.Posterize(bmp, posterizeView.grayLevels);
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
-            }
-        }
-
-        private void showRGBHistogramToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MdiChildren.Count() != 0)
-            {
-                showHistogramToolStripMenuItem.Enabled = true;
-                histogramRGBView = new HistogramRGBView(((ImageView)ActiveMdiChild).Histogram, ((ImageView)ActiveMdiChild).FileName);
-                histogramRGBView.MdiParent = this;
-                histogramRGBView.Show();
-            }
-            else
-            {
-                showHistogramToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -244,12 +237,6 @@ namespace ImageProcessingAlgorithms
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
             }
-        }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Close inner window if axists
-            if (ActiveMdiChild != null) ActiveMdiChild.Close();
         }
 
         private void makeGrayscaleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -305,7 +292,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -318,31 +305,18 @@ namespace ImageProcessingAlgorithms
 
         private void blurToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // MARK: EmguCV requires path because of inability to successfully convert Bitmap to Mat object
-            string path = ((ImageView)ActiveMdiChild).path;
             blurSelectView = new BlurSelectView(((ImageView)ActiveMdiChild).FileName);
 
             if (blurSelectView.ShowDialog() == DialogResult.OK)
             {
                 Mat src = new Mat();
                 Mat dst = new Mat();
-                src = CvInvoke.Imread(path);
+                src = ((ImageView)ActiveMdiChild).Mat;
                 dst = src.Clone();
                 CvInvoke.Blur(src, dst, new Size(blurSelectView.maskSize, blurSelectView.maskSize), new Point(-1, -1), blurSelectView.borderType);
-                // MARK: Uncomment following line to present image in native EmguCV Window
-                //CvInvoke.Imshow("Output image", dst);
 
-                // NOTE: Remove '/' at the beginning to present image in a new Window
-                //       Add '/' to alter currently selected
-
-                /*///
-                ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
+                ((ImageView)ActiveMdiChild).setImage(dst);
                 ((ImageView)ActiveMdiChild).Refresh();
-                /*/
-                ImageView imageView = new ImageView((Bitmap)dst.ToBitmap().Clone());
-                imageView.MdiParent = this;
-                imageView.Show();
-                //*///
             }
         }
 
@@ -365,7 +339,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -396,7 +370,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -427,7 +401,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -456,7 +430,7 @@ namespace ImageProcessingAlgorithms
             // NOTE: Remove '/' at the beginning to present image in a new Window
             //       Add '/' to alter currently selected
 
-            /*///
+            //*///
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
@@ -484,7 +458,7 @@ namespace ImageProcessingAlgorithms
             // NOTE: Remove '/' at the beginning to present image in a new Window
             //       Add '/' to alter currently selected
 
-            /*///
+            //*///
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
@@ -514,7 +488,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -541,7 +515,7 @@ namespace ImageProcessingAlgorithms
             // NOTE: Remove '/' at the beginning to present image in a new Window
             //       Add '/' to alter currently selected
 
-            /*///
+            //*///
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
@@ -567,7 +541,7 @@ namespace ImageProcessingAlgorithms
             // NOTE: Remove '/' at the beginning to present image in a new Window
             //       Add '/' to alter currently selected
 
-            /*///
+            //*///
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
@@ -593,7 +567,7 @@ namespace ImageProcessingAlgorithms
             // NOTE: Remove '/' at the beginning to present image in a new Window
             //       Add '/' to alter currently selected
 
-            /*///
+            //*///
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
@@ -622,7 +596,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -656,7 +630,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -690,7 +664,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -724,7 +698,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -758,7 +732,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)outputImage.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -801,7 +775,7 @@ namespace ImageProcessingAlgorithms
                 // NOTE: Remove '/' at the beginning to present image in a new Window
                 //       Add '/' to alter currently selected
 
-                /*///
+                //*///
                 ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
                 ((ImageView)ActiveMdiChild).Refresh();
                 /*/
@@ -814,6 +788,7 @@ namespace ImageProcessingAlgorithms
 
         private void skeletonizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Thinning image
             FastBitmap bmp = ((ImageView)ActiveMdiChild).image;
             ImageManager.Thinning(bmp);
             ((ImageView)ActiveMdiChild).setImage((Bitmap)bmp.bitmap.Clone());
@@ -852,7 +827,7 @@ namespace ImageProcessingAlgorithms
             // NOTE: Remove '/' at the beginning to present image in a new Window
             //       Add '/' to alter currently selected
 
-            /*///
+            //*///
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
@@ -882,7 +857,7 @@ namespace ImageProcessingAlgorithms
             // NOTE: Remove '/' at the beginning to present image in a new Window
             //       Add '/' to alter currently selected
 
-            /*///
+            //*///
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
@@ -936,7 +911,7 @@ namespace ImageProcessingAlgorithms
             CvInvoke.Watershed(dst, markers);
             // Converting dst to Image to perform subscription directly without pointers
             Image<Bgr, byte> outputImage = dst.ToImage<Bgr, byte>(false);
-
+            
             // Draw distinct objects red
             for (int i = 0; i < markers.Rows; ++i)
                 for (int j = 0; j < markers.Cols; ++j)
@@ -948,7 +923,7 @@ namespace ImageProcessingAlgorithms
             // NOTE: Remove '/' at the beginning to present image in a new Window
             //       Add '/' to alter currently selected
 
-            /*///
+            //*///
             ((ImageView)ActiveMdiChild).setImage((Bitmap)dst.ToBitmap().Clone());
             ((ImageView)ActiveMdiChild).Refresh();
             /*/
@@ -1017,7 +992,7 @@ namespace ImageProcessingAlgorithms
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Show about prompt
+            // Show about the project info
             aboutView = new AboutView();
             aboutView.ShowDialog();
         }

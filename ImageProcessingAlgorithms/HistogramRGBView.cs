@@ -24,6 +24,7 @@ namespace ImageProcessingAlgorithms
         {
             InitializeComponent();
             Text = "Histogram of " + name;
+            toolStripStatusLabel1.Text = "Color Levels";
 
             ClientSize = new Size(788, 276 + statusStrip1.Height);
 

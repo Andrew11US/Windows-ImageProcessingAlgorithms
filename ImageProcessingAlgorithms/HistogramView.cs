@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace ImageProcessingAlgorithms
         {
             InitializeComponent();
             Text = "Histogram of " + name;
+            toolStripStatusLabel1.Text = "Gray Levels count";
 
             ClientSize = new Size(276, 276 + statusStrip1.Height); ;
             graphicsPanel.Size = new Size(256, 256);

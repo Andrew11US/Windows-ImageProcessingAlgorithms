@@ -10,41 +10,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Emgu.CV;
 
 namespace ImageProcessingAlgorithms
 {
     public partial class ImageView : Form
     {
-        // Variables declarations
+        // Variable declarations
         public string path;
         public FastBitmap bitmap;
-        private Graphics graphics;
-        public bool imageChanged = false;
-        public int ChildID { get; set; }
-        public string FileName
-        {
-            get { return Path.GetFileName(path); }
-        }
-        public Histogram Histogram
-        {
-            get { return new Histogram(bitmap, false); }
-        }
+        private Mat mat;
+        //public bool imageChanged = false;
+        //public int ChildID { get; set; }
+        public string FileName => Path.GetFileName(path);
+        public Histogram Histogram => new Histogram(bitmap, false);
+        public Mat Mat => mat;
         public FastBitmap image
         {
             get => bitmap;
             set => bitmap = value;
         }
 
-        public ImageView()
-        {
-            InitializeComponent();
-        }
+        // Initialization with path
         public ImageView(string path)
         {
             InitializeComponent();
             
             try
             {
+                // UI setup
                 Bitmap bmp = (Bitmap)Image.FromFile(path);
                 bitmap = new FastBitmap((Bitmap)Image.FromFile(path));
                 pictureBox.Left = 0;
@@ -54,12 +48,15 @@ namespace ImageProcessingAlgorithms
                 pictureBox.Image = bmp;
 
                 this.path = path;
+                mat = CvInvoke.Imread(path);
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "Error creating bitmap!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
+
+        // Initialization with bitmap
         public ImageView(Bitmap b)
         {
             InitializeComponent();
@@ -81,48 +78,20 @@ namespace ImageProcessingAlgorithms
                 MessageBox.Show(error.Message, "Error creating bitmap!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
-        //public ImageView(string path, int id)
-        //{
-        //    InitializeComponent();
-
-
-        //    StreamReader reader = new StreamReader(path);
-        //    Bitmap bmpTemp = (Bitmap)Bitmap.FromStream(reader.BaseStream);
-        //    Bitmap bmpTemp2 = new Bitmap(bmpTemp.Size.Width, bmpTemp.Size.Height);
-        //    bmpTemp2.SetResolution(bmpTemp.HorizontalResolution, bmpTemp.VerticalResolution);
-        //    Graphics gr = Graphics.FromImage(bmpTemp2);
-        //    gr.DrawImage(bmpTemp, new Point());
-        //    bmpTemp.Dispose();
-        //    reader.Close();
-
-        //    bitmap = new FastBitmap(bmpTemp2);
-        //    bitmap.bitmap.SetResolution(96, 96);
-
-        //    Text = Path.GetFileName(path);
-        //    ClientSize = bitmap.Size;
-        //    graphicsPanel.Left = 0;
-        //    graphicsPanel.Top = 0;
-        //    graphicsPanel.Size = bitmap.Size;
-
-        //    graphics = this.graphicsPanel.CreateGraphics();
-
-        //}
-
-        public void Redraw()
-        {
-            //graphics.DrawImage(bmp, new Point());
-            bitmap.Draw(graphics, 0, 0);
-        }
-
-        private void graphicsPanel_Paint(object sender, PaintEventArgs e)
-        {
-            //Redraw();
-        }
 
         public void setImage(Bitmap bmp)
         {
             pictureBox.Image = null;
             pictureBox.Image = bmp;
+            bitmap = new FastBitmap((Bitmap)bmp.Clone());
+        }
+
+        public void setImage(Mat mat)
+        {
+            this.mat = mat;
+            pictureBox.Image = null;
+            pictureBox.Image = (Bitmap)mat.ToBitmap().Clone();
+            bitmap = new FastBitmap((Bitmap)mat.ToBitmap().Clone());
         }
 
         // Save image method
@@ -163,51 +132,7 @@ namespace ImageProcessingAlgorithms
             }
         }
 
-        //public void Save(string filePath)
-        //{
-        //    StreamWriter writer = new StreamWriter(filePath);
-        //    ImageFormat format;
-        //    switch (Path.GetExtension(filePath).ToLower())
-        //    {
-        //        case ".jpg":
-        //        case ".jpeg":
-        //            format = ImageFormat.Jpeg;
-        //            break;
-        //        case ".gif":
-        //            format = ImageFormat.Gif;
-        //            break;
-        //        case ".png":
-        //            format = ImageFormat.Png;
-        //            break;
-        //        case ".tiff":
-        //            format = ImageFormat.Tiff;
-        //            break;
-        //        default:
-        //            format = ImageFormat.Bmp;
-        //            break;
-        //    }
-        //    bitmap.Save(writer.BaseStream, format);
-        //    writer.Close();
-        //}
-
-        private void ImageForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (imageChanged)
-            {
-                switch (MessageBox.Show("Image \"" + Path.GetFileName(path) + "\" was changed. Save changes?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
-                {
-                    case DialogResult.Yes:
-                        Save();
-                        break;
-                    case DialogResult.Cancel:
-                        e.Cancel = true;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
+        // Gets Hash from Image using SHA256 hashing algorithm
         private static string GetHash(string input)
         {
             // Creates SHA256 Hash from input and adds random Int to make output unique
@@ -216,7 +141,7 @@ namespace ImageProcessingAlgorithms
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 byte[] data = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input+rand.Next(0,100)));
-                for (int i = 0; i < data.Length; i++) sBuilder.Append(data[i].ToString("x2"));
+                for (int i = 0; i < 5; i++) sBuilder.Append(data[i].ToString("x2"));
             }
             return sBuilder.ToString();
         }
