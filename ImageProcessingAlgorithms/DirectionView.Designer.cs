@@ -60,6 +60,7 @@
             // nwBtn
             // 
             this.nwBtn.AutoSize = true;
+            this.nwBtn.Checked = true;
             this.nwBtn.Location = new System.Drawing.Point(3, 3);
             this.nwBtn.Name = "nwBtn";
             this.nwBtn.Size = new System.Drawing.Size(137, 29);
@@ -184,6 +185,7 @@
             // isolatedBtn
             // 
             this.isolatedBtn.AutoSize = true;
+            this.isolatedBtn.Checked = true;
             this.isolatedBtn.Location = new System.Drawing.Point(3, 3);
             this.isolatedBtn.Name = "isolatedBtn";
             this.isolatedBtn.Size = new System.Drawing.Size(105, 29);
@@ -290,6 +292,7 @@
             // 
             // DirectionView
             // 
+            this.AcceptButton = this.applyBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 600);

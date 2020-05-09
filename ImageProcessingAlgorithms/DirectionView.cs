@@ -23,7 +23,7 @@ namespace ImageProcessingAlgorithms
         public DirectionView(string name)
         {
             InitializeComponent();
-            nBtn.Checked = true;
+            nwBtn.Checked = true;
             isolatedBtn.Checked = true;
             Text = "Direction Detection : " + name;
             ClientSize = new Size(390, 220);
@@ -48,7 +48,7 @@ namespace ImageProcessingAlgorithms
                 { 1, 1, -1 }, 
                 { 0, -1, -1 } 
             });
-    }
+        }
 
         private void nBtn_CheckedChanged(object sender, EventArgs e)
         {

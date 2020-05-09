@@ -200,7 +200,7 @@
             // 
             // matrixLayout
             // 
-            this.matrixLayout.BackColor = System.Drawing.Color.Red;
+            this.matrixLayout.BackColor = System.Drawing.Color.Transparent;
             this.matrixLayout.Controls.Add(this.mask1Box);
             this.matrixLayout.Controls.Add(this.mask2Box);
             this.matrixLayout.Controls.Add(this.mask3Box);
@@ -282,6 +282,7 @@
             // 
             // CustomMaskView
             // 
+            this.AcceptButton = this.applyBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 553);

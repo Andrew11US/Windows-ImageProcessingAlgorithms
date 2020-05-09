@@ -38,12 +38,10 @@
             this.highLbl = new System.Windows.Forms.Label();
             this.histogramPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.rowLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonsPanel = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarUpper)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.rowLayout.SuspendLayout();
             this.buttonsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -140,19 +138,11 @@
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 661);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 678);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1132, 39);
+            this.statusStrip1.Size = new System.Drawing.Size(1132, 22);
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 30);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // rowLayout
             // 
@@ -182,6 +172,7 @@
             // 
             // StretchView
             // 
+            this.AcceptButton = this.applyBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1132, 700);
@@ -196,8 +187,6 @@
             this.Text = "StretchView";
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLower)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarUpper)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.rowLayout.ResumeLayout(false);
             this.rowLayout.PerformLayout();
             this.buttonsPanel.ResumeLayout(false);
@@ -217,7 +206,6 @@
         private System.Windows.Forms.Label highLbl;
         private System.Windows.Forms.Panel histogramPanel;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.FlowLayoutPanel rowLayout;
         private System.Windows.Forms.FlowLayoutPanel buttonsPanel;
     }

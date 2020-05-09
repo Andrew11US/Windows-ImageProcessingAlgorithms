@@ -135,8 +135,9 @@
             this.trackBarLower.TabIndex = 15;
             this.trackBarLower.Scroll += new System.EventHandler(this.trackBarLow_Scroll);
             // 
-            // ThresholdGrayscale
+            // ThresholdGrayscaleView
             // 
+            this.AcceptButton = this.applyBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 635);
@@ -146,7 +147,7 @@
             this.Controls.Add(this.trackBarUpper);
             this.Controls.Add(this.trackBarLower);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "ThresholdGrayscale";
+            this.Name = "ThresholdGrayscaleView";
             this.Text = "ThresholdGrayscale";
             this.rowLayout.ResumeLayout(false);
             this.rowLayout.PerformLayout();

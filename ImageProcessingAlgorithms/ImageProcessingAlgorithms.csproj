@@ -287,6 +287,9 @@
     <Content Include="opencv_videoio_ffmpeg420_64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\cross50x50.png" />
+    <None Include="Resources\rect50x50.png" />
     <Content Include="vcruntime140.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

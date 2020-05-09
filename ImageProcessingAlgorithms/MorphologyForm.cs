@@ -21,6 +21,9 @@ namespace ImageProcessingAlgorithms
             crossRadio.Checked = true;
             Text = "Element Selection : " + name;
             label1.Text = "Iterations: " + trackBar1.Value;
+
+            pictureBox1.Size = new Size(50, 50);
+            pictureBox2.Size = new Size(50, 50);
         }
 
         private void crossRadio_CheckedChanged(object sender, EventArgs e)

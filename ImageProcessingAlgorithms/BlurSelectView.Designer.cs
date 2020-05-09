@@ -32,15 +32,15 @@
             this.lblLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.thresholdLbl = new System.Windows.Forms.Label();
+            this.maskSizeSelectorUpDown = new System.Windows.Forms.NumericUpDown();
             this.isolatedBtn = new System.Windows.Forms.RadioButton();
             this.reflectedBtn = new System.Windows.Forms.RadioButton();
             this.replicateBtn = new System.Windows.Forms.RadioButton();
             this.buttonsLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this.maskSizeSelectorUpDown = new System.Windows.Forms.NumericUpDown();
             this.lblLayout.SuspendLayout();
-            this.buttonsLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maskSizeSelectorUpDown)).BeginInit();
+            this.buttonsLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // applyBtn
@@ -80,6 +80,34 @@
             this.thresholdLbl.Name = "thresholdLbl";
             this.thresholdLbl.Size = new System.Drawing.Size(0, 32);
             this.thresholdLbl.TabIndex = 3;
+            // 
+            // maskSizeSelectorUpDown
+            // 
+            this.maskSizeSelectorUpDown.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.maskSizeSelectorUpDown.Location = new System.Drawing.Point(173, 3);
+            this.maskSizeSelectorUpDown.Maximum = new decimal(new int[] {
+            499,
+            0,
+            0,
+            0});
+            this.maskSizeSelectorUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.maskSizeSelectorUpDown.Name = "maskSizeSelectorUpDown";
+            this.maskSizeSelectorUpDown.Size = new System.Drawing.Size(120, 39);
+            this.maskSizeSelectorUpDown.TabIndex = 13;
+            this.maskSizeSelectorUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.maskSizeSelectorUpDown.ValueChanged += new System.EventHandler(this.maskSizeSelectorUpDown_ValueChanged);
             // 
             // isolatedBtn
             // 
@@ -138,36 +166,9 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Select Border Fill Type:";
             // 
-            // maskSizeSelectorUpDown
-            // 
-            this.maskSizeSelectorUpDown.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.maskSizeSelectorUpDown.Location = new System.Drawing.Point(173, 3);
-            this.maskSizeSelectorUpDown.Maximum = new decimal(new int[] {
-            499,
-            0,
-            0,
-            0});
-            this.maskSizeSelectorUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.maskSizeSelectorUpDown.Name = "maskSizeSelectorUpDown";
-            this.maskSizeSelectorUpDown.Size = new System.Drawing.Size(120, 39);
-            this.maskSizeSelectorUpDown.TabIndex = 13;
-            this.maskSizeSelectorUpDown.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.maskSizeSelectorUpDown.ValueChanged += new System.EventHandler(this.maskSizeSelectorUpDown_ValueChanged);
-            // 
             // BlurSelectView
             // 
+            this.AcceptButton = this.applyBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 638);
@@ -179,9 +180,9 @@
             this.Text = "BlurSelectView";
             this.lblLayout.ResumeLayout(false);
             this.lblLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maskSizeSelectorUpDown)).EndInit();
             this.buttonsLayout.ResumeLayout(false);
             this.buttonsLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.maskSizeSelectorUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
