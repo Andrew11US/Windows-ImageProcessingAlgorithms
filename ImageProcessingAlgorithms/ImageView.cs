@@ -125,46 +125,70 @@ namespace ImageProcessingAlgorithms
             pictureBox.Image = bmp;
         }
 
+        // Save image method
         public void Save()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Image Files (*.jpg)|*.jpg|All Files (*.*)|*.*";
+            saveFileDialog.Title = "Save an Image to File";
+            // Formats
+            saveFileDialog.Filter = "JPEG Image|*.jpg|PNG Image|*.png|GIF Image|*.gif|BMP Image|*.bmp|TIFF Image|*.tiff";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
+                ImageFormat format = ImageFormat.Jpeg;
                 int width = Convert.ToInt32(bitmap.Width);
                 int height = Convert.ToInt32(bitmap.Height);
                 Bitmap bmp = new Bitmap(width, height);
                 pictureBox.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
-                bmp.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+
+                switch (saveFileDialog.FilterIndex)
+                {
+                    case 1:
+                        format = ImageFormat.Jpeg;
+                        break;
+                    case 2:
+                        format = ImageFormat.Png;
+                        break;
+                    case 3:
+                        format = ImageFormat.Gif;
+                        break;
+                    case 4:
+                        format = ImageFormat.Bmp;
+                        break;
+                    case 5:
+                        format = ImageFormat.Tiff;
+                        break;
+                }
+
+                bmp.Save(saveFileDialog.FileName, format);
             }
         }
 
-        public void Save(string filePath)
-        {
-            StreamWriter writer = new StreamWriter(filePath);
-            ImageFormat format;
-            switch (Path.GetExtension(filePath).ToLower())
-            {
-                case ".jpg":
-                case ".jpeg":
-                    format = ImageFormat.Jpeg;
-                    break;
-                case ".gif":
-                    format = ImageFormat.Gif;
-                    break;
-                case ".png":
-                    format = ImageFormat.Png;
-                    break;
-                case ".tiff":
-                    format = ImageFormat.Tiff;
-                    break;
-                default:
-                    format = ImageFormat.Bmp;
-                    break;
-            }
-            bitmap.Save(writer.BaseStream, format);
-            writer.Close();
-        }
+        //public void Save(string filePath)
+        //{
+        //    StreamWriter writer = new StreamWriter(filePath);
+        //    ImageFormat format;
+        //    switch (Path.GetExtension(filePath).ToLower())
+        //    {
+        //        case ".jpg":
+        //        case ".jpeg":
+        //            format = ImageFormat.Jpeg;
+        //            break;
+        //        case ".gif":
+        //            format = ImageFormat.Gif;
+        //            break;
+        //        case ".png":
+        //            format = ImageFormat.Png;
+        //            break;
+        //        case ".tiff":
+        //            format = ImageFormat.Tiff;
+        //            break;
+        //        default:
+        //            format = ImageFormat.Bmp;
+        //            break;
+        //    }
+        //    bitmap.Save(writer.BaseStream, format);
+        //    writer.Close();
+        //}
 
         private void ImageForm_FormClosing(object sender, FormClosingEventArgs e)
         {
