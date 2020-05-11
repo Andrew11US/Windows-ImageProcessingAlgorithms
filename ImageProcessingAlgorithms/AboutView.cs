@@ -14,6 +14,7 @@ namespace ImageProcessingAlgorithms
     {
         public AboutView()
         {
+            // UI setup
             InitializeComponent();
             Text = "About Project";
             ClientSize = new Size(500, 360);

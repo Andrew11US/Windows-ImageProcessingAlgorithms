@@ -48,7 +48,7 @@ namespace ImageProcessingAlgorithms
             applyBtn.Left = 110;
         }
 
-        // Mask radio buttons
+        // Mask radio buttons - getting kernels
         private void mask1Btn_CheckedChanged(object sender, EventArgs e)
         {
             kernel = new Matrix<float>(new float[3, 3] { { 0, -1, 0 }, { -1, 4, -1 }, { 0, -1, 0 } });

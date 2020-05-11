@@ -30,11 +30,13 @@ namespace ImageProcessingAlgorithms
 
         private void crossRadio_CheckedChanged(object sender, EventArgs e)
         {
+            // Getting kernel element type
             elementShape = ElementShape.Cross;
         }
 
         private void rectRadio_CheckedChanged(object sender, EventArgs e)
         {
+            // Getting kernel element type
             elementShape = ElementShape.Rectangle;
         }
 

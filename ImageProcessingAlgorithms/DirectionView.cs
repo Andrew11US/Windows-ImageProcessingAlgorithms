@@ -42,7 +42,7 @@ namespace ImageProcessingAlgorithms
             applyBtn.Left = 150;
         }
 
-        // Direction side radio buttons
+        // Direction side radio buttons, getting kernels for appropriate direction
         private void nwBtn_CheckedChanged(object sender, EventArgs e)
         {
             kernel = new Matrix<double>(new double[3, 3] { 

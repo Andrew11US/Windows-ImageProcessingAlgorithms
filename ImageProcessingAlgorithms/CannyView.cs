@@ -18,6 +18,7 @@ namespace ImageProcessingAlgorithms
         public int upperBound;
         public CannyView(Histogram histogram, string name)
         {
+            // UI setup
             InitializeComponent();
             CenterToScreen();
             Text = "Canny : " + name;
@@ -38,7 +39,7 @@ namespace ImageProcessingAlgorithms
             applyBtn.Top = 356;
             applyBtn.Left = 220;
             graphics = histogramPanel.CreateGraphics();
-
+            // Creating histogram
             float[] values = new float[256];
             for (int i = 0; i < 256; ++i)
             {
@@ -56,16 +57,19 @@ namespace ImageProcessingAlgorithms
         }
         private void trackBarLow_Scroll(object sender, EventArgs e)
         {
+            // Getting bounds - lower
             lowerBound = trackBarLower.Value;
             lowLbl.Text = lowerBound.ToString();
         }
         private void trackBarHigh_Scroll(object sender, EventArgs e)
         {
+            // Getting bounds - upper
             upperBound = trackBarUpper.Value;
             highLbl.Text = upperBound.ToString();
         }
         private void histogramPanel_Paint(object sender, PaintEventArgs e)
         {
+            // drawing on panel
             graphics.DrawImage(histogramImage, new Point());
         }
     }
