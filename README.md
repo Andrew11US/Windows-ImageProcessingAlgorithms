@@ -1,2 +1,2 @@
 # ImageProcessingAlgorithms
- Image pricessing + EmguCV
+ Image processing app using #EmguCV and #FastBitmap
